@@ -1,0 +1,28 @@
+<!--
+  此文件是由模板文件 ".dtpl/page/$rawModuleName.wxml.dtpl" 生成的，你可以自行修改模板
+
+  注意：
+  1. 如果没有语法高亮，且你使用的是 vscode 编辑器的话，建义在 vscode 插件库中安装 minapp-vscode 插件
+-->
+
+<view>
+  <swiper autoplay="{{true}}" interval="5000" duration="500" 
+  indicator-dots="{{true}}"
+  circular="{{true}}"
+  indicator-active-color="white"
+  >
+    <block wx:for="{{imageUrls}}" wx:key="{{item.id}}">
+      <swiper-item class="item">
+        <image src="{{item}}" class="item-image"/>
+      </swiper-item>
+    </block>
+  </swiper>
+  <view class="reference">
+    <block wx:for="{{reInfos}}" wx:key="{{item.id}}">
+      <view class="refer-item">
+        <reference class="refer" image="{{item.image}}" types="{{item.types}}" url="{{item.url}}"></reference>
+      </view>    
+    </block>
+  </view>
+</view>
+
