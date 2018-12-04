@@ -25,6 +25,7 @@ export class MyApp extends MobxApp<MyStore> {
     main: Url
     replays: Url
     query: Url
+    test: Url
     /*# INJECT_END #*/
   }
 }
