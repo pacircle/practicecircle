@@ -5,16 +5,19 @@
   1. 如果没有语法高亮，且你使用的是 vscode 编辑器的话，建义在 vscode 插件库中安装 minapp-vscode 插件
 -->
 
-<view>
-    <view>
-        <img src="{{reInfos.src}}"/>
-        <view>{{reInfos.nickName}}</view>
-        <view>{{reInfos.time}}</view>
+<view class="repitem">
+    <view class="top">
+        <img src="{{reInfos.src}}" class="img"/>
+        <view class="nickName">{{reInfos.nickName}}</view>
+        <view class="time">{{reInfos.time}}</view>
     </view>
-    <view>{{reInfos.title}}</view>
-    <view>{{reInfos.sub}}</view>
-    <view>
-        <view>{{reInfos.agree}}</view>
-        <view>{{reInfos.commentList.length}}</view>
+    <!-- <view class="span">占位</view> -->
+    <view class="title">{{reInfos.title}}</view>
+    <view class="sub">{{reInfos.sub}}</view>
+    <view class="bottom">
+        <view class="agree">{{reInfos.agree}}赞同 </view>
+        <view class="dot"> ● </view>
+        <view class="comment">{{reInfos.commentList.length}}评论</view>
     </view>
+    <view class="split"></view>
 </view>

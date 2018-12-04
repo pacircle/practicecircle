@@ -8,6 +8,9 @@
 <view>
   <view>加入分享，解锁所有复盘信息</view>
   <view>
+    <view class="share">分享我的复盘</view>
+  </view>
+  <view>
     <block wx:for="{{reInfos}}" wx:key="{{item.id}}">
       <repItem reInfos="{{item}}"></repItem>
     </block>
