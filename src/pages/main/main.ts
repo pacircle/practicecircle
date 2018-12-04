@@ -20,6 +20,30 @@ export default class extends MyPage {
         types: "咨询问答",
         url: "query"
       }
+    ],
+    current: 'homepage',
+    tabList: [
+      {
+        tag: "homepage",
+        icon: "homepage",
+        cuIcon:"homepage_fill",
+        status: true,
+        title: "首页"
+      },
+      {
+        tag:"add",
+        icon:"add", 
+        cuIcon:"add",
+        status: false,
+        title: "发布"
+      },
+      {
+        tag: "mime",
+        icon: "mine",
+        cuIcon: "mine_fill",
+        status: false,
+        title: "我的"
+      }
     ]
   }
 
@@ -29,4 +53,18 @@ export default class extends MyPage {
     // console.log(await wxp.getUserInfo())
   }
 
+  itemChange (e:any) {
+    let key = e.currentTarget.dataset.key
+    let tabList = this.properties.tabList
+    for (let i=0; i < tabList.length;i++){
+      if (tabList[i].tag === key){
+        tabList[i].status = true
+      } else {
+        tabList[i].status = false
+      }
+    }
+    this.setDataSmart({
+      tabList: tabList
+    })
+  }  
 }
