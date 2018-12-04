@@ -18,3 +18,7 @@ yarn install
 
 ### 项目测试运行
 yarn run dev
+
+### 项目组件库：iView
+iView代码库地址： https://github.com/TalkingData/iview-weapp
+导入方法： 将github中dist目录下相关文件复制至src/base/iView文件夹
