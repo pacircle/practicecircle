@@ -13,6 +13,8 @@
     "pages/index/index",
     // "pages/logs/logs",
     "pages/main/main",
+    "pages/replays/replays",
+    "pages/query/query",
     /*# INJECT_END #*/
   ],
   "window": {

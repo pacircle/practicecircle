@@ -12,13 +12,13 @@ export default class extends MyPage {
     reInfos: [
       {
         image: "http://file06.16sucai.com/2016/0403/bf104fd28ab2a1ec129df5acf69b32a5.jpg",
-        types: "面试真题复盘",
-        url: "replay"
+        types: "面试复盘",
+        url: "replays"
       },
       {
         image: "http://file06.16sucai.com/2016/0403/bf104fd28ab2a1ec129df5acf69b32a5.jpg",
-        types: "案例分析训练",
-        url: "practice"
+        types: "咨询问答",
+        url: "query"
       }
     ]
   }
@@ -28,4 +28,5 @@ export default class extends MyPage {
   async onLoad(options: any) {
     // console.log(await wxp.getUserInfo())
   }
+
 }

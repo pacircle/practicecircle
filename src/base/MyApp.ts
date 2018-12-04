@@ -23,6 +23,8 @@ export class MyApp extends MobxApp<MyStore> {
     logs: Url
     log: Url
     main: Url
+    replays: Url
+    query: Url
     /*# INJECT_END #*/
   }
 }

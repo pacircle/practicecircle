@@ -20,8 +20,8 @@
   <view class="reference">
     <block wx:for="{{reInfos}}" wx:key="{{item.id}}">
       <view class="refer-item">
-        <reference class="refer" image="{{item.image}}" types="{{item.types}}" url="{{item.url}}"></reference>
-      </view>    
+        <reference class="refer" image="{{item.image}}" types.sync="{{item.types}}" url="{{item.url}}"></reference>
+      </view> 
     </block>
   </view>
 </view>

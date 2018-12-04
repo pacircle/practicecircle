@@ -1,6 +1,6 @@
 // 此文件是由模板文件 ".dtpl/component/$rawModuleName.ts.dtpl" 生成的，你可以自行修改模板
 
-import {MyComponent, comify} from 'base'
+import {MyComponent, comify, wxp} from 'base'
 
 @comify()
 export default class extends MyComponent {
@@ -18,7 +18,7 @@ export default class extends MyComponent {
     },
     url: {
       type: String,
-      value: 'replay'
+      value: 'replays'
     }
   }
 
@@ -34,6 +34,20 @@ export default class extends MyComponent {
    */
   onPropUpdate(prop: string, newValue: any, oldValue: any) {
 
+  }
+  
+  goPage(e: any){
+    let path = this.properties.url.toString()
+    if (path === 'replays'){
+      this.app.$url.replays.go()
+    } else if (path === 'query'){
+      this.app.$url.query.go()
+    } else {
+      wxp.showToast({
+        title: '暂无此页面',
+        duration: 2000
+      })
+    }
   }
 }
 
