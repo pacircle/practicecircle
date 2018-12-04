@@ -10,11 +10,11 @@
     */
 
     /*# INJECT_START {"key": "page"} #*/
-    // "pages/index/index",
-    // // "pages/logs/logs",
-    // "pages/main/main",
+    "pages/index/index",
+    // "pages/logs/logs",
+    "pages/main/main",
     "pages/replays/replays",
-    // "pages/query/query",
+    "pages/query/query",
     /*# INJECT_END #*/
   ],
   "window": {
