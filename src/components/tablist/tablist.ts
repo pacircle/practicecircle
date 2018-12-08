@@ -68,10 +68,12 @@ export default class extends MyComponent {
     this.setDataSmart({
       tabList: tabList
     })
-    if (key === "document"){
-      this.app.$url.main.go()
-    } else if (key === "mine"){
+    if (key === "mine"){
       this.app.$url.user.go()
+    } else if (key === "search"){
+      this.app.$url.replays.go()
+    } else  {
+      this.app.$url.main.go()
     }
   }
 }

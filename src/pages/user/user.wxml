@@ -16,4 +16,5 @@
     <i-tab key="collect" title="我的收藏" data-key="collect"></i-tab>
   </i-tabs>
   <view>current</view>
+  <tabList></tabList>
 </view>

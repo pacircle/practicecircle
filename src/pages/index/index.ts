@@ -62,6 +62,7 @@ export default class extends MyPage {
     //   let {userInfo} = await wxp.getUserInfo()
     //   this.store.userInfo = userInfo
     // }
+    // wxp.hideTabBar({})
   }
   async getUserInfos(e:any){
      // 登录

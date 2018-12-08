@@ -58,6 +58,7 @@ export default class extends MyPage {
 
   async onLoad(options: any) {
     // console.log(await wxp.getUserInfo())
+    // wxp.showTabBar({})
   }
 
   // itemChange (e:any) {
