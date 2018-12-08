@@ -24,20 +24,21 @@
       </view> 
     </block>
   </view>
-  <view class="tab">
+  <tabList></tabList>
+  <!-- <view class="tab">
     <block wx:for="{{tabList}}" wx:key="{{item.id}}">
       <view wx:if = "{{item.status}}" class="tab-item" data-key="{{item.tag}}" bind:tap="itemChange">
         <view class="tab-item-img">
-          <i-icon size="30" type="{{item.cuIcon}}" color="#ffd400"></i-icon>
+          <i-icon size="27" type="{{item.cuIcon}}" color="#3099ff"></i-icon>
         </view>
         <view class="tab-item-tag-chosen">{{item.title}}</view>     
       </view>
       <view wx:else class="tab-item" data-key="{{item.tag}}" bind:tap="itemChange">
         <view class="tab-item-img">
-          <i-icon size="30" type="{{item.cuIcon}}"></i-icon>
+          <i-icon size="27" type="{{item.cuIcon}}"></i-icon>
         </view>
         <view class="tab-item-tag">{{item.title}}</view>     
       </view>
     </block>
-  </view>
+  </view> -->
 </view>

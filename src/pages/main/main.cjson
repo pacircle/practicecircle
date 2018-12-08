@@ -10,6 +10,7 @@
   "$schema": "https://raw.githubusercontent.com/qiu8310/minapp/master/schema/page.json",
   "usingComponents": {
     "reference": "components/reference/reference",
-    "i-icon": "../../base/iView/icon/index"
+    // "i-icon": "../../base/iView/icon/index",
+    "tabList": "components/tablist/tablist"
   }
 }

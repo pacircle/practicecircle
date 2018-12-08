@@ -21,30 +21,37 @@ export default class extends MyPage {
         url: "query"
       }
     ],
-    current: 'homepage',
-    tabList: [
-      {
-        tag: "homepage",
-        icon: "homepage",
-        cuIcon:"homepage_fill",
-        status: true,
-        title: "首页"
-      },
-      {
-        tag:"add",
-        icon:"add", 
-        cuIcon:"add",
-        status: false,
-        title: "发布"
-      },
-      {
-        tag: "mime",
-        icon: "mine",
-        cuIcon: "mine_fill",
-        status: false,
-        title: "我的"
-      }
-    ]
+    // current: 'document',
+    // tabList: [
+    //   {
+    //     tag: "document",
+    //     icon: "document",
+    //     cuIcon:"document_fill",
+    //     status: true,
+    //     title: "阅读"
+    //   },
+    //   {
+    //     tag:"interactive",
+    //     icon:"interactive", 
+    //     cuIcon:"interactive_fill",
+    //     status: false,
+    //     title: "讨论"
+    //   },
+    //   {
+    //     tag:"search",
+    //     icon:"search", 
+    //     cuIcon:"searchfill",
+    //     status: false,
+    //     title: "搜索"
+    //   },
+    //   {
+    //     tag: "mime",
+    //     icon: "mine",
+    //     cuIcon: "mine_fill",
+    //     status: false,
+    //     title: "我的"
+    //   }
+    // ]
   }
 
   
@@ -53,18 +60,18 @@ export default class extends MyPage {
     // console.log(await wxp.getUserInfo())
   }
 
-  itemChange (e:any) {
-    let key = e.currentTarget.dataset.key
-    let tabList = this.properties.tabList
-    for (let i=0; i < tabList.length;i++){
-      if (tabList[i].tag === key){
-        tabList[i].status = true
-      } else {
-        tabList[i].status = false
-      }
-    }
-    this.setDataSmart({
-      tabList: tabList
-    })
-  }  
+  // itemChange (e:any) {
+  //   let key = e.currentTarget.dataset.key
+  //   let tabList = this.properties.tabList
+  //   for (let i=0; i < tabList.length;i++){
+  //     if (tabList[i].tag === key){
+  //       tabList[i].status = true
+  //     } else {
+  //       tabList[i].status = false
+  //     }
+  //   }
+  //   this.setDataSmart({
+  //     tabList: tabList
+  //   })
+  // }  
 }
