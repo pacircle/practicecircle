@@ -15,6 +15,7 @@
     "pages/main/main",
     "pages/replays/replays",
     "pages/query/query",
+    "pages/user/user",
     /*# INJECT_END #*/
   ],
   "window": {

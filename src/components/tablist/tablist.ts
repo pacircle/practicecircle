@@ -39,7 +39,7 @@ export default class extends MyComponent {
           title: "搜索"
         },
         {
-          tag: "mime",
+          tag: "mine",
           icon: "mine",
           cuIcon: "mine_fill",
           status: false,
@@ -68,6 +68,11 @@ export default class extends MyComponent {
     this.setDataSmart({
       tabList: tabList
     })
+    if (key === "document"){
+      this.app.$url.main.go()
+    } else if (key === "mine"){
+      this.app.$url.user.go()
+    }
   }
 }
 

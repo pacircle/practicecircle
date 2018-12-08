@@ -67,7 +67,8 @@ export default class extends MyPage {
      // 登录
      let {code} = await wxp.login()
      console.log('微信 code %o', code) // 发送 code 到后台换取 openId, sessionKey, unionId
- 
+
+     console.log('test')
      // 获取用户信息
      let setting = await wxp.getSetting()
      if (setting.authSetting['scope.userInfo']) { // 已经授权，可以直接调用 getUserInfo 获取头像昵称，不会弹框
@@ -83,6 +84,7 @@ export default class extends MyPage {
        })
      }
      if (!this.store.userInfo && !this.data.canIUseOpenButton) {
+       console.log('微信兼容版本')
       // 在没有 open-type=getUserInfo 版本的兼容处理
       let {userInfo} = await wxp.getUserInfo()
       this.store.userInfo = userInfo
