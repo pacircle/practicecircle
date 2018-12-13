@@ -24,7 +24,7 @@
       </view> 
     </block>
   </view>
-  <tabList></tabList>
+  <!-- <tabList></tabList> -->
   <!-- <view class="tab">
     <block wx:for="{{tabList}}" wx:key="{{item.id}}">
       <view wx:if = "{{item.status}}" class="tab-item" data-key="{{item.tag}}" bind:tap="itemChange">
