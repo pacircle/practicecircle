@@ -17,6 +17,7 @@
     "pages/query/query",
     "pages/user/user",
     "pages/repdetail/repdetail",
+    "pages/repnew/repnew",
     /*# INJECT_END #*/
   ],
   "window": {
