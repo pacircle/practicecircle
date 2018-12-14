@@ -28,6 +28,7 @@ export class MyApp extends MobxApp<MyStore> {
     test: Url
     user: Url
     repdetail: Url
+    repnew: Url
     /*# INJECT_END #*/
   }
 }

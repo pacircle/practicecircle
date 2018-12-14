@@ -14,7 +14,7 @@ export default class extends MyPage {
     demoToast: false,
     motto: '',
     canIUseOpenButton: wxp.canIUse('button.open-type.getUserInfo'),
-    practice: require("../../images/practice.png")
+    practice: require("../../images/practice.png"),
   }
 
   onShow() {
@@ -66,6 +66,7 @@ export default class extends MyPage {
   }
   async getUserInfos(e:any){
      // 登录
+     
      let {code} = await wxp.login()
      console.log('微信 code %o', code) // 发送 code 到后台换取 openId, sessionKey, unionId
 

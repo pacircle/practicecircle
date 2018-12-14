@@ -29,4 +29,8 @@ export default class extends MyPage {
   async onLoad(options: any) {
     console.log(this.store)
   }
+
+  toRepnew(){
+    this.app.$url.repnew.go();
+  }
 }

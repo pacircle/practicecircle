@@ -1,0 +1,24 @@
+<!--
+  此文件是由模板文件 ".dtpl/page/$rawModuleName.wxml.dtpl" 生成的，你可以自行修改模板
+
+  注意：
+  1. 如果没有语法高亮，且你使用的是 vscode 编辑器的话，建义在 vscode 插件库中安装 minapp-vscode 插件
+-->
+<view >
+    <i-panel title="标题">
+        <i-input type="text" maxlength="20"
+            bind:focus="onTitleFocus"
+            bind:change="onTitleChange"
+            bind:blur="onTitleBlur"
+            value="{{reinfo.title}}"
+            placeholder="请输入20字以内的标题" />      
+    </i-panel>
+    <i-panel title="内容">
+        <i-input type="textarea" maxlength="1000" 
+            bind:focus="onContentFocus"
+            bind:change="onContentChange"
+            bind:blur="onContentBlur"
+            placeholder="请输入1000字以内的内容" />
+    </i-panel>
+    <button class="load-button" type="primary" bind:tap="onConfirmTap" >发布</button>
+</view>
