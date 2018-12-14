@@ -29,4 +29,21 @@ export default class extends MyPage {
   async onLoad(options: any) {
     console.log(this.store)
   }
+  clickDetail(e:any){
+    console.log(e.target.dataset.info)
+    // this.app.$url.repdetail.go({
+    //   infos: JSON.parse(e.target.dataset.infos)
+    // })
+    wx.navigateTo({
+      url: '../repdetail/repdetail?info=' + JSON.stringify(e.target.dataset.info),
+      success: function(res){
+      },
+      fail: function(res){
+        wx.showModal({
+          title: '显示详情',
+          content: '页面跳转失败，请刷新页面后重试'
+        })
+      }
+    })
+  }
 }

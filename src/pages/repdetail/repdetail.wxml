@@ -5,4 +5,14 @@
   1. 如果没有语法高亮，且你使用的是 vscode 编辑器的话，建义在 vscode 插件库中安装 minapp-vscode 插件
 -->
 
-<text>page: repdetail</text>
+
+<view class="main">
+  <view class="title">{{info.title}}</view>
+  <view class="avaTime">
+    <image src="{{info.src}}" mode="aspectFit" class="avatar"/>
+    <view>
+      <view>{{info.nickName}}</view> 
+      <view>{{info.time}}</view>
+    </view>
+  </view>
+</view>

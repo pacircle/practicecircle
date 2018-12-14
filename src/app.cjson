@@ -28,6 +28,7 @@
   "tabBar": {
     "color": "#CCCACA",
     "selectedColor": "#3099ff",
+    "backgroundColor": "#fafafa",
     "list": [{
       "pagePath": "pages/main/main",
       "selectedIconPath": "images/book_fill.png",
