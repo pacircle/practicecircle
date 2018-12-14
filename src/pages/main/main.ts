@@ -59,7 +59,6 @@ export default class extends MyPage {
   async onLoad(options: any) {
     // console.log(await wxp.getUserInfo())
     // wxp.showTabBar({})
-    this.setDataSmart({test3: 'See you again'})
     
   }
 
