@@ -1,7 +1,6 @@
 // 此文件是由模板文件 ".dtpl/page/$rawModuleName.ts.dtpl" 生成的，你可以自行修改模板
-
+const getUuid = require('uuid/v4');
 import {pagify, MyPage, wxp} from 'base/'
-
 @pagify()
 export default class extends MyPage {
   data = {
@@ -43,7 +42,7 @@ export default class extends MyPage {
     //console.log("title"+this.data.repInfo.title);
     //console.log("content"+this.data.repInfo.content);
 
-    if(this.data.repInfo.title.length==0 || this.data.repInfo.content.length==0){
+    if( 0 && (this.data.repInfo.title.length==0 || this.data.repInfo.content.length==0)){//测试先允许空输入
       wxp.showToast({
         icon:"none",
         title:"请检查标题和内容"
@@ -54,22 +53,35 @@ export default class extends MyPage {
       const userInfo= JSON.parse(JSON.stringify(this.store.userInfo)); 
       //创建返回的帖子对象
       const repInfo = new Object({
-        id: 0,
+        id: this.store.repInfos.length,
+        uuid:getUuid(),
         nickName: userInfo.nickName,
         src: "http://file06.16sucai.com/2016/0403/bf104fd28ab2a1ec129df5acf69b32a5.jpg",
-        time: "15分钟前",
+        time: new Date(),
         title: this.data.repInfo.title,
         sub: this.data.repInfo.content.substr(0,20),
         content: this.data.repInfo.content,
         agree: 15,
         commentList: ["评论1","评论2","评论3"]
       })
-      this.store.repInfos.unshift(repInfo)
-      console.log(repInfo);
-      wxp.navigateBack({delta:1});
-    }
 
+      console.log(repInfo);
+      
+
+      this.store.repInfos.unshift(repInfo)
+      wxp.navigateBack({delta:1});
+      
+    }
+    //console.log(getUuid());
     
   }
+  /*
+  guid() {
+    return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
+        var r = Math.random()*16|0, v = c == 'x' ? r : (r&0x3|0x8);
+        return v.toString(16);
+    });
+  }
+  */
 
 }
