@@ -13,7 +13,26 @@ export default class extends MyPage {
       title: "2018年秋招腾讯产品经理面试复盘，已offer",
       sub: "20字的简要内容",
       agree: 15,
-      commentList: ["评论1","评论2","评论3"]
+      content: "500字的主要内容",
+      commentList: [{
+        id: '0',
+        src: "http://file06.16sucai.com/2016/0403/bf104fd28ab2a1ec129df5acf69b32a5.jpg",
+        nickName: '用户AA',
+        time: '5分钟前',
+        zone: '地区/学校',
+        company: '公司名',
+        post: '岗位',
+        content: '具体问题。。。。'
+      },{
+        id: '1',
+        src: "http://file06.16sucai.com/2016/0403/bf104fd28ab2a1ec129df5acf69b32a5.jpg",
+        nickName: '用户AB',
+        time: '10分钟前',
+        zone: '地区/学校',
+        company: '公司名',
+        post: '岗位',
+        content: '具体问题。。。。'
+      }]
     },{
       id: 1,
       nickName: '用户B',
@@ -21,8 +40,18 @@ export default class extends MyPage {
       time: "15分钟前",
       title: "2018年秋招腾讯产品经理面试复盘，已offer",
       sub: "20字的简要内容",
+      content: "500字的主要内容",
       agree: 10,
-      commentList: ["评论1","评论2","评论3"]
+      commentList: [{
+        id: '0',
+        src: "http://file06.16sucai.com/2016/0403/bf104fd28ab2a1ec129df5acf69b32a5.jpg",
+        nickName: '用户BA',
+        time: '5分钟前',
+        zone: '地区/学校',
+        company: '公司名',
+        post: '岗位',
+        content: '具体问题。。。。'
+      }]
     }]
   }
 
@@ -46,4 +75,5 @@ export default class extends MyPage {
       }
     })
   }
+
 }

@@ -9,10 +9,35 @@
 <view class="main">
   <view class="title">{{info.title}}</view>
   <view class="avaTime">
-    <image src="{{info.src}}" mode="aspectFit" class="avatar"/>
     <view>
-      <view>{{info.nickName}}</view> 
-      <view>{{info.time}}</view>
+      <i-card title="{{info.nickName}}" extra="{{info.time}}" thumb="{{info.src}}">
+        <view slot="content">{{info.content}}</view>
+      </i-card>
     </view>
+  </view>
+  <block wx:for="{{info.commentList}}" wx:key="{{item.id}}">
+    <view class="i-class i-card i-card-full">
+      <view class="i-class i-card-header">
+        <view class="i-card-header-content">
+            <image class="i-card-header-thumb" src="{{ item.src }}" wx:if="{{ item.src }}" />
+            {{ item.nickName }}
+        </view>
+        <view class="i-card-header-extra">{{ item.time }}</view>
+      </view>
+      <view class="i-class i-card-body">
+        <view>{{item.zone}} - {{item.company}} - {{item.post}}</view>
+        <view>{{item.content}}</view>
+      </view>
+      <view class="i-class i-card-footer">
+        回复
+      </view>
+    </view>
+  </block>
+  <view class="bottom bottom-fixed">
+    <slot></slot>
+    <i-icon type="homepage_fill" size="35" color="#ababab" bind:tap="backToMain"/>
+      <input placeholder="评论内容" maxlength="200" class="bottom-input"/>
+    <i-icon type="collection" size="35" color="#ababab"/>
+    <i-icon type="share_fill" size="35" color="#ababab"/>
   </view>
 </view>
