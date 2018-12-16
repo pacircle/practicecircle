@@ -10,7 +10,7 @@
     */
 
     /*# INJECT_START {"key": "page"} #*/
-    "pages/index/index",
+    // "pages/index/index",
     // "pages/logs/logs",
     "pages/main/main",
     "pages/replays/replays",
@@ -26,29 +26,32 @@
     "navigationBarTitleText": "实习圈",
     "navigationBarTextStyle": "white"
   },
-  // "tabBar": {
-  //   "color": "#CCCACA",
-  //   "selectedColor": "#3099ff",
-  //   "list": [{
-  //     "pagePath": "pages/index/index",
-  //     "selectedIconPath": "images/book_fill.png",
-  //     "iconPath": "images/book.png",
-  //     "text": "阅读"
-  //   },{
-  //     "pagePath": "pages/replays/replays",
-  //     "selectedIconPath": "images/talk_fill.png",
-  //     "iconPath": "images/talk.png",
-  //     "text": "复盘"
-  //   },{
-  //     "pagePath": "pages/replays/replays",
-  //     "selectedIconPath": "images/search_fill.png",
-  //     "iconPath": "images/search.png",
-  //     "text": "搜索"
-  //   },{
-  //     "pagePath": "pages/user/user",
-  //     "selectedIconPath": "images/mine_fill.png",
-  //     "iconPath": "images/mine.png",
-  //     "text": "我的"
-  //   }]
-  // },
+  "tabBar": {
+    "color": "#CCCACA",
+    "selectedColor": "#3099ff",
+    "backgroundColor": "#fafafa",
+    "list": [{
+      "pagePath": "pages/main/main",
+      "selectedIconPath": "images/book_fill.png",
+      "iconPath": "images/book.png",
+      "text": "阅读"
+    },{
+      "pagePath": "pages/replays/replays",
+      "selectedIconPath": "images/talk_fill.png",
+      "iconPath": "images/talk.png",
+      "text": "面经笔经"
+    },
+    {
+      "pagePath": "pages/query/query",
+      "selectedIconPath": "images/search_fill.png",
+      "iconPath": "images/search.png",
+      "text": "搜索"
+    },
+    {
+      "pagePath": "pages/user/user",
+      "selectedIconPath": "images/mine_fill.png",
+      "iconPath": "images/mine.png",
+      "text": "我的"
+    }]
+  },
 }

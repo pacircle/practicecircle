@@ -4,7 +4,6 @@ import {pagify, MyPage, wxp} from 'base/'
 @pagify()
 export default class extends MyPage {
   data = {
-    repInfos:{},
     repInfo:{
       id: 0,
       nickName: '用户A',
@@ -56,18 +55,36 @@ export default class extends MyPage {
         id: this.store.repInfos.length,
         uuid:getUuid(),
         nickName: userInfo.nickName,
-        src: "http://file06.16sucai.com/2016/0403/bf104fd28ab2a1ec129df5acf69b32a5.jpg",
+        src: userInfo.avatarUrl,
         time: new Date(),
         title: this.data.repInfo.title,
         sub: this.data.repInfo.content.substr(0,20),
         content: this.data.repInfo.content,
         agree: 15,
-        commentList: ["评论1","评论2","评论3"]
+        commentList: [{
+          id: '0',
+          src: "http://file06.16sucai.com/2016/0403/bf104fd28ab2a1ec129df5acf69b32a5.jpg",
+          nickName: '用户AA',
+          time: '5分钟前',
+          zone: '地区/学校',
+          company: '公司名',
+          post: '岗位',
+          content: '具体问题。。。。'
+        },{
+          id: '1',
+          src: "http://file06.16sucai.com/2016/0403/bf104fd28ab2a1ec129df5acf69b32a5.jpg",
+          nickName: '用户AB',
+          time: '10分钟前',
+          zone: '地区/学校',
+          company: '公司名',
+          post: '岗位',
+          content: '具体问题。。。。'
+        }]
       })
 
       console.log(repInfo);
       
-
+      //更新
       this.store.repInfos.unshift(repInfo)
       wxp.navigateBack({delta:1});
       

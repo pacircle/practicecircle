@@ -24,7 +24,8 @@
 }
 .i-tab-bar-fixed{
     position:fixed;
-    bottom:0;z-index:2
+    bottom:0;
+    z-index:2
 }
 .i-tab-bar-list{
     position:absolute;top:0;bottom:0;left:0;right:0

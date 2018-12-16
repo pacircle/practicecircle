@@ -60,5 +60,6 @@ export default class extends MyComponent {
   onPropUpdate(prop: string, newValue: any, oldValue: any) {
 
   }
+
 }
 

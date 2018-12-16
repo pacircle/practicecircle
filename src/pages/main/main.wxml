@@ -17,14 +17,21 @@
       </swiper-item>
     </block>
   </swiper>
-  <view class="reference">
+  <view class="read">
+    <view class="readM">
+      <view class="readL">推荐阅读</view>
+      <view class="readR">查看全部</view>
+    </view>
+  </view>
+  
+  <!-- <view class="reference">
     <block wx:for="{{reInfos}}" wx:key="{{item.id}}">
       <view class="refer-item">
         <reference class="refer" image="{{item.image}}" types.sync="{{item.types}}" url="{{item.url}}"></reference>
       </view> 
     </block>
-  </view>
-  <tabList></tabList>
+  </view> -->
+  <!-- <tabList></tabList> -->
   <!-- <view class="tab">
     <block wx:for="{{tabList}}" wx:key="{{item.id}}">
       <view wx:if = "{{item.status}}" class="tab-item" data-key="{{item.tag}}" bind:tap="itemChange">
