@@ -50,4 +50,8 @@ export default class extends MyPage {
       info: JSON.parse(options.info)
     })
   }
+
+  backToMain(e:any){
+    this.app.$url.main.go()
+  }
 }
