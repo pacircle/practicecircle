@@ -10,6 +10,7 @@ export default class extends MyPage {
 
   async onLoad(options: any) {
     console.log(this.store)
+    //提供一个模版而已，后面要删掉的
     if(this.store.repInfos.length==0){
       this.store.repInfos.unshift({
         id: 0,
@@ -17,7 +18,7 @@ export default class extends MyPage {
         src: "http://file06.16sucai.com/2016/0403/bf104fd28ab2a1ec129df5acf69b32a5.jpg",
         time: "15分钟前",
         title: "2018年秋招腾讯产品经理面试复盘，已offer",
-        sub: "20字的简要内容",
+        sub: "20字的简要内容...",
         agree: 15,
         content: "500字的主要内容",
         commentList: [{

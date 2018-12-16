@@ -58,7 +58,7 @@ export default class extends MyPage {
         src: userInfo.avatarUrl,
         time: new Date(),
         title: this.data.repInfo.title,
-        sub: this.data.repInfo.content.substr(0,20),
+        sub: this.data.repInfo.content.substr(0,20)+(this.data.repInfo.content.length>20?"...":""),
         content: this.data.repInfo.content,
         agree: 15,
         commentList: [{

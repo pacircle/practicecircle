@@ -11,6 +11,7 @@
   "usingComponents": {
     "reference": "components/reference/reference",
     // "i-icon": "../../base/iView/icon/index",
-    "tabList": "components/tablist/tablist"
+    "tabList": "components/tablist/tablist",
+    "recommendCard": "components/recommendCard/recommendCard"
   }
 }
