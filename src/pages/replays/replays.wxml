@@ -16,7 +16,7 @@
   </view>
   <view class="join">加入分享，解锁所有复盘信息</view>
   <view>
-    <block wx:for="{{repInfos}}" wx:key="{{item.id}}">
+    <block wx:for="{{articleInfos}}" wx:key="{{item.id}}">
       <repItem reInfos="{{item}}" data-info="{{item}}" bind:tap="clickDetail"></repItem>
     </block>
   </view>

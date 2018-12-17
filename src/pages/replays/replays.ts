@@ -5,11 +5,47 @@ import {pagify, MyPage} from 'base/'
 @pagify()
 export default class extends MyPage {
   data = {
-    repInfos: []
+    repInfos: [],
+    articleInfos: []
   }
 
   async onLoad(options: any) {
     console.log(this.store)
+    let store:any = this.store
+    let that:any = this
+    if (!store.articleInfos || store.articleInfos.length === 0 ){
+      wx.request({
+        url: "http://result.eolinker.com/2iwkBiged241c5a42bdfb8b083224dbf190f8b770cac539?uri=/article/index",
+        data: {
+          openid: store.openid
+        },
+        method: 'GET',
+        success:function(ress:any){
+          console.log(ress.data.status)
+          if (ress.data.status === 200){
+              console.log(ress.data.articleInfos)
+              if (!store.articleInfos){
+                store.articleInfos = ress.data.articleInfos
+                that.setArticle(store.articleInfos)
+              }         
+          } else {
+            wx.showToast({
+              title: '用户登陆失败1，请检查网络后重新启动小程序',
+              icon: 'none',
+              duration: 2000
+            })
+          } 
+          // console.log('微信 userInfo %o', res.userInfo)
+        },
+        fail:function(res){
+          wx.showToast({
+            title: '获取文章失败，请检查网络后重新启动小程序',
+            icon: 'none',
+            duration: 2000
+          })
+        }
+      })
+    }
     //提供一个模版而已，后面要删掉的
     if(this.store.repInfos.length==0){
       this.store.repInfos.unshift({
@@ -60,12 +96,20 @@ export default class extends MyPage {
           content: '具体问题。。。。'
         }]
       })
-    }
-    
-    
+    } 
+  }
+  
+  async setArticle(articles: Array<JSON>){
+    await this.setDataSmart({
+      articleInfos: articles
+    }) 
   }
   async onShow(){
-    await this.setDataSmart({repInfos:this.store.repInfos})
+    let store:any = this.store
+    await this.setDataSmart({
+      repInfos:this.store.repInfos,
+      articleInfos: store.articleInfos
+    })
   }
 
   toRepnew(){
