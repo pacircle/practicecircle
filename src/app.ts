@@ -21,9 +21,45 @@ export default class extends MyApp {
     let setting = await wxp.getSetting()
     if (setting.authSetting['scope.userInfo']) { // 已经授权，可以直接调用 getUserInfo 获取头像昵称，不会弹框
       // 可以将 getUserInfo 返回的对象发送给后台解码出 unionId
+      let store:any = this.store
       let res = await wxp.getUserInfo()
       console.log('微信 userInfo %o', res.userInfo)
-      this.store.userInfo = res.userInfo  // 将用户信息存入 store 中
+      if (res && code){
+        wx.request({
+          url: "http://result.eolinker.com/2iwkBiged241c5a42bdfb8b083224dbf190f8b770cac539?uri=/user/login",
+          data: {
+            userInfo: res.userInfo,
+            code: code
+          },
+          method: 'POST',
+          success:function(ress:any){
+            if (ress.data.status === 200){
+              if (!store.userInfo && ress.data.openid){
+                console.log(ress)
+                store.userInfo = res.userInfo
+                store.openid = ress.data.openid
+              } else {
+                console.log(ress.data)
+              }           
+            } else {
+              wx.showToast({
+                title: '用户登陆失败，请检查网络后重新启动小程序',
+                icon: 'none',
+                duration: 2000
+              })
+            } 
+            // console.log('微信 userInfo %o', res.userInfo)
+          },
+          fail:function(res){
+            wx.showToast({
+              title: '用户登陆失败，请检查网络后重新启动小程序',
+              icon: 'none',
+              duration: 2000
+            })
+          }
+        })
+      }
+      // this.store.userInfo = res.userInfo  // 将用户信息存入 store 中
     } else {
       console.log('没有授权过')
     }
