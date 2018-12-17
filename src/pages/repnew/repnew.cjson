@@ -9,9 +9,8 @@
 {
   "$schema": "https://raw.githubusercontent.com/qiu8310/minapp/master/schema/page.json",
   "usingComponents": {
-    "reference": "components/reference/reference",
-    // "i-icon": "../../base/iView/icon/index",
-    "tabList": "components/tablist/tablist",
-    "recommendCard": "components/recommendCard/recommendCard"
+    "i-input": "../../base/iView/input/index",
+    "i-rate": "../../base/iView/rate/index",
+    "i-panel": "../../base/iView/panel/index"
   }
 }

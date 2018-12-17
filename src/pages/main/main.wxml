@@ -17,12 +17,25 @@
       </swiper-item>
     </block>
   </swiper>
+
   <view class="read">
     <view class="readM">
-      <view class="readL">推荐阅读</view>
-      <view class="readR">查看全部</view>
+      <view class="readL">推荐阅读（筛选待议，目前全显示）</view>
+      <view class="readR" bind:tap="toReplays">查看全部</view>
     </view>
   </view>
+
+
+  <block wx:for="{{repInfos}}" wx:key="{{item.id}}"> 
+    <recommendCard avatar="{{item.src}}" nickname="{{item.nickName}}" time="{{item.time}}" 
+        data-info="{{item}}" bind:tap="clickDetail" >
+
+        <view slot="title">{{item.title}}</view>
+        <view slot="content">{{item.sub}}</view>
+        <view slot="footer">{{item.agree}}赞同 ● {{item.commentList.length}}条评论</view>
+
+    </recommendCard>
+  </block>
   
   <!-- <view class="reference">
     <block wx:for="{{reInfos}}" wx:key="{{item.id}}">
