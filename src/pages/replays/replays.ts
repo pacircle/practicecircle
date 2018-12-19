@@ -6,7 +6,20 @@ import {pagify, MyPage} from 'base/'
 export default class extends MyPage {
   data = {
     repInfos: [],
-    articleInfos: []
+    articleInfos: [],
+    orderInfo: "按时间顺序排序",
+    visible: false,
+    actions: [
+      {
+          name: '按时间顺序排序',
+      },
+      {
+          name: '按点赞数量排序',
+      },
+      {
+          name: '按评论数量排序'
+      },
+  ],
   }
 
   async onLoad(options: any) {
@@ -114,6 +127,35 @@ export default class extends MyPage {
 
   toRepnew(){
     this.app.$url.repnew.go();
+  }
+  handleOpen() {
+    this.setDataSmart({
+        visible: true
+    });
+  }
+  handleClickItem ({ detail }:any) {
+    const index = detail.index + 1;
+    console.log(index)
+    if (index === 1){
+      this.setDataSmart({
+        visible: false,
+      });
+    }else if (index === 2){
+      this.setDataSmart({
+        visible: false,
+        orderInfo: '按点赞数量排序'
+      });
+    } else if (index === 3){
+      this.setDataSmart({
+        visible: false,
+        orderInfo: '按评论数量排序'
+      });
+    }
+  }
+  handleCancel () {
+    this.setDataSmart({
+        visible: false
+    });
   }
   clickDetail(e:any){
     console.log(e.target.dataset.info)

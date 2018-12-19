@@ -10,6 +10,9 @@
   "$schema": "https://raw.githubusercontent.com/qiu8310/minapp/master/schema/page.json",
   "usingComponents": {
     "repItem": "components/repitem/repitem",
-    "i-icon": "../../base/iView/icon/index"
+    "i-icon": "../../base/iView/icon/index",
+    "i-spin": "../../base/iView/spin/index",
+    "i-action-sheet":"../../base/iView/action-sheet/index",
+    "i-button": "../../base/iView/button/index"
   }
 }
