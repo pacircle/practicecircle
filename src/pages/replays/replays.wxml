@@ -8,8 +8,8 @@
 <view>
   <view class="top">
     <view class="top-x">
-      <view class="top-icon">
-         <i-icon type="share_fill" color="#6b75c3" size="28" class="top-x" bind:tap="toRepnew"/>
+      <view class="top-icon"  bind:tap="toRepnew">
+         <i-icon type="share_fill" color="#6b75c3" size="28" class="top-x"/>
          分享我的复盘
       </view>
       <view>

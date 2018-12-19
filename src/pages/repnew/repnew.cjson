@@ -11,6 +11,7 @@
   "usingComponents": {
     "i-input": "../../base/iView/input/index",
     "i-rate": "../../base/iView/rate/index",
-    "i-panel": "../../base/iView/panel/index"
+    "i-panel": "../../base/iView/panel/index",
+    "i-button": "../../base/iView/button/index"
   }
 }

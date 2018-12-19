@@ -15,10 +15,21 @@
     </i-panel>
     <i-panel title="内容">
         <i-input type="textarea" maxlength="1000" 
+            value.sync="{{mainValue}}"
             bind:focus="onContentFocus"
             bind:change="onContentChange"
             bind:blur="onContentBlur"
             placeholder="请输入1000字以内的内容" />
     </i-panel>
-    <button class="load-button" type="primary" bind:tap="onConfirmTap" >发布</button>
+    <view title="请提供简要内容">
+        <view>
+            <view>请提供简要内容</view>
+            <i-button type="primary" size="small">获取默认简要内容</i-button>
+        </view>
+        <i-input type="textarea" maxlength="100" 
+            placeholder="请输入100字以内的内容" 
+            value.sync="{{subValue}}"
+            />
+    </view>
+    <button class="load-button" bind:tap="onConfirmTap" >发布</button>
 </view>
