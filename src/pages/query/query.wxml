@@ -4,5 +4,22 @@
   注意：
   1. 如果没有语法高亮，且你使用的是 vscode 编辑器的话，建义在 vscode 插件库中安装 minapp-vscode 插件
 -->
+<view>
+  <view class="i-class i-cell i-input i-input-wrapped">  
+    <view class="i-input-icon">
+      <i-icon type="search" size="35" color="#2d8cf0"/>
+    </view>
+    <input
+        type="{{ type }}"
+        focus="false"
+        value="{{ value }}"
+        placeholder="请输入公司名/岗位名称"
+        bindinput="handleInputChange"
+        bindfocus="handleInputFocus"
+        bindblur="handleInputBlur"
+        auto-focus
+    />
+    
+  </view>
+</view>
 
-<text>page: query</text>
