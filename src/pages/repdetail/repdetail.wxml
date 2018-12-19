@@ -29,7 +29,27 @@
         <view>{{item.content}}</view>
       </view>
       <view class="i-class i-card-footer">
-        回复
+        <view class="caption-wrap">
+          <i-collapse name="查看回复信息">
+            <i-collapse-item title="查看回复信息">
+              <view slot="content"> 
+                  <block wx:if="{{item.answers}}" wx:for="{{item.answers}}" wx:for-item="answer" wx:key="{{answer.id}}">
+                    <view class="answer-left" wx:if="{{item.user === answer.user}}">
+                      <image src="{{answer.src}}" class="answer-left-image"></image>
+                      <view class="answer-left-name">{{answer.nickName}}:</view>
+                      <view>{{answer.content}}</view>
+                    </view>
+                    <view class="answer-right" wx:else>
+                      <image src="{{answer.src}}" class="answer-right-image"></image>
+                      <view class="answer-right-name">:{{answer.nickName}}</view>
+                      <view class="answer-right-content">{{answer.content}}</view>
+                    </view>
+                  </block>
+                  <text class="answer-reply">回复</text>
+              </view>
+            </i-collapse-item>
+          </i-collapse>
+        </view>
       </view>
     </view>
   </block>
