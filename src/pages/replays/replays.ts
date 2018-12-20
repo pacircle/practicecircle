@@ -9,6 +9,7 @@ export default class extends MyPage {
     articleInfos: [],
     orderInfo: "按时间顺序排序",
     visible: false,
+    articleType: 'time',
     actions: [
       {
           name: '按时间顺序排序',
@@ -26,11 +27,13 @@ export default class extends MyPage {
     console.log(this.store)
     let store:any = this.store
     let that:any = this
+    store.articleType = this.data.articleType
     if (!store.articleInfos || store.articleInfos.length === 0 ){
       wx.request({
         url: "http://result.eolinker.com/2iwkBiged241c5a42bdfb8b083224dbf190f8b770cac539?uri=/article/index",
         data: {
-          openid: store.openid
+          openid: store.openid,
+          articleType: store.articleType
         },
         method: 'GET',
         success:function(ress:any){
@@ -43,7 +46,7 @@ export default class extends MyPage {
               }         
           } else {
             wx.showToast({
-              title: '用户登陆失败1，请检查网络后重新启动小程序',
+              title: '获取文章失败，请检查网络',
               icon: 'none',
               duration: 2000
             })
@@ -111,7 +114,48 @@ export default class extends MyPage {
       })
     } 
   }
-  
+  async getArticle(type:String){
+    let store:any = this.store;
+    let that = this;
+    store.articleType = type
+    wx.request({
+      url: "http://result.eolinker.com/2iwkBiged241c5a42bdfb8b083224dbf190f8b770cac539?uri=/article/index",
+      data: {
+        openid: store.openid,
+        articleType: store.articleType
+      },
+      method: 'GET',
+      success:function(ress:any){
+        console.log(ress.data.status)
+        if (ress.data.status === 200){
+            if (ress.data.articleInfos){
+              console.log(ress.data.articleInfos)
+              store.articleInfos = ress.data.articleInfos
+              that.setArticle(store.articleInfos)
+              wx.showToast({
+                title: '更新列表成功',
+                icon: 'none',
+                duration: 1000
+              })
+            }         
+        } else {
+          wx.showToast({
+            title: '更新列表失败，请检查网络',
+            icon: 'none',
+            duration: 2000
+          })
+        } 
+        // console.log('微信 userInfo %o', res.userInfo)
+      },
+      fail:function(res){
+        wx.showToast({
+          title: '更新列表失败，请检查网络后重新启动小程序',
+          icon: 'none',
+          duration: 2000
+        })
+      }
+    })  
+  }
   async setArticle(articles: Array<JSON>){
     await this.setDataSmart({
       articleInfos: articles
@@ -135,21 +179,26 @@ export default class extends MyPage {
   }
   handleClickItem ({ detail }:any) {
     const index = detail.index + 1;
-    console.log(index)
     if (index === 1){
       this.setDataSmart({
         visible: false,
       });
     }else if (index === 2){
+      let type:String = 'agree'
       this.setDataSmart({
         visible: false,
-        orderInfo: '按点赞数量排序'
+        orderInfo: '按点赞数量排序',
+        articleType: type
       });
+      this.getArticle('agree')
     } else if (index === 3){
+      let type:String = 'comment'
       this.setDataSmart({
         visible: false,
-        orderInfo: '按评论数量排序'
+        orderInfo: '按评论数量排序',
+        articleType: type
       });
+      this.getArticle(type)
     }
   }
   handleCancel () {

@@ -12,6 +12,12 @@
     <view>
       <i-card title="{{info.nickName}}" extra="{{info.time}}" thumb="{{info.src}}">
         <view slot="content">{{info.content}}</view>
+        <view slot="footer">
+          <i-icon type="praise_fill" size="35" color="#2d8cf0" wx:if="{{info.user_agree === true}}"  bind:tap="agreeArticle"/>
+          <i-icon type="praise" size="35"   bind:tap="agreeArticle"  wx:else/>
+          <i-icon type="collection_fill" size="35" color="#2d8cf0" wx:if="{{info.user_collect === true}}" bind:tap="collectArticle"/>
+          <i-icon type="collection" size="35"  bind:tap="collectArticle" wx:else/>
+        </view>
       </i-card>
     </view>
   </view>
@@ -56,8 +62,9 @@
   <view class="bottom bottom-fixed">
     <slot></slot>
     <i-icon type="homepage_fill" size="35" color="#ababab" bind:tap="backToMain"/>
-      <input placeholder="评论内容" maxlength="200" class="bottom-input"/>
-    <i-icon type="collection" size="35" color="#ababab"/>
-    <i-icon type="share_fill" size="35" color="#ababab"/>
+    <input placeholder="评论内容" maxlength="200" class="bottom-input"/> 
+    <button open-type="share" class="share-button" size="35">
+      <i-icon type="share_fill" size="35" color="#ababab"/>
+    </button>
   </view>
 </view>
