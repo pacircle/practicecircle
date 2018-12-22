@@ -11,6 +11,7 @@
   "usingComponents": {
     "i-tabs": "../../base/iView/tabs/index",
     "i-tab": "../../base/iView/tab/index",
-    "tabList": "components/tablist/tablist"
+    "tabList": "components/tablist/tablist",
+    "recommendCard": "components/recommendCard/recommendCard"
   }
 }
