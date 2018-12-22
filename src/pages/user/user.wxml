@@ -19,7 +19,6 @@
   <!-- <tabList></tabList> -->
 
   <view hidden="{{current!='history'}}">
-      history
       <block wx:for="{{hisInfos}}" wx:key="{{item.id}}">
           <recommendCard avatar="{{item.src}}" nickname="{{item.nickName}}" time="{{item.time}}" 
               data-info="{{item}}" bind:tap="clickDetail" >
