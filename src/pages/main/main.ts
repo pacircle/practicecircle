@@ -59,6 +59,8 @@ export default class extends MyPage {
   async onLoad(options: any) {
     // console.log(await wxp.getUserInfo())
     // wxp.showTabBar({})
+    
+    //页面加载的时候http.get推荐阅读内容
     let store:any = this.store
     wx.request({
       url:"http://result.eolinker.com/2iwkBiged241c5a42bdfb8b083224dbf190f8b770cac539?uri=/user/recom",
@@ -66,10 +68,10 @@ export default class extends MyPage {
         id: store.openid
       },
       success: function(res){
-        console.log(store.repInfos.length)
+        console.log(store.recomInfos.length)
         console.log(res.data.status)
-        if (store.repInfos.length === 0 && res.data.status === 200){
-          store.repInfos = res.data.recomInfos
+        if ( res.data.status === 200){
+          if(store.recomInfos.length === 0 ) store.recomInfos = res.data.recomInfos
         } else {
           wx.showToast({
             title: '获取推荐列表失败，请检查网络',
