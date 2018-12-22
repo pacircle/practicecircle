@@ -5,7 +5,6 @@ import {pagify, MyPage} from 'base/'
 @pagify()
 export default class extends MyPage {
   data = {
-    repInfos: [],
     articleInfos: [],
     orderInfo: "按时间顺序排序",
     visible: false,
@@ -28,7 +27,7 @@ export default class extends MyPage {
     let store:any = this.store
     let that:any = this
     store.articleType = this.data.articleType
-    if (!store.articleInfos || store.articleInfos.length === 0 ){
+    if (store.articleInfos.length === 0 ){//如果没有文章
       wx.request({
         url: "http://result.eolinker.com/2iwkBiged241c5a42bdfb8b083224dbf190f8b770cac539?uri=/article/index",
         data: {
@@ -40,10 +39,8 @@ export default class extends MyPage {
           console.log(ress.data.status)
           if (ress.data.status === 200){
               console.log(ress.data.articleInfos)
-              if (!store.articleInfos){
-                store.articleInfos = ress.data.articleInfos
-                that.setArticle(store.articleInfos)
-              }         
+              store.articleInfos = ress.data.articleInfos
+              that.setArticle(store.articleInfos)
           } else {
             wx.showToast({
               title: '获取文章失败，请检查网络',
@@ -62,6 +59,7 @@ export default class extends MyPage {
         }
       })
     }
+    /*
     //提供一个模版而已，后面要删掉的
     if(this.store.repInfos.length==0){
       this.store.repInfos.unshift({
@@ -112,7 +110,7 @@ export default class extends MyPage {
           content: '具体问题。。。。'
         }]
       })
-    } 
+    } */
   }
   async getArticle(type:String){
     let store:any = this.store;
@@ -164,7 +162,6 @@ export default class extends MyPage {
   async onShow(){
     let store:any = this.store
     await this.setDataSmart({
-      repInfos:this.store.repInfos,
       articleInfos: store.articleInfos
     })
   }

@@ -8,6 +8,7 @@
 <view>
   <view class="user">
     <image class="avatar" src="{{avatar}}" background-size="cover" />
+    <text> {{nickName}}</text>
   </view>
   <i-tabs current="{{current}}" color="#3099ff" bindchange="handleChange" i-class="tab">  
     <i-tab key="history" title="阅读历史" data-key="history"></i-tab>
@@ -15,6 +16,38 @@
     <i-tab key="comment" title="我的评论" data-key="comment"></i-tab>
     <i-tab key="collect" title="我的收藏" data-key="collect"></i-tab>
   </i-tabs>
-  <view>current</view>
   <!-- <tabList></tabList> -->
+
+  <view hidden="{{current!='history'}}">
+      history
+      <block wx:for="{{hisInfos}}" wx:key="{{item.id}}">
+          <recommendCard avatar="{{item.src}}" nickname="{{item.nickName}}" time="{{item.time}}" 
+              data-info="{{item}}" bind:tap="clickDetail" >
+
+              <view slot="title">{{item.title}}</view>
+              <view slot="content">{{item.sub}}</view>
+              <view slot="footer">{{item.agree}}赞同 ● {{item.commentList.length}}条评论</view>
+
+          </recommendCard>
+      </block>
+  </view>
+  <view hidden="{{current!='topic'}}">
+    topic
+  </view>
+  <view hidden="{{current!='comment'}}">
+    comment
+  </view>
+  <view hidden="{{current!='collect'}}">
+      collect
+      <block wx:for="{{collectInfos}}" wx:key="{{item.id}}">
+          <recommendCard avatar="{{item.src}}" nickname="{{item.nickName}}" time="{{item.time}}" 
+              data-info="{{item}}" bind:tap="clickDetail" >
+
+              <view slot="title">{{item.title}}</view>
+              <view slot="content">{{item.sub}}</view>
+              <view slot="footer">{{item.agree}}赞同 ● {{item.commentList.length}}条评论</view>
+
+          </recommendCard>
+      </block>
+  </view>
 </view>

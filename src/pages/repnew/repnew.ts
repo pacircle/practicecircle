@@ -4,19 +4,11 @@ import {pagify, MyPage, wxp} from 'base/'
 @pagify()
 export default class extends MyPage {
   data = {
-    repInfo:{
-      id: 0,
-      nickName: '用户A',
-      src: "http://file06.16sucai.com/2016/0403/bf104fd28ab2a1ec129df5acf69b32a5.jpg",
-      time: "15分钟前",
-      title: "",
-      sub: "",
-      content: "",
-      agree: 15,
-      commentList: ["评论1","评论2","评论3"],
-    },
-    mainValue: "",
-    subValue: ""
+
+    title: "",
+    sub: "",
+    content: "",
+
   }
 
   async onLoad(options: any) {
@@ -28,13 +20,14 @@ export default class extends MyPage {
   */
   onTitleChange(e:any){
     //console.log(e.detail.detail.value);
-    this.data.repInfo.title=e.detail.detail.value;
+    this.data.title=e.detail.detail.value;
   }
   onContentChange(e:any){
     //console.log(e.detail.detail.value);
-    this.data.repInfo.content=e.detail.detail.value;
+    this.data.content=e.detail.detail.value;
     this.setDataSmart({
-      subValue: this.data.mainValue.toString
+      sub: this.data.content
+      //subValue: this.data.mainValue.toString
     })
   }
 
@@ -46,7 +39,7 @@ export default class extends MyPage {
     //console.log("title"+this.data.repInfo.title);
     //console.log("content"+this.data.repInfo.content);
 
-    if( 0 && (this.data.repInfo.title.length==0 || this.data.repInfo.content.length==0)){//测试先允许空输入
+    if( 0 && (this.data.title.length==0 || this.data.content.length==0)){//测试先允许空输入
       wxp.showToast({
         icon:"none",
         title:"请检查标题和内容"
@@ -56,16 +49,17 @@ export default class extends MyPage {
       //获取用户信息的备份
       const userInfo= JSON.parse(JSON.stringify(this.store.userInfo)); 
       //创建返回的帖子对象
-      const repInfo = new Object({
-        id: this.store.repInfos.length,
+      const newArticle = new Object({
+        id: this.store.articleInfos.length,
         uuid:getUuid(),
         nickName: userInfo.nickName,
         src: userInfo.avatarUrl,
         time: new Date(),
-        title: this.data.repInfo.title,
-        sub: this.data.repInfo.content.substr(0,20)+(this.data.repInfo.content.length>20?"...":""),
-        content: this.data.repInfo.content,
-        agree: 15,
+        title: this.data.title,
+        sub: this.data.sub,
+        //sub: this.data.content.substr(0,20)+(this.data.content.length>20?"...":""),
+        content: this.data.content,
+        agree: 666,
         commentList: [{
           id: '0',
           src: "http://file06.16sucai.com/2016/0403/bf104fd28ab2a1ec129df5acf69b32a5.jpg",
@@ -87,10 +81,10 @@ export default class extends MyPage {
         }]
       })
 
-      console.log(repInfo);
+      console.log(newArticle);
       
       //更新
-      this.store.repInfos.unshift(repInfo)
+      this.store.articleInfos.unshift(newArticle)
       wxp.navigateBack({delta:1});
       
     }

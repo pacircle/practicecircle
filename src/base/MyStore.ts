@@ -16,5 +16,13 @@ export class MyStore extends MobxStore {
    */
   @observable userInfo: null | wx.getUserInfo.ParamPropSuccessParamPropUserInfo = null
 
-  @observable repInfos: Array<any> =[]
+  @observable articleInfos: Array<any> =[]//tab2里的全部列表
+  
+  @observable recomInfos: Array<any> =[]//tab1里的推荐阅读
+
+  @observable hisInfos: Array<any> =[]//tab4里的阅读历史
+
+  @observable collectInfos: Array<any> =[]//tab4里的我的收藏
+
+
 }
