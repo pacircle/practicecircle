@@ -11,6 +11,8 @@
   "usingComponents": {
     "repItem": "components/repitem/repitem",
     "i-card": "../../base/iView/card/index",
-    "i-icon": "../../base/iView/icon/index"
+    "i-icon": "../../base/iView/icon/index",
+    "i-collapse": "../../base/iView/collapse/index",
+    "i-collapse-item": "../../base/iView/collapse-item/index"
   }
 }

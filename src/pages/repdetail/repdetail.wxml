@@ -12,6 +12,12 @@
     <view>
       <i-card title="{{info.nickName}}" extra="{{info.time}}" thumb="{{info.src}}">
         <view slot="content">{{info.content}}</view>
+        <view slot="footer">
+          <i-icon type="praise_fill" size="35" color="#2d8cf0" wx:if="{{info.user_agree === true}}"  bind:tap="agreeArticle"/>
+          <i-icon type="praise" size="35"   bind:tap="agreeArticle"  wx:else/>
+          <i-icon type="collection_fill" size="35" color="#2d8cf0" wx:if="{{info.user_collect === true}}" bind:tap="collectArticle"/>
+          <i-icon type="collection" size="35"  bind:tap="collectArticle" wx:else/>
+        </view>
       </i-card>
     </view>
   </view>
@@ -29,15 +35,36 @@
         <view>{{item.content}}</view>
       </view>
       <view class="i-class i-card-footer">
-        回复
+        <view class="caption-wrap">
+          <i-collapse name="查看回复信息">
+            <i-collapse-item title="查看回复信息">
+              <view slot="content"> 
+                  <block wx:if="{{item.answers}}" wx:for="{{item.answers}}" wx:for-item="answer" wx:key="{{answer.id}}">
+                    <view class="answer-left" wx:if="{{item.user === answer.user}}">
+                      <image src="{{answer.src}}" class="answer-left-image"></image>
+                      <view class="answer-left-name">{{answer.nickName}}:</view>
+                      <view>{{answer.content}}</view>
+                    </view>
+                    <view class="answer-right" wx:else>
+                      <image src="{{answer.src}}" class="answer-right-image"></image>
+                      <view class="answer-right-name">:{{answer.nickName}}</view>
+                      <view class="answer-right-content">{{answer.content}}</view>
+                    </view>
+                  </block>
+                  <text class="answer-reply">回复</text>
+              </view>
+            </i-collapse-item>
+          </i-collapse>
+        </view>
       </view>
     </view>
   </block>
   <view class="bottom bottom-fixed">
     <slot></slot>
     <i-icon type="homepage_fill" size="35" color="#ababab" bind:tap="backToMain"/>
-      <input placeholder="评论内容" maxlength="200" class="bottom-input"/>
-    <i-icon type="collection" size="35" color="#ababab"/>
-    <i-icon type="share_fill" size="35" color="#ababab"/>
+    <input placeholder="评论内容" maxlength="200" class="bottom-input"/> 
+    <button open-type="share" class="share-button" size="35">
+      <i-icon type="share_fill" size="35" color="#ababab"/>
+    </button>
   </view>
 </view>

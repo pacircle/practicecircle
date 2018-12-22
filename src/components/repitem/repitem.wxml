@@ -6,18 +6,29 @@
 -->
 
 <view class="repitem">
-    <view class="top">
-        <img src="{{reInfos.src}}" class="img"/>
+    <!-- <view class="top">
+        <image src="{{reInfos.src}}" class="img"/>
         <view class="nickName">{{reInfos.nickName}}</view>
         <view class="time">{{reInfos.time}}</view>
     </view>
     <!-- <view class="span">占位</view> -->
-    <view class="title">{{reInfos.title}}</view>
+    <!-- <view class="title">{{reInfos.title}}</view>
     <view class="sub">{{reInfos.sub}}</view>
     <view class="bottom">
-        <view class="agree">{{reInfos.agree}}赞同 </view>
-        <view class="dot"> ● </view>
-        <view class="comment">{{reInfos.commentList.length}}评论</view>
+        <view>{{reInfos.agree}}赞同  ●  {{reInfos.commentList.length}}评论</view>
     </view>
-    <view class="split"></view>
+    <view class="split"></view> --> 
+    <view class="i-class i-card i-card-full">
+      <view class="i-class i-card-header">
+        <view class="i-card-header-content">
+            <image class="i-card-header-thumb" src="{{ reInfos.src }}" wx:if="{{ reInfos.src }}" />
+            {{ reInfos.nickName }}
+        </view>
+        <view class="i-card-header-extra">{{ reInfos.time }}</view>
+      </view>
+      <view class="i-class i-card-title">{{reInfos.title}}</view>
+      <view class="i-class i-card-content">{{reInfos.sub}}</view>
+      <view class="i-class i-card-footer">{{reInfos.agree}}赞同  ●  {{reInfos.commentList.length}}评论</view>
+      <view class="split"></view>
+      </view>
 </view>

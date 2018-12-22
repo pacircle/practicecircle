@@ -13,8 +13,10 @@ export default class extends MyPage {
       sub: "",
       content: "",
       agree: 15,
-      commentList: ["评论1","评论2","评论3"]
-    }
+      commentList: ["评论1","评论2","评论3"],
+    },
+    mainValue: "",
+    subValue: ""
   }
 
   async onLoad(options: any) {
@@ -31,6 +33,9 @@ export default class extends MyPage {
   onContentChange(e:any){
     //console.log(e.detail.detail.value);
     this.data.repInfo.content=e.detail.detail.value;
+    this.setDataSmart({
+      subValue: this.data.mainValue.toString
+    })
   }
 
   /*
