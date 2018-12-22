@@ -7,6 +7,7 @@
 
 
 <view class="main">
+<view  class="scrollStyle">
   <view class="title">{{info.title}}</view>
   <view class="avaTime">
     <view>
@@ -31,7 +32,7 @@
         <view class="i-card-header-extra">{{ item.time }}</view>
       </view>
       <view class="i-class i-card-body">
-        <view>{{item.zone}} - {{item.company}} - {{item.post}}</view>
+        <!-- <view>{{item.zone}} - {{item.company}} - {{item.post}}</view> -->
         <view>{{item.content}}</view>
       </view>
       <view class="i-class i-card-footer">
@@ -59,10 +60,14 @@
       </view>
     </view>
   </block>
+  </view>
   <view class="bottom bottom-fixed">
-    <slot></slot>
+    <!-- <slot></slot> -->
     <i-icon type="homepage_fill" size="35" color="#ababab" bind:tap="backToMain"/>
-    <input placeholder="评论内容" maxlength="200" class="bottom-input"/> 
+    <i-input placeholder="评论内容" maxlength="1000" class="bottom-input" 
+            bind:change="onCommentChange"
+            value="{{commentValue}}"/> 
+    <i-icon type="send" size="35" color="#ababab" bind:tap="onSendComment"/>
     <button open-type="share" class="share-button" size="35">
       <i-icon type="share_fill" size="35" color="#ababab"/>
     </button>
