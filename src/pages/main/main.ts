@@ -70,7 +70,7 @@ export default class extends MyPage {
       success: function(res){
         console.log(store.recomInfos.length)
         console.log(res.data.status)
-        if ( res.data.status === 200){
+        if ( res.data.status === 200 && res.data.recomInfos ){
           if(store.recomInfos.length === 0 ) store.recomInfos = res.data.recomInfos
         } else {
           wx.showToast({

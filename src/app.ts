@@ -35,7 +35,7 @@ export default class extends MyApp {
           success:function(ress:any){
             if (ress.data.status === 200){
               if (!store.userInfo && ress.data.openid){
-                console.log(ress)
+                console.log(ress,'成功')
                 store.userInfo = res.userInfo
                 store.openid = ress.data.openid
               } else {

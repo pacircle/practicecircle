@@ -153,7 +153,7 @@
 .bottom {
   display:flex;
     width:100%;
-    height:60px;
+    height:80px;
     box-sizing:
     border-box;
     position:relative;
@@ -161,20 +161,21 @@
     align-items:center;
     -webkit-box-align:center;
     background:#fff;
+    font-size: 20px;
 }
 
 .bottom-fixed{
   position:fixed;
   bottom:0;
-  z-index:2;
+  // z-index:2;
 }
 
 .bottom-input{
   border-radius: 10px;
-  border: 3px solid #e2e2e2;
-  height: 50%;
+  border: 2px solid #e2e2e2;
+  height: 90%;
   width: 80%;
-  font-size: 25px;
+  font-size: 20px;
   margin-left: 20px;
 }
 
@@ -185,4 +186,9 @@
 
 .share-button::after {
   border: none;
+}
+
+.scrollStyle {
+  overflow-y: scroll;
+  padding-bottom: 80px;
 }
