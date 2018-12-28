@@ -37,19 +37,19 @@ export default class extends MyApp {
           },
           method: 'POST',
           success:function(ress:any){
-            console.log(ress.data)
+            console.log(ress)
             if (ress.statusCode === 200){
               if (!store.userInfo && ress.data.openid){
                 // console.log(ress,'成功')
                 store.userInfo = res.userInfo
                 store.openid = ress.data.openid
               } else {
-                console.log(ress.data)
-                wx.showToast({
-                  title: '获取信息失败，请使用正版小程序',
-                  icon: 'none',
-                  duration: 2000
-                })
+                console.log(ress.data.msg)
+                // wx.showToast({
+                //   title: '获取信息失败，请使用正版小程序',
+                //   icon: 'none',
+                //   duration: 2000
+                // })
               }           
             } else {
               wx.showToast({

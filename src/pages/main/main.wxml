@@ -20,7 +20,7 @@
 
   <view class="read">
     <view class="readM">
-      <view class="readL">推荐阅读（筛选待议，目前全显示）</view>
+      <view class="readL">推荐阅读</view>
       <view class="readR" bind:tap="toReplays">查看全部</view>
     </view>
   </view>
