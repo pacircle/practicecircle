@@ -14,6 +14,9 @@ export default class extends MyApp {
     wxp.setStorageSync('logs', logs)
 
     // 登录
+    let appSetting = require('../src/project.config.json')
+    console.log(appSetting.appid)
+
     let {code} = await wxp.login()
     console.log('微信 code %o', code) // 发送 code 到后台换取 openId, sessionKey, unionId
 
@@ -26,20 +29,27 @@ export default class extends MyApp {
       console.log('微信 userInfo %o', res.userInfo)
       if (res && code){
         wx.request({
-          url: "http://result.eolinker.com/2iwkBiged241c5a42bdfb8b083224dbf190f8b770cac539?uri=/user/login",
+          url: "http://127.0.0.1:7979/user/login",
           data: {
             userInfo: res.userInfo,
-            code: code
+            jsCode: code,
+            appId: appSetting.appid
           },
           method: 'POST',
           success:function(ress:any){
-            if (ress.data.status === 200){
+            console.log(ress.data)
+            if (ress.statusCode === 200){
               if (!store.userInfo && ress.data.openid){
-                console.log(ress,'成功')
+                // console.log(ress,'成功')
                 store.userInfo = res.userInfo
                 store.openid = ress.data.openid
               } else {
                 console.log(ress.data)
+                wx.showToast({
+                  title: '获取信息失败，请使用正版小程序',
+                  icon: 'none',
+                  duration: 2000
+                })
               }           
             } else {
               wx.showToast({
@@ -61,7 +71,12 @@ export default class extends MyApp {
       }
       // this.store.userInfo = res.userInfo  // 将用户信息存入 store 中
     } else {
-      console.log('没有授权过')
+      console.log('授权未通过')
+      wx.showToast({
+        title: '授权通过才能正确使用小程序哦',
+        icon: 'none',
+        duration: 2000
+      })
     }
   }
 }
