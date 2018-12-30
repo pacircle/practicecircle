@@ -21,7 +21,7 @@
     <view class="i-class i-card i-card-full">
       <view class="i-class i-card-header">
         <view class="i-card-header-content">
-            <image class="i-card-header-thumb" src="{{ reInfos.src }}" wx:if="{{ reInfos.src }}" />
+            <image class="i-card-header-thumb" src="{{ reInfos.avatarUrl }}" wx:if="{{ reInfos.avatarUrl}}" />
             {{ reInfos.nickName }}
         </view>
         <view class="i-card-header-extra">{{ reInfos.time }}</view>

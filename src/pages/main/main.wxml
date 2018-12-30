@@ -27,7 +27,7 @@
 
 
   <block wx:for="{{recomInfos}}" wx:key="{{item.id}}"> 
-    <recommendCard avatar="{{item.src}}" nickname="{{item.nickName}}" time="{{item.time}}" 
+    <recommendCard avatar="{{item.avatarUrl}}" nickname="{{item.nickName}}" time="{{item.time}}" 
         data-info="{{item}}" bind:tap="clickDetail" >
 
         <view slot="title">{{item.title}}</view>

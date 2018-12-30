@@ -29,15 +29,15 @@ export default class extends MyPage {
     store.articleType = this.data.articleType
     if (store.articleInfos.length === 0 ){//如果没有文章
       wx.request({
-        url: "http://result.eolinker.com/2iwkBiged241c5a42bdfb8b083224dbf190f8b770cac539?uri=/article/index",
+        url: "http://127.0.0.1:7979/article/all",
         data: {
           openid: store.openid,
           articleType: store.articleType
         },
-        method: 'GET',
+        method: 'POST',
         success:function(ress:any){
-          console.log(ress.data.status)
-          if (ress.data.status === 200){
+          console.log(ress.statusCode)
+          if (ress.statusCode === 200){
               console.log(ress.data.articleInfos)
               store.articleInfos = ress.data.articleInfos
               that.setArticle(store.articleInfos)
@@ -117,15 +117,15 @@ export default class extends MyPage {
     let that = this;
     store.articleType = type
     wx.request({
-      url: "http://result.eolinker.com/2iwkBiged241c5a42bdfb8b083224dbf190f8b770cac539?uri=/article/index",
+      url: "http://127.0.0.1:7979/article/all",
       data: {
         openid: store.openid,
         articleType: store.articleType
       },
-      method: 'GET',
+      method: 'POST',
       success:function(ress:any){
-        console.log(ress.data.status)
-        if (ress.data.status === 200){
+        console.log(ress.statusCode)
+        if (ress.statusCode === 200){
             if (ress.data.articleInfos){
               console.log(ress.data.articleInfos)
               store.articleInfos = ress.data.articleInfos
