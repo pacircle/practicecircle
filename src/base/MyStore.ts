@@ -24,5 +24,7 @@ export class MyStore extends MobxStore {
 
   @observable collectInfos: Array<any> =[]//tab4里的我的收藏
 
+  @observable openid:any 
+
 
 }
