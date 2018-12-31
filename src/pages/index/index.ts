@@ -66,23 +66,68 @@ export default class extends MyPage {
   }
   async getUserInfos(e:any){
      // 登录
-     
+     let store:any = this.store
+     let that:any = this
      let {code} = await wxp.login()
      console.log('微信 code %o', code) // 发送 code 到后台换取 openId, sessionKey, unionId
 
-     console.log('test')
+     let appSetting = require('../../../src/project.config.json')
+     console.log(appSetting.appid)
+
      // 获取用户信息
      let setting = await wxp.getSetting()
      if (setting.authSetting['scope.userInfo']) { // 已经授权，可以直接调用 getUserInfo 获取头像昵称，不会弹框
        // 可以将 getUserInfo 返回的对象发送给后台解码出 unionId
        let res = await wxp.getUserInfo()
        console.log('微信 userInfo %o', res.userInfo)
-       this.store.userInfo = res.userInfo  // 将用户信息存入 store 中
-       this.app.$url.main.go()
+      //  this.app.$url.main.go()
+      if (res && code){
+        this.store.userInfo = res.userInfo  // 将用户信息存入 store 中
+        wx.request({
+          url: "http://127.0.0.1:7979/user/login",
+          data: {
+            userInfo: res.userInfo,
+            jsCode: code,
+            appId: appSetting.appid
+          },
+          method: 'POST',
+          success: function(ress:any){
+            if (ress.statusCode === 200){
+              if (store.userInfo && ress.data.openid){
+                // console.log(ress,'成功')
+                store.userInfo = res.userInfo
+                store.openid = ress.data.openid
+                that.app.$url.main.go()
+              } else {
+                wx.showToast({
+                  title: '用户登陆失败，请检查网络后重新启动小程序',
+                  icon: 'none',
+                  duration: 2000
+                })
+              }           
+            } else {
+              wx.showToast({
+                title: '用户登陆失败，请检查网络后重新启动小程序',
+                icon: 'none',
+                duration: 2000
+              })
+            }
+          },
+          fail: function(res){
+            wx.showToast({
+              title: '用户登陆失败，请检查网络后重新启动小程序',
+              icon: 'none',
+              duration: 2000
+            })
+          }
+        })
+      }
      } else {
        console.log('没有授权过')
        wxp.showToast({
          title: '请授权获取用户信息',
+         icon: 'none',
+              duration: 2000
        })
      }
      if (!this.store.userInfo && !this.data.canIUseOpenButton) {
