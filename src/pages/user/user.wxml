@@ -20,7 +20,7 @@
 
   <view hidden="{{current!='history'}}">
       <block wx:for="{{hisInfos}}" wx:key="{{item.id}}">
-          <recommendCard avatar="{{item.src}}" nickname="{{item.nickName}}" time="{{item.time}}" 
+          <recommendCard avatar="{{item.avatarUrl}}" nickname="{{item.nickName}}" time="{{item.time}}" 
               data-info="{{item}}" bind:tap="clickDetail" >
 
               <view slot="title">{{item.title}}</view>
@@ -31,15 +31,32 @@
       </block>
   </view>
   <view hidden="{{current!='topic'}}">
-    topic
+      <block wx:for="{{myArticles}}" wx:key="{{item.id}}">
+          <recommendCard avatar="{{item.avatarUrl}}" nickname="{{item.nickName}}" time="{{item.time}}" 
+              data-info="{{item}}" bind:tap="clickDetail" >
+
+              <view slot="title">{{item.title}}</view>
+              <view slot="content">{{item.sub}}</view>
+              <view slot="footer">{{item.agree}}赞同 ● {{item.commentList.length}}条评论</view>
+
+          </recommendCard>
+      </block>
   </view>
   <view hidden="{{current!='comment'}}">
-    comment
+      <block wx:for="{{myComments}}" wx:key="{{item.id}}">
+          <recommendCard avatar="{{item.avatarUrl}}" nickname="{{item.nickName}}" time="{{item.time}}" 
+              data-info="{{item}}" bind:tap="clickDetail" >
+
+              <view slot="title">{{item.title}}</view>
+              <view slot="content">{{item.sub}}</view>
+              <view slot="footer">{{item.agree}}赞同 ● {{item.commentList.length}}条评论</view>
+
+          </recommendCard>
+      </block>
   </view>
   <view hidden="{{current!='collect'}}">
-      collect
       <block wx:for="{{collectInfos}}" wx:key="{{item.id}}">
-          <recommendCard avatar="{{item.src}}" nickname="{{item.nickName}}" time="{{item.time}}" 
+          <recommendCard avatar="{{item.avatarUrl}}" nickname="{{item.nickName}}" time="{{item.time}}" 
               data-info="{{item}}" bind:tap="clickDetail" >
 
               <view slot="title">{{item.title}}</view>

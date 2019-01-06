@@ -11,9 +11,13 @@
             <image class="i-card-header-thumb" src="{{ avatar }}" mode="aspectFit" wx:if="{{ avatar }}" />
             {{ nickname }}
         </view>
+        
         <view class="i-card-header-extra" wx:if="{{ time }}">{{ time }}</view>
     </view>
-    <view class="i-class i-card-body"><slot name="title"></slot></view>
+    <view class="i-class i-card-body">
+        <view class="i-card-recommended" wx:if="{{ recommended }}">精华</view>
+        <slot name="title"></slot>
+    </view>
     <view class="i-class i-card-body2"><slot name="content"></slot></view>
     <view class="i-class i-card-footer"><slot name="footer"></slot></view>
 </view>
