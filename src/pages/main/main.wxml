@@ -25,17 +25,28 @@
     </view>
   </view>
 
+  <scroll-view class="main-scroll" style='height: {{windowHeight - 240}}px' scroll-y="{{true}}">
+      <block wx:for="{{recomInfos}}" wx:key="{{item.id}}"> 
+        <recommendCard avatar="{{item.avatarUrl}}" nickname="{{item.nickName}}" recommended="{{true}}" time="{{item.time}}" 
+            data-info="{{item}}" bind:tap="clickDetail" >
 
-  <block wx:for="{{recomInfos}}" wx:key="{{item.id}}"> 
-    <recommendCard avatar="{{item.avatarUrl}}" nickname="{{item.nickName}}" time="{{item.time}}" 
-        data-info="{{item}}" bind:tap="clickDetail" >
+            <view slot="title">{{item.title}}</view>
+            <view slot="content">{{item.sub}}</view>
+            <view slot="footer">{{item.agree}}赞同 ● {{item.commentList.length}}条评论</view>
 
-        <view slot="title">{{item.title}}</view>
-        <view slot="content">{{item.sub}}</view>
-        <view slot="footer">{{item.agree}}赞同 ● {{item.commentList.length}}条评论</view>
+        </recommendCard>
+      </block>
+      <block wx:for="{{recomInfos}}" wx:key="{{item.id}}"> 
+        <recommendCard avatar="{{item.avatarUrl}}" nickname="{{item.nickName}}" recommended="{{true}}" time="{{item.time}}" 
+            data-info="{{item}}" bind:tap="clickDetail" >
 
-    </recommendCard>
-  </block>
+            <view slot="title">{{item.title}}</view>
+            <view slot="content">{{item.sub}}</view>
+            <view slot="footer">{{item.agree}}赞同 ● {{item.commentList.length}}条评论</view>
+
+        </recommendCard>
+      </block>
+  </scroll-view>
   
   <!-- <view class="reference">
     <block wx:for="{{reInfos}}" wx:key="{{item.id}}">

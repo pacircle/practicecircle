@@ -22,9 +22,13 @@ export class MyStore extends MobxStore {
 
   @observable hisInfos: Array<any> =[]//tab4里的阅读历史
 
+  @observable myArticles: Array<any> =[]//tab4里的我的文章
+  
+  @observable myComments: Array<any> =[]//tab4里的我的评论
+
   @observable collectInfos: Array<any> =[]//tab4里的我的收藏
 
   @observable openid:any 
 
-
+  @observable windowHeight: any=null
 }

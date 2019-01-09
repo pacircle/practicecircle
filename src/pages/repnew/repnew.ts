@@ -11,9 +11,15 @@ export default class extends MyPage {
 
   }
 
-  // async onLoad(options: any) {
-  //   console.log(await wxp.getUserInfo())
-  // }
+  async onLoad(options: any) {
+    //console.log(await wxp.getUserInfo())
+    wxp.showModal({
+      title:"提示",
+      //电脑上不会换行，手机上是会的
+      content:"评论会由我们进行评选，优质复盘可能会获得红包，我们希望获得的复盘有如下标准：\r\n1.内容详细;\r\n2.过程的复盘比较完整内容不小于200字;\r\n3.有自己的体验和心得;\r\n4.内容原创，而非搬运",
+      showCancel:false
+    })
+  }
   
   /*
   获取实时输入值

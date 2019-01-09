@@ -26,7 +26,7 @@
     <view class="i-class i-card i-card-full">
       <view class="i-class i-card-header">
         <view class="i-card-header-content">
-            <image class="i-card-header-thumb" src="{{ item.src }}" wx:if="{{ item.src }}" />
+            <image class="i-card-header-thumb" src="{{ item.avatarUrl }}" wx:if="{{ item.avatarUrl }}" />
             {{ item.nickName }}
         </view>
         <view class="i-card-header-extra">{{ item.time }}</view>

@@ -26,16 +26,18 @@ export default class extends MyPage {
     }
 
     //get相关内容
+    console.log(this.store.openid)
     let store:any = this.store;
     await wx.request({
-      url:"http://result.eolinker.com/2iwkBiged241c5a42bdfb8b083224dbf190f8b770cac539?uri=/article/history",
+      url:"http://result.eolinker.com/2iwkBiged241c5a42bdfb8b083224dbf190f8b770cac539?uri=/user/history",
       data: {
-        id: store.openid
+        openid: store.openid
       },
+      method:'POST',
       success: function(res){
-        console.log("status:",res.data.status)
+        console.log("status:",res)
         if (res.data.status === 200){
-          store.hisInfos = res.data.hisInfos
+          store.hisInfos = res.data.hisList
         } else {
           wx.showToast({
             title: '获取阅读历史失败，请检查网络',
@@ -54,12 +56,67 @@ export default class extends MyPage {
     })
 
     await wx.request({
-      url:"http://result.eolinker.com/2iwkBiged241c5a42bdfb8b083224dbf190f8b770cac539?uri=/article/collect",
+      url:"http://result.eolinker.com/2iwkBiged241c5a42bdfb8b083224dbf190f8b770cac539?uri=/user/article",
       data: {
-        id: store.openid
+        openid: store.openid
       },
+      method:'POST',
       success: function(res){
-        console.log("status:",res.data.status)
+        console.log("status:",res)
+        if (res.data.status === 200){
+          store.myArticles = res.data.articleList
+        } else {
+          wx.showToast({
+            title: '获取我的文章失败，请检查网络',
+            icon: 'none',
+            duration: 2000
+          })
+        }
+      },
+      fail: function(res){
+        wx.showToast({
+          title: '获取我的文章失败，请检查网络',
+          icon: 'none',
+          duration: 2000
+        })
+      }
+    })
+
+    await wx.request({
+      url:"http://result.eolinker.com/2iwkBiged241c5a42bdfb8b083224dbf190f8b770cac539?uri=/user/comment",
+      data: {
+        openid: store.openid
+      },
+      method:'POST',
+      success: function(res){
+        console.log("status:",res)
+        if (res.data.status === 200){
+          store.myComments = res.data.commentList
+        } else {
+          wx.showToast({
+            title: '获取我的评论失败，请检查网络',
+            icon: 'none',
+            duration: 2000
+          })
+        }
+      },
+      fail: function(res){
+        wx.showToast({
+          title: '获取我的评论失败，请检查网络',
+          icon: 'none',
+          duration: 2000
+        })
+      }
+    })
+
+    await wx.request({
+      url:"http://result.eolinker.com/2iwkBiged241c5a42bdfb8b083224dbf190f8b770cac539?uri=/user/collect",
+      data: {
+        openid: store.openid
+      },
+      method:'POST',
+      success: function(res){
+        console.log("status:",res)
         if (res.data.status === 200){
           store.collectInfos = res.data.collectInfos
         } else {
@@ -71,6 +128,7 @@ export default class extends MyPage {
         }
       },
       fail: function(res){
+        console.log("status:",res.data.status)
         wx.showToast({
           title: '获取我的收藏失败，请检查网络',
           icon: 'none',

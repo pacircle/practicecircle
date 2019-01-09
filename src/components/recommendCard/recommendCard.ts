@@ -24,7 +24,11 @@ export default class extends MyComponent {
     time: {
         type: String,
         value: ''
-    }
+    },
+    recommended: {
+      type: Boolean,
+      value: false
+    },
   }
 
   options = {

@@ -51,6 +51,21 @@ export default class extends MyPage {
     await this.setDataSmart({
       info: JSON.parse(options.info)
     })
+
+    //增加阅读次数
+    wx.request({
+      url: "http://result.eolinker.com/2iwkBiged241c5a42bdfb8b083224dbf190f8b770cac539?uri=/article/visit",
+      method: 'POST',
+      data: {
+        uuid:options.info.id
+      },
+      success: function(res:any){
+        console.log("阅读次数+1成功",res)
+      },
+      fail:function(err:any){
+        console.log(err)
+      },
+    })
   }
 
   backToMain(e:any){
