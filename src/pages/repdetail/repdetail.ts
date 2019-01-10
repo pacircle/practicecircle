@@ -53,18 +53,19 @@ export default class extends MyPage {
     })
 
     //增加阅读次数
+    console.log(JSON.parse(options.info)._id)
     wx.request({
-      url: "http://result.eolinker.com/2iwkBiged241c5a42bdfb8b083224dbf190f8b770cac539?uri=/article/visit",
-      method: 'POST',
+      url: 'http://127.0.0.1:7979/user/article/read',
       data: {
-        uuid:options.info.id
+        openid: this.store.openid,
+        articleId: JSON.parse(options.info)._id.$oid
       },
-      success: function(res:any){
-        console.log("阅读次数+1成功",res)
+      method: 'POST',
+      success:function(res){
+        console.log(res.data)
       },
-      fail:function(err:any){
-        console.log(err)
-      },
+      fail:function(res){
+      }
     })
   }
 
@@ -84,15 +85,15 @@ export default class extends MyPage {
     let store:any = this.store
     let that:any = this
     wx.request({
-      url: "http://result.eolinker.com/2iwkBiged241c5a42bdfb8b083224dbf190f8b770cac539?uri=/user/collect",
+      url: "http://127.0.0.1:7979/user/article/collect",
       method: 'POST',
       data: {
-        id: store.openid,
-        articleId: info.id
+        openid: store.openid,
+        articleId: info._id.$oid
       },
       success: function(res:any){
         console.log(res)
-        if (res.data.status === 200){
+        if (res.data.state === 200){
           info.user_collect = !(info.user_collect)
           that.setDataSmart({
             info: info
@@ -120,10 +121,10 @@ export default class extends MyPage {
     let that:any = this
     let store:any = this.store
     wx.request({
-      url: "http://result.eolinker.com/2iwkBiged241c5a42bdfb8b083224dbf190f8b770cac539?uri=/user/agree",
+      url: "http://127.0.0.1:7979/user/article/agree",
       method: 'POST',
       data: {
-        id: store.openid,
+        openid: store.openid,
         articleId: info.id
       },
       success: function(res:any){
@@ -161,6 +162,10 @@ export default class extends MyPage {
   async setComment(commentItem: any){
     console.log(commentItem)
     let newInfo:any = this.data.info
+    let store:any = this.store
+    commentItem.nickName = store.userInfo.nickName
+    commentItem.avatarUrl = store.userInfo.avatarUrl
+    commentItem.content = this.data.commentValue
     newInfo.commentList.push(commentItem)
     await this.setDataSmart({
       info: newInfo
@@ -178,19 +183,21 @@ export default class extends MyPage {
         duration: 2000
       })
     } else {
-      let commentTime = new Date()
+      // let commentTime = new Date()
       wx.request({
-        url: 'http://result.eolinker.com/2iwkBiged241c5a42bdfb8b083224dbf190f8b770cac539?uri=/user/comment',
+        url: 'http://127.0.0.1:7979/user/article/comment/index',
         method: 'POST',
         data: {
-          articleId: info.id,
+          articleId: info._id.$oid,
           userId: store.openid,
           content: this.data.commentValue,
-          time: commentTime
+          nickName: store.userInfo.nickName,
+          avatarUrl: store.userInfo.avatarUrl
+          // time: commentTime
         },
         success: function(res){
-          if (res.data.status === 200){      
-            let commentItem = res.data.commentItem
+          if (res.data.state === 200){      
+            let commentItem = res.data.data.commentItem
             that.setComment(commentItem)
             // console.log(info.commentList)
             // console.log(commentItem)

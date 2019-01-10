@@ -35,7 +35,7 @@
         <!-- <view>{{item.zone}} - {{item.company}} - {{item.post}}</view> -->
         <view>{{item.content}}</view>
       </view>
-      <view class="i-class i-card-footer">
+      <!-- <view class="i-class i-card-footer">
         <view class="caption-wrap">
           <i-collapse name="查看回复信息">
             <i-collapse-item title="查看回复信息">
@@ -57,7 +57,7 @@
             </i-collapse-item>
           </i-collapse>
         </view>
-      </view>
+      </view> -->
     </view>
   </block>
   </view>
