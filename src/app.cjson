@@ -23,7 +23,7 @@
   "window": {
     "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#ffd400",
-    "navigationBarTitleText": "实习圈",
+    "navigationBarTitleText": "交大分享圈",
     "navigationBarTextStyle": "white"
   },
   "tabBar": {

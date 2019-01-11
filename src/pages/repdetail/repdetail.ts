@@ -1,6 +1,6 @@
 // 此文件是由模板文件 ".dtpl/page/$rawModuleName.ts.dtpl" 生成的，你可以自行修改模板
 
-import {pagify, MyPage} from 'base/'
+import {pagify, MyPage,wxp} from 'base/'
 
 @pagify()
 export default class extends MyPage {
@@ -246,5 +246,49 @@ export default class extends MyPage {
     }
   }
 
+  async deleteArticle(e:any){
+    console.log(e)
+    let info:any = this.data.info
+    let store:any = this.store
+    // let that:any = this 
+    // let store:any = this.store
+    wx.showModal({
+      title: '提示',
+      content: '是否删除文章？',
+      success(res) {
+        if (res.confirm) {
+          console.log('用户点击确定')
+          wx.request({
+            url: "http://127.0.0.1:7979/user/article/delete",
+            method: "POST",
+            data: {
+              articleId: info._id.$oid,
+              openid: store.openid,
+            },
+            success:function(res){
+              if (res.data.state === 200){
+                wxp.navigateBack({delta:1});
+              } else {
+                wx.showToast({
+                  title: '删除文章失败，请检查网络',
+                  icon: 'none',
+                  duration: 2000
+                })
+              }
+            },
+            fail: function(res){
+              wx.showToast({
+                title: '删除文章失败，请检查网络',
+                icon: 'none',
+                duration: 2000
+              })
+            }
+          })
+        } else if (res.cancel) {
+          console.log('用户点击取消')
+        }
+      }
+    })
+  }
 
 }

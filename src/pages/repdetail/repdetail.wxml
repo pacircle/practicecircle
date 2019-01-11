@@ -11,13 +11,14 @@
   <view class="title">{{info.title}}</view>
   <view class="avaTime">
     <view>
-      <i-card title="{{info.nickName}}" extra="{{info.time}}" thumb="{{info.src}}">
+      <i-card title="{{info.nickName}}" extra="{{info.time}}" thumb="{{info.avatarUrl}}">
         <view slot="content">{{info.content}}</view>
         <view slot="footer">
-          <i-icon type="praise_fill" size="35" color="#2d8cf0" wx:if="{{info.user_agree === true}}"  bind:tap="agreeArticle"/>
-          <i-icon type="praise" size="35"   bind:tap="agreeArticle"  wx:else/>
-          <i-icon type="collection_fill" size="35" color="#2d8cf0" wx:if="{{info.user_collect === true}}" bind:tap="collectArticle"/>
-          <i-icon type="collection" size="35"  bind:tap="collectArticle" wx:else/>
+          <i-icon type="praise_fill" size="30" color="#2d8cf0" wx:if="{{info.user_agree === true}}"  bind:tap="agreeArticle"/>
+          <i-icon type="praise" size="30"   bind:tap="agreeArticle"  wx:else/>
+          <i-icon type="collection_fill" size="30" color="#2d8cf0" wx:if="{{info.user_collect === true}}" bind:tap="collectArticle"/>
+          <i-icon type="collection" size="30"  bind:tap="collectArticle" wx:else/>
+          <i-icon type="trash" size="30" bind:tap="deleteArticle"/>
         </view>
       </i-card>
     </view>
@@ -63,13 +64,13 @@
   </view>
   <view class="bottom bottom-fixed">
     <!-- <slot></slot> -->
-    <i-icon type="homepage_fill" size="35" color="#ababab" bind:tap="backToMain"/>
+    <i-icon type="homepage_fill" size="30" color="#ababab" bind:tap="backToMain"/>
     <i-input placeholder="评论内容" maxlength="1000" class="bottom-input" 
             bind:change="onCommentChange"
             value="{{commentValue}}"/> 
-    <i-icon type="send" size="35" color="#ababab" bind:tap="onSendComment"/>
-    <button open-type="share" class="share-button" size="35">
-      <i-icon type="share_fill" size="35" color="#ababab"/>
+    <i-icon type="send" size="30" color="#ababab" bind:tap="onSendComment"/>
+    <button open-type="share" class="share-button" size="30">
+      <i-icon type="share_fill" size="30" color="#ababab"/>
     </button>
   </view>
 </view>
