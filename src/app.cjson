@@ -18,6 +18,7 @@
     "pages/user/user",
     "pages/repdetail/repdetail",
     "pages/repnew/repnew",
+    "pages/camp/camp",
     /*# INJECT_END #*/
   ],
   "window": {
@@ -42,10 +43,10 @@
       "text": "面经笔经"
     },
     {
-      "pagePath": "pages/query/query",
-      "selectedIconPath": "images/search_fill.png",
-      "iconPath": "images/search.png",
-      "text": "搜索"
+      "pagePath": "pages/camp/camp",
+      "selectedIconPath": "images/camp_fill.png",
+      "iconPath": "images/camp.png",
+      "text": "训练营"
     },
     {
       "pagePath": "pages/user/user",

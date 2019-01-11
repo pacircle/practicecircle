@@ -73,10 +73,18 @@ export default class extends MyPage {
     this.app.$url.main.go()
   }
 
-  onShareAppMessage() {
+  onShareAppMessage(res:any) {
+    console.log(res)
     return {
-        title: 'iView Weapp',
-        imageUrl: 'https://file.iviewui.com/iview-weapp-logo.png'
+        title: '交大分享圈',
+        imageUrl: require("../../images/practice.png"),
+        // wechat功能调整，无法返回是否分享成功
+        // success: function(ress:any){
+        //   console.log("转发成功", ress)
+        // },
+        // fail: function(resss:any){
+        //   console.log("转发失败", resss)
+        // }
     };
   }
 
