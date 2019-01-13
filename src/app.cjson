@@ -19,6 +19,7 @@
     "pages/repdetail/repdetail",
     "pages/repnew/repnew",
     "pages/camp/camp",
+    "pages/campDetail/campDetail",
     /*# INJECT_END #*/
   ],
   "window": {

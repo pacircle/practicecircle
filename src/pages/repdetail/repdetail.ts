@@ -191,6 +191,7 @@ export default class extends MyPage {
         duration: 2000
       })
     } else {
+      console.log(info._id)
       // let commentTime = new Date()
       wx.request({
         url: 'http://127.0.0.1:7979/user/article/comment/index',
