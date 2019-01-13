@@ -13,8 +13,8 @@
   <i-tabs current="{{current}}" color="#3099ff" bindchange="handleChange" i-class="tab">  
     <i-tab key="history" title="阅读历史" data-key="history"></i-tab>
     <i-tab key="topic" title="我的文章" data-key="topic"></i-tab>
-    <i-tab key="comment" title="我的评论" data-key="comment"></i-tab>
     <i-tab key="collect" title="我的收藏" data-key="collect"></i-tab>
+    <i-tab key="user" title="用户信息" data-key="user"></i-tab>  
   </i-tabs>
   <!-- <tabList></tabList> -->
 
@@ -25,7 +25,7 @@
 
               <view slot="title">{{item.title}}</view>
               <view slot="content">{{item.sub}}</view>
-              <view slot="footer">{{item.agree}}赞同 ● {{item.commentList.length}}条评论</view>
+              <view slot="footer">{{item.readTime}}阅读  ● {{item.agree}}赞同</view>
 
           </recommendCard>
       </block>
@@ -37,13 +37,14 @@
 
               <view slot="title">{{item.title}}</view>
               <view slot="content">{{item.sub}}</view>
-              <view slot="footer">{{item.agree}}赞同 ● {{item.commentList.length}}条评论</view>
+              <view slot="footer">{{item.readTime}}阅读  ● {{item.agree}}赞同</view>
 
           </recommendCard>
       </block>
   </view>
-  <view hidden="{{current!='comment'}}">
-      <block wx:for="{{myComments}}" wx:key="{{item.id}}">
+  <view hidden="{{current!='user'}}">
+      <view>User</view>
+      <!-- <block wx:for="{{myComments}}" wx:key="{{item.id}}">
           <recommendCard avatar="{{item.avatarUrl}}" nickname="{{item.nickName}}" time="{{item.time}}" 
               data-info="{{item}}" bind:tap="clickDetail" >
 
@@ -52,7 +53,7 @@
               <view slot="footer">{{item.agree}}赞同 ● {{item.commentList.length}}条评论</view>
 
           </recommendCard>
-      </block>
+      </block> -->
   </view>
   <view hidden="{{current!='collect'}}">
       <block wx:for="{{collectInfos}}" wx:key="{{item.id}}">
@@ -61,7 +62,7 @@
 
               <view slot="title">{{item.title}}</view>
               <view slot="content">{{item.sub}}</view>
-              <view slot="footer">{{item.agree}}赞同 ● {{item.commentList.length}}条评论</view>
+              <view slot="footer">{{item.readTime}}阅读  ● {{item.agree}}赞同</view>
 
           </recommendCard>
       </block>

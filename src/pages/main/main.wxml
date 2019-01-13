@@ -32,20 +32,20 @@
 
             <view slot="title">{{item.title}}</view>
             <view slot="content">{{item.sub}}</view>
-            <view slot="footer">{{item.agree}}赞同 ● {{item.commentList.length}}条评论</view>
+            <view slot="footer">{{item.readTime}}阅读  ● {{item.agree}}赞同</view>
 
         </recommendCard>
       </block>
-      <block wx:for="{{recomInfos}}" wx:key="{{item.id}}"> 
+      <!-- <block wx:for="{{recomInfos}}" wx:key="{{item.id}}"> 
         <recommendCard avatar="{{item.avatarUrl}}" nickname="{{item.nickName}}" recommended="{{true}}" time="{{item.time}}" 
             data-info="{{item}}" bind:tap="clickDetail" >
 
             <view slot="title">{{item.title}}</view>
             <view slot="content">{{item.sub}}</view>
-            <view slot="footer">{{item.agree}}赞同 ● {{item.commentList.length}}条评论</view>
+            <view slot="footer">{{item.readTime}}阅读  ● {{item.agree}}赞同</view>
 
         </recommendCard>
-      </block>
+      </block> -->
   </scroll-view>
   
   <!-- <view class="reference">
