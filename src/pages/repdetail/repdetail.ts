@@ -133,11 +133,11 @@ export default class extends MyPage {
       method: 'POST',
       data: {
         openid: store.openid,
-        articleId: info.id
+        articleId: info._id.$oid
       },
       success: function(res:any){
         console.log(res)
-        if (res.data.status === 200){
+        if (res.data.state === 200){
           info.user_agree = !(info.user_agree)
           that.setDataSmart({
             info: info
