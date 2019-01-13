@@ -77,7 +77,7 @@ export default class extends MyPage {
             console.log(res.data.id)
             console.log(res.data.time)
             const newArticle = new Object({
-              id: res.data.articleItem.id,
+              _id: res.data.articleItem._id,
               nickName: userInfo.nickName,
               avatarUrl: userInfo.avatarUrl,
               time: res.data.articleItem.time,
@@ -86,7 +86,10 @@ export default class extends MyPage {
               //sub: this.data.content.substr(0,20)+(this.data.content.length>20?"...":""),
               content: data.content,
               agree: 0,
-              commentList: []
+              commentList: [],
+              user_agree: false,
+              user_collect: false,
+              readTime: 1
             })
             console.log(newArticle);
         // commentList: [{
