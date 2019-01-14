@@ -118,7 +118,11 @@ export default class extends MyPage {
           }
       },
       fail: function(ress){
-
+        wx.showToast({
+          title: '搜获信息错误，请检查网络',
+          icon: 'none',
+          duration: 2000
+        })
       }
     })
   }
