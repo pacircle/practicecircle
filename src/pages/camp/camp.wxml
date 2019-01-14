@@ -25,7 +25,7 @@
     </block>
   </view>
 
-  <i-divider content="如何报名参加训练营？"></i-divider>
+  <i-divider content="训练营规则"></i-divider>
   <view class="sign">
     <view>1. 每期训练营将评选最佳答案，最佳回答者将获得直接参与下一期训练营机会，或推荐一位好友直接参加训练营。</view>
     <view>2. 最佳回答由分享圈进行评选，最佳回答评选标准可参考：</view>

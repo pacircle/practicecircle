@@ -12,7 +12,7 @@
         </view>
           <input
             type="{{ type }}"
-            focus="false"
+            focus="{{focus}}"
             value="{{ value }}"
             placeholder="请输入搜索内容"
             bindfocus="wxSerchFocus" 
@@ -43,5 +43,12 @@
       </view>
   </view> -->
   <template is="wxSearch" data="{{wxSearchData}}"/>
+  <scroll-view class="searchdetail-scroll" style="height: {{windowHeight - 95}}px" scroll-y="{{true}}" wx:if="{{!focus}}">
+      <view>
+          <block wx:for="{{searchList}}" wx:key="{{item._id}}">
+              <repItem reInfos="{{item}}" data-info="{{item}}" bind:tap="clickDetail"></repItem>
+          </block>
+      </view>
+  </scroll-view>
 </view>
 

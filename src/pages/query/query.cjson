@@ -11,5 +11,6 @@
   "usingComponents": {
     "i-input": "../../base/iView/input_origin",
     "i-icon": "../../base/iView/icon/index",
+    "repItem": "components/repitem/repitem",
   }
 }

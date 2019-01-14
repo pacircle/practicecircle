@@ -10,12 +10,12 @@
     */
 
     /*# INJECT_START {"key": "page"} #*/
-    "pages/query/query",
+    // "pages/query/query",
     "pages/index/index",
     // "pages/logs/logs",
     "pages/main/main",
     "pages/replays/replays",
-    // "pages/query/query",
+    "pages/query/query",
     "pages/user/user",
     "pages/repdetail/repdetail",
     "pages/repnew/repnew",
