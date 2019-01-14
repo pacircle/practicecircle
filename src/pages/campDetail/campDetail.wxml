@@ -1,0 +1,24 @@
+<!--
+  此文件是由模板文件 ".dtpl/page/$rawModuleName.wxml.dtpl" 生成的，你可以自行修改模板
+
+  注意：
+  1. 如果没有语法高亮，且你使用的是 vscode 编辑器的话，建义在 vscode 插件库中安装 minapp-vscode 插件
+-->
+
+<view>
+  <view class="title">
+    <span>第</span>
+    <span>{{info.order}}</span>
+    <span>期训练营：</span>
+    <span>{{info.content}}</span>
+  </view>
+
+  <view class="content">{{info.content}}</view>
+  <view>
+    <block wx:for="{{info.answers}}" data-index="{{index}}" wx:key="{{item.content}}">
+      <i-card title="优秀回答{{index + 1}}:">
+        <view slot="content">{{item.content}}</view>
+      </i-card>
+    </block>
+  </view>
+</view>

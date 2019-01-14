@@ -11,14 +11,10 @@
       <i-icon type="search" size="35" color="#2d8cf0"/>
     </view>
     <input
-        type="{{ type }}"
-        focus="false"
+        type="text"
         value="{{ value }}"
-        placeholder="请输入公司名/岗位名称"
-        bindinput="handleInputChange"
+        placeholder="请输入搜索内容"
         bindfocus="handleInputFocus"
-        bindblur="handleInputBlur"
-        auto-focus
     />
     
   </view>

@@ -43,7 +43,14 @@
       </block>
   </view>
   <view hidden="{{current!='user'}}">
-      <view>User</view>
+      <!-- <view>User</view> -->
+      <view class="invite">当前邀请
+          <span class="inviteN">{{inviteMember}}</span>
+          人
+      </view>
+      <view class="invite">
+          邀请3人，获取全部阅读权限
+      </view>     
       <!-- <block wx:for="{{myComments}}" wx:key="{{item.id}}">
           <recommendCard avatar="{{item.avatarUrl}}" nickname="{{item.nickName}}" time="{{item.time}}" 
               data-info="{{item}}" bind:tap="clickDetail" >

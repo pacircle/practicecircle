@@ -12,75 +12,78 @@ export default class extends MyPage {
     hisInfos: [],
     //topic: [],
     //comment: [],
-    collect: []
-
+    collect: [],
+    inviteMember: 0
   }
 
   async onLoad(options: any) {
     // console.log(await wxp.getUserInfo())
+    let store:any = this.store
     if (this.data.avatar.length === 0 && this.store.userInfo){
       this.setDataSmart({
         avatar: this.store.userInfo.avatarUrl,
-        nickName: this.store.userInfo.nickName
+        nickName: this.store.userInfo.nickName,
+        inviteMember: store.inviteMember
       })
     }
-
+    let that:any = this
+    that.getHistory()
     //get相关内容
-    console.log(this.store.openid)
-    let store:any = this.store;
-    await wx.request({
-      url:"http://127.0.0.1:7979/user/read",
-      data: {
-        openid: store.openid
-      },
-      method:'POST',
-      success: function(res){
-        console.log("status:",res)
-        if (res.data.state === 200){
-          store.hisInfos = res.data.readList
-        } else {
-          wx.showToast({
-            title: '获取阅读历史失败，请检查网络',
-            icon: 'none',
-            duration: 2000
-          })
-        }
-      },
-      fail: function(res){
-        wx.showToast({
-          title: '获取阅读历史失败，请检查网络',
-          icon: 'none',
-          duration: 2000
-        })
-      }
-    })
+    // console.log(this.store.openid)
+    // // let store:any = this.store;
+    // await wx.request({
+    //   url:"http://127.0.0.1:7979/user/read",
+    //   data: {
+    //     openid: store.openid
+    //   },
+    //   method:'POST',
+    //   success: function(res){
+    //     console.log("status:",res)
+    //     if (res.data.state === 200){
+    //       store.hisInfos = res.data.readList
+    //     } else {
+    //       wx.showToast({
+    //         title: '获取阅读历史失败，请检查网络',
+    //         icon: 'none',
+    //         duration: 2000
+    //       })
+    //     }
+    //   },
+    //   fail: function(res){
+    //     wx.showToast({
+    //       title: '获取阅读历史失败，请检查网络',
+    //       icon: 'none',
+    //       duration: 2000
+    //     })
+    //   }
+    // })
 
-    await wx.request({
-      url:"http://127.0.0.1:7979/user/article",
-      data: {
-        openid: store.openid
-      },
-      method:'POST',
-      success: function(res){
-        console.log("status:",res)
-        if (res.data.state === 200){
-          store.myArticles = res.data.articleList
-        } else {
-          wx.showToast({
-            title: '获取我的文章失败，请检查网络',
-            icon: 'none',
-            duration: 2000
-          })
-        }
-      },
-      fail: function(res){
-        wx.showToast({
-          title: '获取我的文章失败，请检查网络',
-          icon: 'none',
-          duration: 2000
-        })
-      }
-    })
+    // await wx.request({
+    //   url:"http://127.0.0.1:7979/user/article",
+    //   data: {
+    //     openid: store.openid
+    //   },
+    //   method:'POST',
+    //   success: function(res){
+    //     console.log("status:",res)
+    //     if (res.data.state === 200){
+    //       store.myArticles = res.data.articleList
+    //     } else {
+    //       wx.showToast({
+    //         title: '获取我的文章失败，请检查网络',
+    //         icon: 'none',
+    //         duration: 2000
+    //       })
+    //     }
+    //   },
+    //   fail: function(res){
+    //     wx.showToast({
+    //       title: '获取我的文章失败，请检查网络',
+    //       icon: 'none',
+    //       duration: 2000
+    //     })
+    //   }
+    // })
 
     await wx.request({
       url:"http://result.eolinker.com/2iwkBiged241c5a42bdfb8b083224dbf190f8b770cac539?uri=/user/comment",
@@ -109,6 +112,131 @@ export default class extends MyPage {
       }
     })
 
+    // await wx.request({
+    //   url:"http://127.0.0.1:7979/user/collect",
+    //   data: {
+    //     openid: store.openid
+    //   },
+    //   method:'POST',
+    //   success: function(res){
+    //     console.log("status:",res)
+    //     if (res.data.state === 200){
+    //       store.collectInfos = res.data.collectList
+    //     } else {
+    //       wx.showToast({
+    //         title: '获取我的收藏失败，请检查网络',
+    //         icon: 'none',
+    //         duration: 2000
+    //       })
+    //     }
+    //   },
+    //   fail: function(res){
+    //     console.log("status:",res.data.status)
+    //     wx.showToast({
+    //       title: '获取我的收藏失败，请检查网络',
+    //       icon: 'none',
+    //       duration: 2000
+    //     })
+    //   }
+    // })
+
+  }
+
+  handleChange (e:any) {
+    let that:any = this
+    this.setDataSmart({
+        current: e.detail.key
+    });
+    console.log("switch to tag: ",this.data.current)
+    let current = this.data.current
+    if (current == "history"){
+      that.getHistory()
+    } else if (current == "topic"){
+      that.getArticle()
+    } else if (current == "collect"){
+      that.getCollect()
+    }
+  }
+
+
+  clickDetail(e:any){
+    wx.navigateTo({
+      url: '../repdetail/repdetail?info=' + JSON.stringify(e.currentTarget.dataset.info),
+      success: function(res){
+      },
+      fail: function(res){
+        wx.showModal({
+          title: '显示详情',
+          content: '页面跳转失败，请刷新页面后重试'
+        })
+      }
+    })
+  }
+
+
+  async getHistory(){
+    console.log(this.store.openid)
+    let store:any = this.store;
+    await wx.request({
+      url:"http://127.0.0.1:7979/user/read",
+      data: {
+        openid: store.openid
+      },
+      method:'POST',
+      success: function(res){
+        console.log("status:",res)
+        if (res.data.state === 200){
+          store.hisInfos = res.data.readList
+        } else {
+          wx.showToast({
+            title: '获取阅读历史失败，请检查网络',
+            icon: 'none',
+            duration: 2000
+          })
+        }
+      },
+      fail: function(res){
+        wx.showToast({
+          title: '获取阅读历史失败，请检查网络',
+          icon: 'none',
+          duration: 2000
+        })
+      }
+    })
+  }
+
+  async getArticle(){
+    let store:any = this.store
+    await wx.request({
+      url:"http://127.0.0.1:7979/user/article",
+      data: {
+        openid: store.openid
+      },
+      method:'POST',
+      success: function(res){
+        console.log("status:",res)
+        if (res.data.state === 200){
+          store.myArticles = res.data.articleList
+        } else {
+          wx.showToast({
+            title: '获取我的文章失败，请检查网络',
+            icon: 'none',
+            duration: 2000
+          })
+        }
+      },
+      fail: function(res){
+        wx.showToast({
+          title: '获取我的文章失败，请检查网络',
+          icon: 'none',
+          duration: 2000
+        })
+      }
+    })
+  }
+
+  async getCollect(){
+    let store:any = this.store
     await wx.request({
       url:"http://127.0.0.1:7979/user/collect",
       data: {
@@ -136,28 +264,6 @@ export default class extends MyPage {
         })
       }
     })
-
   }
 
-  handleChange (e:any) {
-    this.setDataSmart({
-        current: e.detail.key
-    });
-    console.log("switch to tag: ",this.data.current)
-  }
-
-
-  clickDetail(e:any){
-    wx.navigateTo({
-      url: '../repdetail/repdetail?info=' + JSON.stringify(e.currentTarget.dataset.info),
-      success: function(res){
-      },
-      fail: function(res){
-        wx.showModal({
-          title: '显示详情',
-          content: '页面跳转失败，请刷新页面后重试'
-        })
-      }
-    })
-  }
 }

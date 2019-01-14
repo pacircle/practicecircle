@@ -97,6 +97,7 @@ export default class extends MyPage {
                 // console.log(ress,'成功')
                 store.userInfo = res.userInfo
                 store.openid = ress.data.openid
+                store.inviteMember = 0
                 that.app.$url.main.go()
               } else {
                 wx.showToast({
