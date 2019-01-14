@@ -5,6 +5,7 @@ import {pagify, MyPage} from 'base/'
 @pagify()
 export default class extends MyPage {
   data = {
+    value: '',
     articleInfos: [],
     orderInfo: "按时间顺序排序",
     visible: false,
@@ -210,6 +211,21 @@ export default class extends MyPage {
     // })
     wx.navigateTo({
       url: '../repdetail/repdetail?info=' + JSON.stringify(e.target.dataset.info),
+      success: function(res){
+      },
+      fail: function(res){
+        wx.showModal({
+          title: '显示详情',
+          content: '页面跳转失败，请刷新页面后重试'
+        })
+      }
+    })
+  }
+
+  handleInputFocus(e:any){
+    console.log(e)
+    wx.navigateTo({
+      url: '../query/query',
       success: function(res){
       },
       fail: function(res){

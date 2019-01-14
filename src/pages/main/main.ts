@@ -6,8 +6,13 @@ import {pagify, MyPage, wxp} from 'base/'
 export default class extends MyPage {
   data = {
     imageUrls: [
-      "http://seopic.699pic.com/photo/50077/0332.jpg_wh1200.jpg",
-      "http://img02.tooopen.com/images/20150928/tooopen_sy_143912755726.jpg",    
+      {
+        img: "http://seopic.699pic.com/photo/50077/0332.jpg_wh1200.jpg",
+        address: ""
+      },{
+        img: "http://img02.tooopen.com/images/20150928/tooopen_sy_143912755726.jpg", 
+        address: ""
+      }         
     ],
     reInfos: [
       {
