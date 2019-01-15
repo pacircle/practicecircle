@@ -25,18 +25,18 @@ export default class extends MyPage {
   获取实时输入值
   */
   onTitleChange(e:any){
-    //console.log(e.detail.detail.value);
+    // console.log(e.detail.value);
     // this.data.title=e.detail.detail.value;
     this.setDataSmart({
-      title: e.detail.detail.value
+      title: e.detail.value
     })
   }
   onContentChange(e:any){
-    //console.log(e.detail.detail.value);
+    console.log(e.detail.value);
     // this.data.content=e.detail.detail.value;
     this.setDataSmart({
-      sub: this.data.content,
-      content: e.detail.detail.value
+      sub: e.detail.value.substr(0,20),
+      content: e.detail.value
       //subValue: this.data.mainValue.toString
     })
   }
