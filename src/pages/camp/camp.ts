@@ -7,7 +7,8 @@ export default class extends MyPage {
   data = {
     camps: [],
     nowCamp: {},
-    modalHidden: true
+    modalHidden: true,
+    sign: false,
   }
 
   async onLoad(options: any) {
@@ -29,6 +30,23 @@ export default class extends MyPage {
             camps: res.data.data.camps.slice(0,length -1),
             nowCamp: res.data.data.camps[length -1]
           })
+          let userList = res.data.data.camps[length -1].userList 
+          if (userList.indexOf(store.openid) > -1){
+            that.setDataSmart({
+              sign: true
+            })
+            wx.navigateTo({
+              url: '../campSuccess/campSuccess',
+              success: function(res){
+              },
+              fail: function(res){
+                wx.showModal({
+                  title: '显示详情',
+                  content: '页面跳转失败，请刷新页面后重试'
+                })
+              }
+            })
+          }
         } else {
           wx.showToast({
             title: '获取训练营信息失败，请检查网络',
