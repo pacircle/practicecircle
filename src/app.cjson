@@ -11,6 +11,7 @@
 
     /*# INJECT_START {"key": "page"} #*/
     // "pages/query/query",
+    // "pages/campSuccess/campSuccess",
     "pages/index/index",
     // "pages/logs/logs",
     "pages/main/main",
@@ -21,6 +22,7 @@
     "pages/repnew/repnew",
     "pages/camp/camp",
     "pages/campDetail/campDetail",
+    "pages/campSuccess/campSuccess",
     /*# INJECT_END #*/
   ],
   "window": {

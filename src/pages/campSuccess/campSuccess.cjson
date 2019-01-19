@@ -8,11 +8,8 @@
 
 {
   "$schema": "https://raw.githubusercontent.com/qiu8310/minapp/master/schema/page.json",
+  "component": true,
   "usingComponents": {
-    "i-tabs": "../../base/iView/tabs/index",
-    "i-tab": "../../base/iView/tab/index",
-    "tabList": "components/tablist/tablist",
-    "recommendCard": "components/recommendCard/recommendCard",
-    "i-divider": "../../base/iView/divider/index",
+    "i-notice-bar": "../../base/iView/notice-bar/index"
   }
 }

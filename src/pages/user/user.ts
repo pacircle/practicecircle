@@ -13,7 +13,8 @@ export default class extends MyPage {
     //topic: [],
     //comment: [],
     collect: [],
-    inviteMember: 0
+    inviteMember: 0,
+    inviteCampMember: 0
   }
 
   async onLoad(options: any) {
@@ -23,7 +24,8 @@ export default class extends MyPage {
       this.setDataSmart({
         avatar: this.store.userInfo.avatarUrl,
         nickName: this.store.userInfo.nickName,
-        inviteMember: store.inviteMember
+        inviteMember: store.inviteMember,
+        inviteCampMember: store.inviteCampMember
       })
     }
     let that:any = this
