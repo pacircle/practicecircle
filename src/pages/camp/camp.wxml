@@ -32,7 +32,8 @@
     <view>1) 内容要扣题，提出符合产品经理思维逻辑的解决方案</view>
     <view>2) 有独到的看法和深入的理解和分析</view>
     <view>
-      <i-button bind:click="getSignWay" type="primary">报名</i-button>
+      <i-button type="ghost" wx:if="{{sign}}">报名成功</i-button> 
+      <i-button bind:click="getSignWay" type="primary" wx:else>报名</i-button>
       <modal title="我是标题" hidden="{{modalHidden}}" bindconfirm="modalConfirm" bindcancel="modalCandel">
         <view>
           <image class="image" src="../../images/practice.png" mode='aspectFill'></image>

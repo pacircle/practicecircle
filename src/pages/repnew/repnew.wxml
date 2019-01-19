@@ -5,23 +5,44 @@
   1. 如果没有语法高亮，且你使用的是 vscode 编辑器的话，建义在 vscode 插件库中安装 minapp-vscode 插件
 -->
 <view >
-    <i-panel title="标题">
-        <i-input type="text" maxlength="20"
+    <i-panel title="复盘标题">
+        <input type="text"
+            bindinput="onTitleChange"
+            value="{{reinfo.title}}"
+            class="title"
+            placeholder="请输入20字以内的标题" /> 
+        <!-- <i-input type="text" maxlength="20"
             bind:focus="onTitleFocus"
             bind:change="onTitleChange"
             bind:blur="onTitleBlur"
             value="{{reinfo.title}}"
-            placeholder="请输入20字以内的标题" />      
+            class="title"
+            placeholder="请输入20字以内的标题" />  -->
+        <!-- <textarea placeholder="请输入复盘标题内容" 
+        class="title"
+        bind:focus="onTitleFocus"
+        bind:change="onTitleChange"
+        bind:blur="onTitleBlur"
+        value="{{reinfo.title}}"
+        />      -->
     </i-panel>
-    <i-panel title="内容">
-        <i-input type="textarea" maxlength="1000" 
+    <i-panel title="复盘内容">
+        <!-- <i-input type="textarea" maxlength="1000" 
             value="{{mainValue}}"
             bind:focus="onContentFocus"
             bind:change="onContentChange"
             bind:blur="onContentBlur"
-            placeholder="请输入1000字以内的内容" />
+            placeholder="请输入1000字以内的内容" /> -->
+        <textarea placeholder="请输入复盘内容" 
+        class="content"
+        focus="{{focus}}" 
+        value="{{content}}"
+        bind:focus="onContentFocus"
+        bindinput="onContentChange"
+        bind:blur="onContentBlur"
+        />
     </i-panel>
-    <i-panel title="请提供简要内容">
+    <!-- <i-panel title="请提供简要内容">
         <view>
             <i-button type="primary" size="small">获取默认简要内容</i-button>
         </view>
@@ -29,6 +50,6 @@
             placeholder="请输入100字以内的内容" 
             value="{{subValue}}"
             />
-    </i-panel>
+    </i-panel> -->
     <button class="load-button" bind:tap="onConfirmTap" >发布</button>
 </view>
