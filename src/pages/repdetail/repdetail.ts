@@ -41,7 +41,8 @@ export default class extends MyPage {
       //   value: []
       // }
     },
-    commentValue: ''
+    commentValue: '',
+    deletePower: false
   }
 
   async onLoad(options: any) {
@@ -51,7 +52,14 @@ export default class extends MyPage {
     await this.setDataSmart({
       info: JSON.parse(options.info)
     })
-
+    let store:any = this.store
+    console.log(store.openid)
+    console.log(JSON.parse(options.info).userId)
+    if (store.openid === JSON.parse(options.info).userId){
+      this.setDataSmart({
+        deletePower: true
+      })
+    }
     //增加阅读次数
     console.log(JSON.parse(options.info)._id)
     wx.request({
