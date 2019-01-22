@@ -84,7 +84,7 @@ export default class extends MyPage {
       if (res && code){
         this.store.userInfo = res.userInfo  // 将用户信息存入 store 中
         wx.request({
-          url: "http://127.0.0.1:7979/user/login",
+          url: "https://webackx.offerqueens.cn/user/login",
           data: {
             userInfo: res.userInfo,
             jsCode: code,
