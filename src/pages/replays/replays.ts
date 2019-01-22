@@ -162,6 +162,74 @@ export default class extends MyPage {
   }
   async onShow(){
     let store:any = this.store
+    let that:any = this
+    if (store.articleType){
+      wx.request({
+        url: "https://webackx.offerqueens.cn/article/all",
+        data: {
+          openid: store.openid,
+          articleType: store.articleType
+        },
+        method: 'POST',
+        success:function(ress:any){
+          console.log(ress.statusCode)
+          if (ress.statusCode === 200){
+              if (ress.data.articleInfos){
+                console.log(ress.data.articleInfos)
+                store.articleInfos = ress.data.articleInfos
+                that.setArticle(store.articleInfos)
+              }         
+          } else {
+            wx.showToast({
+              title: '更新列表失败，请检查网络',
+              icon: 'none',
+              duration: 2000
+            })
+          } 
+          // console.log('微信 userInfo %o', res.userInfo)
+        },
+        fail:function(res){
+          wx.showToast({
+            title: '更新列表失败，请检查网络后重新启动小程序',
+            icon: 'none',
+            duration: 2000
+          })
+        }
+      })
+    } else {
+      wx.request({
+        url: "https://webackx.offerqueens.cn/article/all",
+        data: {
+          openid: store.openid,
+          articleType: 'time'
+        },
+        method: 'POST',
+        success:function(ress:any){
+          console.log(ress.statusCode)
+          if (ress.statusCode === 200){
+              if (ress.data.articleInfos){
+                console.log(ress.data.articleInfos)
+                store.articleInfos = ress.data.articleInfos
+                that.setArticle(store.articleInfos)
+              }         
+          } else {
+            wx.showToast({
+              title: '更新列表失败，请检查网络',
+              icon: 'none',
+              duration: 2000
+            })
+          } 
+          // console.log('微信 userInfo %o', res.userInfo)
+        },
+        fail:function(res){
+          wx.showToast({
+            title: '更新列表失败，请检查网络后重新启动小程序',
+            icon: 'none',
+            duration: 2000
+          })
+        }
+      })
+    }
     await this.setDataSmart({
       articleInfos: store.articleInfos
     })

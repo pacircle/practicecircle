@@ -276,6 +276,12 @@ export default class extends MyPage {
             },
             success:function(res){
               if (res.data.state === 200){
+                // let articleInfos = store.articleInfos
+                // articleInfos.filter((item:any) => item._id === info._id)
+                // store.articleInfos = articleInfos
+                // console.log(articleInfos)
+                // console.log('arti',articleInfos.length)
+                // console.log(store.articleInfos)
                 wxp.navigateBack({delta:1});
               } else {
                 wx.showToast({

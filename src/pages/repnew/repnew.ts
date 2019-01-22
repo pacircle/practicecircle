@@ -66,7 +66,7 @@ export default class extends MyPage {
           openid: store.openid,
           content: data.content,
           title: data.title,
-          sub: data.content
+          sub: data.content.substr(0,20)
         },
         method: "POST",
         success:function(res){
