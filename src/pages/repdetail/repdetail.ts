@@ -1,6 +1,6 @@
 // 此文件是由模板文件 ".dtpl/page/$rawModuleName.ts.dtpl" 生成的，你可以自行修改模板
 
-import {pagify, MyPage} from 'base/'
+import {pagify, MyPage,wxp} from 'base/'
 
 @pagify()
 export default class extends MyPage {
@@ -53,18 +53,19 @@ export default class extends MyPage {
     })
 
     //增加阅读次数
+    console.log(JSON.parse(options.info)._id)
     wx.request({
-      url: "http://result.eolinker.com/2iwkBiged241c5a42bdfb8b083224dbf190f8b770cac539?uri=/article/visit",
-      method: 'POST',
+      url: 'http://127.0.0.1:7979/user/article/read',
       data: {
-        uuid:options.info.id
+        openid: this.store.openid,
+        articleId: JSON.parse(options.info)._id.$oid
       },
-      success: function(res:any){
-        console.log("阅读次数+1成功",res)
+      method: 'POST',
+      success:function(res){
+        console.log(res.data)
       },
-      fail:function(err:any){
-        console.log(err)
-      },
+      fail:function(res){
+      }
     })
   }
 
@@ -72,10 +73,18 @@ export default class extends MyPage {
     this.app.$url.main.go()
   }
 
-  onShareAppMessage() {
+  onShareAppMessage(res:any) {
+    console.log(res)
     return {
-        title: 'iView Weapp',
-        imageUrl: 'https://file.iviewui.com/iview-weapp-logo.png'
+        title: '交大分享圈',
+        imageUrl: require("../../images/practice.png"),
+        // wechat功能调整，无法返回是否分享成功
+        // success: function(ress:any){
+        //   console.log("转发成功", ress)
+        // },
+        // fail: function(resss:any){
+        //   console.log("转发失败", resss)
+        // }
     };
   }
 
@@ -84,15 +93,15 @@ export default class extends MyPage {
     let store:any = this.store
     let that:any = this
     wx.request({
-      url: "http://result.eolinker.com/2iwkBiged241c5a42bdfb8b083224dbf190f8b770cac539?uri=/user/collect",
+      url: "http://127.0.0.1:7979/user/article/collect",
       method: 'POST',
       data: {
-        id: store.openid,
-        articleId: info.id
+        openid: store.openid,
+        articleId: info._id.$oid
       },
       success: function(res:any){
         console.log(res)
-        if (res.data.status === 200){
+        if (res.data.state === 200){
           info.user_collect = !(info.user_collect)
           that.setDataSmart({
             info: info
@@ -120,15 +129,15 @@ export default class extends MyPage {
     let that:any = this
     let store:any = this.store
     wx.request({
-      url: "http://result.eolinker.com/2iwkBiged241c5a42bdfb8b083224dbf190f8b770cac539?uri=/user/agree",
+      url: "http://127.0.0.1:7979/user/article/agree",
       method: 'POST',
       data: {
-        id: store.openid,
-        articleId: info.id
+        openid: store.openid,
+        articleId: info._id.$oid
       },
       success: function(res:any){
         console.log(res)
-        if (res.data.status === 200){
+        if (res.data.state === 200){
           info.user_agree = !(info.user_agree)
           that.setDataSmart({
             info: info
@@ -161,6 +170,10 @@ export default class extends MyPage {
   async setComment(commentItem: any){
     console.log(commentItem)
     let newInfo:any = this.data.info
+    let store:any = this.store
+    commentItem.nickName = store.userInfo.nickName
+    commentItem.avatarUrl = store.userInfo.avatarUrl
+    commentItem.content = this.data.commentValue
     newInfo.commentList.push(commentItem)
     await this.setDataSmart({
       info: newInfo
@@ -178,19 +191,22 @@ export default class extends MyPage {
         duration: 2000
       })
     } else {
-      let commentTime = new Date()
+      console.log(info._id)
+      // let commentTime = new Date()
       wx.request({
-        url: 'http://result.eolinker.com/2iwkBiged241c5a42bdfb8b083224dbf190f8b770cac539?uri=/user/comment',
+        url: 'http://127.0.0.1:7979/user/article/comment/index',
         method: 'POST',
         data: {
-          articleId: info.id,
+          articleId: info._id.$oid,
           userId: store.openid,
           content: this.data.commentValue,
-          time: commentTime
+          nickName: store.userInfo.nickName,
+          avatarUrl: store.userInfo.avatarUrl
+          // time: commentTime
         },
         success: function(res){
-          if (res.data.status === 200){      
-            let commentItem = res.data.commentItem
+          if (res.data.state === 200){      
+            let commentItem = res.data.data.commentItem
             that.setComment(commentItem)
             // console.log(info.commentList)
             // console.log(commentItem)
@@ -239,5 +255,49 @@ export default class extends MyPage {
     }
   }
 
+  async deleteArticle(e:any){
+    console.log(e)
+    let info:any = this.data.info
+    let store:any = this.store
+    // let that:any = this 
+    // let store:any = this.store
+    wx.showModal({
+      title: '提示',
+      content: '是否删除文章？',
+      success(res) {
+        if (res.confirm) {
+          console.log('用户点击确定')
+          wx.request({
+            url: "http://127.0.0.1:7979/user/article/delete",
+            method: "POST",
+            data: {
+              articleId: info._id.$oid,
+              openid: store.openid,
+            },
+            success:function(res){
+              if (res.data.state === 200){
+                wxp.navigateBack({delta:1});
+              } else {
+                wx.showToast({
+                  title: '删除文章失败，请检查网络',
+                  icon: 'none',
+                  duration: 2000
+                })
+              }
+            },
+            fail: function(res){
+              wx.showToast({
+                title: '删除文章失败，请检查网络',
+                icon: 'none',
+                duration: 2000
+              })
+            }
+          })
+        } else if (res.cancel) {
+          console.log('用户点击取消')
+        }
+      }
+    })
+  }
 
 }

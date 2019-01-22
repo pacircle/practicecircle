@@ -14,6 +14,7 @@
     "i-icon": "../../base/iView/icon/index",
     "i-collapse": "../../base/iView/collapse/index",
     "i-collapse-item": "../../base/iView/collapse-item/index",
-    "i-input": "../../base/iView/input/index"
+    "i-input": "../../base/iView/input/index",
+    "i-action-sheet": "../../base/iView/action-sheet/index"
   }
 }

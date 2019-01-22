@@ -1,0 +1,40 @@
+<!--
+  此文件是由模板文件 ".dtpl/page/$rawModuleName.wxml.dtpl" 生成的，你可以自行修改模板
+
+  注意：
+  1. 如果没有语法高亮，且你使用的是 vscode 编辑器的话，建义在 vscode 插件库中安装 minapp-vscode 插件
+-->
+
+<view>
+  <i-notice-bar icon="systemprompt" loop closable>
+    已成功加入训练营！请先阅读如下内容：
+  </i-notice-bar>
+  <view class="allStyle">
+  <view class="mainStyle">
+    <view class="titleStyle">产品经理面试的基本思维逻辑</view>
+    <view class="textStyle">
+      <view>to c产品是你去挖掘用户需求，是创造，从无到有。</view>
+      <view>to c产品对产品经理的最大要求是：</view>
+      <view>很好的用户嗅觉，能准确提炼用户真实需求，为产品的市场化方向和用户利益寻求到一个平衡点。</view>
+    </view>
+  </view>
+  <view class="listStyle">
+    <view>1 用户量、流量是第一要素</view>
+    <view>2 吸引用户->用户体验->变现</view>
+    <view>3 找到用户体验和盈利模式的平衡点</view>
+    <view>4 某些场景中需要有成本意识</view>
+    <view>5 产品能分成引流产品和变现产品，单个产品可以只引流不盈利，通过产品矩阵盈利。</view>
+  </view>
+  <view class="nextStyle">
+    <view>to b产品是公司战略或相关方给你提出要求，产品经理将这类“线下已有的需求”系统化，达到提高现有流程的效率的目的。</view>
+    <view>to b端的产品经理需要具备优秀的需求梳理能力和推动能力，构建完整生态，或者提升效率，就是to b产品经理的价值所在。</view>
+  </view>
+  <view class="list2Style">
+    <view>1 to b产品的用户可以是企业内部用户、客户公司、某个客户的个人业务</view>
+    <view>2 to b产品经理可以分为用户型产品经理、平台型产品经理、数据型产品经理</view>
+    <view>3 用户型产品经理，设想使用场景，从场景和表面需求追溯提炼用户的本质需求，提高用户体验，即从场景联想到本质需求</view>
+    <view>4 平台型产品经理，根据需求设计交互逻辑，结合技术能力，制定功能，满足需求</view>
+    <view>5 数据型产品经理，互金企业为主，从数据中找到用户行为逻辑、用户需求</view>
+  </view>
+</view>
+</view>

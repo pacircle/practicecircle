@@ -25,18 +25,18 @@ export default class extends MyPage {
   获取实时输入值
   */
   onTitleChange(e:any){
-    //console.log(e.detail.detail.value);
+    // console.log(e.detail.value);
     // this.data.title=e.detail.detail.value;
     this.setDataSmart({
-      title: e.detail.detail.value
+      title: e.detail.value
     })
   }
   onContentChange(e:any){
-    //console.log(e.detail.detail.value);
+    console.log(e.detail.value);
     // this.data.content=e.detail.detail.value;
     this.setDataSmart({
-      sub: this.data.content,
-      content: e.detail.detail.value
+      sub: e.detail.value.substr(0,20),
+      content: e.detail.value
       //subValue: this.data.mainValue.toString
     })
   }
@@ -77,7 +77,7 @@ export default class extends MyPage {
             console.log(res.data.id)
             console.log(res.data.time)
             const newArticle = new Object({
-              id: res.data.articleItem.id,
+              _id: res.data.articleItem._id,
               nickName: userInfo.nickName,
               avatarUrl: userInfo.avatarUrl,
               time: res.data.articleItem.time,
@@ -86,7 +86,10 @@ export default class extends MyPage {
               //sub: this.data.content.substr(0,20)+(this.data.content.length>20?"...":""),
               content: data.content,
               agree: 0,
-              commentList: []
+              commentList: [],
+              user_agree: false,
+              user_collect: false,
+              readTime: 1
             })
             console.log(newArticle);
         // commentList: [{

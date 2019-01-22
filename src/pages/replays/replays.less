@@ -44,3 +44,40 @@
   width: 100%;
   margin-top:1px;
 }
+
+
+
+
+.i-cell{
+  position:relative;
+  padding:12px 15px;
+  display:flex;
+  align-items:center;
+  line-height:1.4;
+  font-size:28px;
+  overflow:hidden
+}
+.i-cell::after{
+  content:'';
+  position:absolute;
+  top:0;
+  left:0;
+  width:200%;
+  height:200%;
+  transform:scale(.5);
+  transform-origin:0 0;
+  pointer-events:none;
+  box-sizing:border-box;
+  border:3px solid #e9eaec;
+  border-bottom-width:1px;
+  left:15px;right:0;
+  border-radius: 10px;
+}
+.i-input-icon{
+  // color:#495060;
+  min-width:35px;
+  padding-right:3px;
+}
+.i-input-wrapped{margin:10px 15px;}
+.i-input-wrapped::after{left:0;border-width:5px;border-radius:10px}
+.i-input.i-input-wrapped::after{display:block}

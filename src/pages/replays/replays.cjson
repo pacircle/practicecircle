@@ -13,6 +13,7 @@
     "i-icon": "../../base/iView/icon/index",
     "i-spin": "../../base/iView/spin/index",
     "i-action-sheet":"../../base/iView/action-sheet/index",
-    "i-button": "../../base/iView/button/index"
+    "i-button": "../../base/iView/button/index",
+    "i-input": "../../base/iView/input_origin",
   }
 }

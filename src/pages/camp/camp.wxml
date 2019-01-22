@@ -1,0 +1,54 @@
+<!--
+  此文件是由模板文件 ".dtpl/page/$rawModuleName.wxml.dtpl" 生成的，你可以自行修改模板
+
+  注意：
+  1. 如果没有语法高亮，且你使用的是 vscode 编辑器的话，建义在 vscode 插件库中安装 minapp-vscode 插件
+-->
+
+<view>
+  <i-notice-bar icon="systemprompt" loop closable>
+    欢迎参与训练营，每期训练营同学们将和我一起重新分析1-3个最近、最新的互联网产品、运营岗面试真题，我们希望帮你提高产品思维，在讨论的过程中从其他同学、更多的思考角度获得启发。
+  </i-notice-bar>
+  <view class="title">
+    <span>第</span>
+    <span>{{nowCamp.order}}</span>
+    <span>期训练营：</span>
+    <span>{{nowCamp.content}}</span>
+  </view>
+
+  <view class="content">{{nowCamp.content}}</view>
+  <view>
+    <block wx:for="{{nowCamp.answers}}" data-index="{{index}}" wx:key="{{item.content}}">
+      <i-card title="优秀回答{{index + 1}}:">
+        <view slot="content">{{item.content}}</view>
+      </i-card>
+    </block>
+  </view>
+
+  <i-divider content="训练营规则"></i-divider>
+  <view class="sign">
+    <view>1. 每期训练营将评选最佳答案，最佳回答者将获得直接参与下一期训练营机会，或推荐一位好友直接参加训练营。</view>
+    <view>2. 最佳回答由分享圈进行评选，最佳回答评选标准可参考：</view>
+    <view>1) 内容要扣题，提出符合产品经理思维逻辑的解决方案</view>
+    <view>2) 有独到的看法和深入的理解和分析</view>
+    <view>
+      <i-button type="ghost" wx:if="{{sign}}">报名成功</i-button> 
+      <i-button bind:click="getSignWay" type="primary" wx:else>报名</i-button>
+      <modal title="我是标题" hidden="{{modalHidden}}" bindconfirm="modalConfirm" bindcancel="modalCandel">
+        <view>
+          <image class="image" src="../../images/practice.png" mode='aspectFill'></image>
+        </view>
+      </modal>
+    </view>
+  </view>
+
+
+  <i-divider content="往期训练营"></i-divider>
+  <view>
+    <block wx:for="{{camps}}" wx:key="{{item._id}}">
+      <campItem campProp="{{item}}" data-info="{{item}}" bind:tap="clickDetail"></campItem>
+    </block>
+  </view>
+
+</view>
+
