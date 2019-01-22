@@ -210,9 +210,9 @@ export default class extends MyPage {
         success: function(res){
           if (res.data.state === 200){
             console.log(res.data.rotate.address)
-            store.address = res.data.rotate.address
+            // store.address = res.data.rotate.address
             wx.navigateTo({
-              url: '../web/web',
+              url: '../web/web?info=' + res.data.rotate.address,
               success: function(res){
               },
               fail: function(res){
