@@ -55,7 +55,7 @@ export default class extends MyPage {
     //增加阅读次数
     console.log(JSON.parse(options.info)._id)
     wx.request({
-      url: 'http://127.0.0.1:7979/user/article/read',
+      url: 'https://webackx.offerqueens.cn/user/article/read',
       data: {
         openid: this.store.openid,
         articleId: JSON.parse(options.info)._id.$oid
@@ -93,7 +93,7 @@ export default class extends MyPage {
     let store:any = this.store
     let that:any = this
     wx.request({
-      url: "http://127.0.0.1:7979/user/article/collect",
+      url: "https://webackx.offerqueens.cn/user/article/collect",
       method: 'POST',
       data: {
         openid: store.openid,
@@ -129,7 +129,7 @@ export default class extends MyPage {
     let that:any = this
     let store:any = this.store
     wx.request({
-      url: "http://127.0.0.1:7979/user/article/agree",
+      url: "https://webackx.offerqueens.cn/user/article/agree",
       method: 'POST',
       data: {
         openid: store.openid,
@@ -194,7 +194,7 @@ export default class extends MyPage {
       console.log(info._id)
       // let commentTime = new Date()
       wx.request({
-        url: 'http://127.0.0.1:7979/user/article/comment/index',
+        url: 'https://webackx.offerqueens.cn/user/article/comment/index',
         method: 'POST',
         data: {
           articleId: info._id.$oid,
@@ -268,7 +268,7 @@ export default class extends MyPage {
         if (res.confirm) {
           console.log('用户点击确定')
           wx.request({
-            url: "http://127.0.0.1:7979/user/article/delete",
+            url: "https://webackx.offerqueens.cn/user/article/delete",
             method: "POST",
             data: {
               articleId: info._id.$oid,

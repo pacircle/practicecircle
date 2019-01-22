@@ -28,9 +28,9 @@ export default class extends MyPage {
     let store:any = this.store
     let that:any = this
     store.articleType = this.data.articleType
-    if (store.articleInfos.length === 0 ){//如果没有文章
+    // if (store.articleInfos.length === 0 ){//如果没有文章
       wx.request({
-        url: "http://127.0.0.1:7979/article/all",
+        url: "https://webackx.offerqueens.cn/article/all",
         data: {
           openid: store.openid,
           articleType: store.articleType
@@ -59,7 +59,7 @@ export default class extends MyPage {
           })
         }
       })
-    }
+    // }
     /*
     //提供一个模版而已，后面要删掉的
     if(this.store.repInfos.length==0){
@@ -118,7 +118,7 @@ export default class extends MyPage {
     let that = this;
     store.articleType = type
     wx.request({
-      url: "http://127.0.0.1:7979/article/all",
+      url: "https://webackx.offerqueens.cn/article/all",
       data: {
         openid: store.openid,
         articleType: store.articleType

@@ -180,7 +180,7 @@ export default class extends MyPage {
     console.log(this.store.openid)
     let store:any = this.store;
     await wx.request({
-      url:"http://127.0.0.1:7979/user/read",
+      url:"https://webackx.offerqueens.cn/user/read",
       data: {
         openid: store.openid
       },
@@ -210,7 +210,7 @@ export default class extends MyPage {
   async getArticle(){
     let store:any = this.store
     await wx.request({
-      url:"http://127.0.0.1:7979/user/article",
+      url:"https://webackx.offerqueens.cn/user/article",
       data: {
         openid: store.openid
       },
@@ -240,7 +240,7 @@ export default class extends MyPage {
   async getCollect(){
     let store:any = this.store
     await wx.request({
-      url:"http://127.0.0.1:7979/user/collect",
+      url:"https://webackx.offerqueens.cn/user/collect",
       data: {
         openid: store.openid
       },
