@@ -30,7 +30,7 @@ export default class extends MyPage {
     store.articleType = this.data.articleType
     // if (store.articleInfos.length === 0 ){//如果没有文章
       wx.request({
-        url: "https://webackx.offerqueens.cn/article/all",
+        url: "https://wechatx.offerqueens.cn/article/all",
         data: {
           openid: store.openid,
           articleType: store.articleType
@@ -118,7 +118,7 @@ export default class extends MyPage {
     let that = this;
     store.articleType = type
     wx.request({
-      url: "https://webackx.offerqueens.cn/article/all",
+      url: "https://wechatx.offerqueens.cn/article/all",
       data: {
         openid: store.openid,
         articleType: store.articleType
@@ -165,7 +165,7 @@ export default class extends MyPage {
     let that:any = this
     if (store.articleType){
       wx.request({
-        url: "https://webackx.offerqueens.cn/article/all",
+        url: "https://wechatx.offerqueens.cn/article/all",
         data: {
           openid: store.openid,
           articleType: store.articleType
@@ -198,7 +198,7 @@ export default class extends MyPage {
       })
     } else {
       wx.request({
-        url: "https://webackx.offerqueens.cn/article/all",
+        url: "https://wechatx.offerqueens.cn/article/all",
         data: {
           openid: store.openid,
           articleType: 'time'
