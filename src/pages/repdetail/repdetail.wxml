@@ -18,7 +18,7 @@
           <i-icon type="praise" size="30"   bind:tap="agreeArticle"  wx:else/>
           <i-icon type="collection_fill" size="30" color="#2d8cf0" wx:if="{{info.user_collect === true}}" bind:tap="collectArticle"/>
           <i-icon type="collection" size="30"  bind:tap="collectArticle" wx:else/>
-          <i-icon type="trash" size="30" bind:tap="deleteArticle"/>
+          <i-icon type="trash" size="30" bind:tap="deleteArticle" wx:if="{{deletePower}}"/>
         </view>
       </i-card>
     </view>

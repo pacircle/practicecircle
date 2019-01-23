@@ -61,12 +61,12 @@ export default class extends MyPage {
       //获取用户信息的备份
       const userInfo= JSON.parse(JSON.stringify(this.store.userInfo)); 
       wx.request({
-        url: "https://webackx.offerqueens.cn/user/article/add",
+        url: "https://wechatx.offerqueens.cn/user/article/add",
         data:{
           openid: store.openid,
           content: data.content,
           title: data.title,
-          sub: data.content
+          sub: data.content.substr(0,20)
         },
         method: "POST",
         success:function(res){

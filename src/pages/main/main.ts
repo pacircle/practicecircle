@@ -70,7 +70,7 @@ export default class extends MyPage {
     let store:any = this.store
     if (store.openid && store.openid.length > 0){
       wx.request({
-      url:"https://webackx.offerqueens.cn/article/recom",
+      url:"https://wechatx.offerqueens.cn/article/recom",
       data: {
         openid: store.openid
       },
