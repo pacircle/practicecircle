@@ -57,6 +57,14 @@ export default class extends MyPage {
     // console.log('可以使用 require 的方法加载图片: %o', require('images/heart@3x.png'))
     // 轻松读取全局数据
     console.log('当前 Store: %o', this.store)
+    console.log('options',options)
+    if (options.scene) {
+      console.log("has scene");
+      var scene = decodeURIComponent(options.scene);
+      console.log("scene is ", scene);
+    } else {
+      console.log("no scene");
+    }
     // if (!this.store.userInfo && !this.data.canIUseOpenButton) {
     //   // 在没有 open-type=getUserInfo 版本的兼容处理
     //   let {userInfo} = await wxp.getUserInfo()
