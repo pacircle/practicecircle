@@ -97,7 +97,7 @@ export default class extends MyPage {
     let store:any = this.store
     let that:any = this
     wx.request({
-      url: "https://webackx.offerqueens.cn/article/search",
+      url: "https://wechatx.offerqueens.cn/article/search",
       data: {
         searchInfo:searchInfo,
         openid: store.openid, 

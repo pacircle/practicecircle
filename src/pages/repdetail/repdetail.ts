@@ -41,7 +41,8 @@ export default class extends MyPage {
       //   value: []
       // }
     },
-    commentValue: ''
+    commentValue: '',
+    deletePower: false
   }
 
   async onLoad(options: any) {
@@ -51,11 +52,18 @@ export default class extends MyPage {
     await this.setDataSmart({
       info: JSON.parse(options.info)
     })
-
+    let store:any = this.store
+    console.log(store.openid)
+    console.log(JSON.parse(options.info).userId)
+    if (store.openid === JSON.parse(options.info).userId){
+      this.setDataSmart({
+        deletePower: true
+      })
+    }
     //增加阅读次数
     console.log(JSON.parse(options.info)._id)
     wx.request({
-      url: 'https://webackx.offerqueens.cn/user/article/read',
+      url: 'https://wechatx.offerqueens.cn/user/article/read',
       data: {
         openid: this.store.openid,
         articleId: JSON.parse(options.info)._id.$oid
@@ -93,7 +101,7 @@ export default class extends MyPage {
     let store:any = this.store
     let that:any = this
     wx.request({
-      url: "https://webackx.offerqueens.cn/user/article/collect",
+      url: "https://wechatx.offerqueens.cn/user/article/collect",
       method: 'POST',
       data: {
         openid: store.openid,
@@ -129,7 +137,7 @@ export default class extends MyPage {
     let that:any = this
     let store:any = this.store
     wx.request({
-      url: "https://webackx.offerqueens.cn/user/article/agree",
+      url: "https://wechatx.offerqueens.cn/user/article/agree",
       method: 'POST',
       data: {
         openid: store.openid,
@@ -194,7 +202,7 @@ export default class extends MyPage {
       console.log(info._id)
       // let commentTime = new Date()
       wx.request({
-        url: 'https://webackx.offerqueens.cn/user/article/comment/index',
+        url: 'https://wechatx.offerqueens.cn/user/article/comment/index',
         method: 'POST',
         data: {
           articleId: info._id.$oid,
@@ -268,7 +276,7 @@ export default class extends MyPage {
         if (res.confirm) {
           console.log('用户点击确定')
           wx.request({
-            url: "https://webackx.offerqueens.cn/user/article/delete",
+            url: "https://wechatx.offerqueens.cn/user/article/delete",
             method: "POST",
             data: {
               articleId: info._id.$oid,
@@ -276,6 +284,12 @@ export default class extends MyPage {
             },
             success:function(res){
               if (res.data.state === 200){
+                // let articleInfos = store.articleInfos
+                // articleInfos.filter((item:any) => item._id === info._id)
+                // store.articleInfos = articleInfos
+                // console.log(articleInfos)
+                // console.log('arti',articleInfos.length)
+                // console.log(store.articleInfos)
                 wxp.navigateBack({delta:1});
               } else {
                 wx.showToast({

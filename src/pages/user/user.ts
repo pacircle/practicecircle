@@ -87,32 +87,32 @@ export default class extends MyPage {
     //   }
     // })
 
-    await wx.request({
-      url:"http://result.eolinker.com/2iwkBiged241c5a42bdfb8b083224dbf190f8b770cac539?uri=/user/comment",
-      data: {
-        openid: store.openid
-      },
-      method:'POST',
-      success: function(res){
-        console.log("status:",res)
-        if (res.data.status === 200){
-          store.myComments = res.data.commentList
-        } else {
-          wx.showToast({
-            title: '获取我的评论失败，请检查网络',
-            icon: 'none',
-            duration: 2000
-          })
-        }
-      },
-      fail: function(res){
-        wx.showToast({
-          title: '获取我的评论失败，请检查网络',
-          icon: 'none',
-          duration: 2000
-        })
-      }
-    })
+    // await wx.request({
+    //   url:"http://result.eolinker.com/2iwkBiged241c5a42bdfb8b083224dbf190f8b770cac539?uri=/user/comment",
+    //   data: {
+    //     openid: store.openid
+    //   },
+    //   method:'POST',
+    //   success: function(res){
+    //     console.log("status:",res)
+    //     if (res.data.status === 200){
+    //       store.myComments = res.data.commentList
+    //     } else {
+    //       wx.showToast({
+    //         title: '获取我的评论失败，请检查网络',
+    //         icon: 'none',
+    //         duration: 2000
+    //       })
+    //     }
+    //   },
+    //   fail: function(res){
+    //     wx.showToast({
+    //       title: '获取我的评论失败，请检查网络',
+    //       icon: 'none',
+    //       duration: 2000
+    //     })
+    //   }
+    // })
 
     // await wx.request({
     //   url:"http://127.0.0.1:7979/user/collect",
@@ -180,7 +180,7 @@ export default class extends MyPage {
     console.log(this.store.openid)
     let store:any = this.store;
     await wx.request({
-      url:"https://webackx.offerqueens.cn/user/read",
+      url:"https://wechatx.offerqueens.cn/user/read",
       data: {
         openid: store.openid
       },
@@ -210,7 +210,7 @@ export default class extends MyPage {
   async getArticle(){
     let store:any = this.store
     await wx.request({
-      url:"https://webackx.offerqueens.cn/user/article",
+      url:"https://wechatx.offerqueens.cn/user/article",
       data: {
         openid: store.openid
       },
@@ -240,7 +240,7 @@ export default class extends MyPage {
   async getCollect(){
     let store:any = this.store
     await wx.request({
-      url:"https://webackx.offerqueens.cn/user/collect",
+      url:"https://wechatx.offerqueens.cn/user/collect",
       data: {
         openid: store.openid
       },

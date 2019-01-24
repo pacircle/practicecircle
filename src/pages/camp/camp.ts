@@ -17,7 +17,7 @@ export default class extends MyPage {
     let that:any = this
     // let camps:any = this.data.camps
     wx.request({
-      url:"https://webackx.offerqueens.cn/camp/wechat/answer/all",
+      url:"https://wechatx.offerqueens.cn/camp/wechat/answer/all",
       method: "POST",
       data:  {
         openid: store.openid,
