@@ -14,7 +14,7 @@ export default class extends MyPage {
     //comment: [],
     collect: [],
     inviteMember: 0,
-    inviteCampMember: 0
+    campMember: 0
   }
 
   async onLoad(options: any) {
@@ -25,7 +25,7 @@ export default class extends MyPage {
         avatar: this.store.userInfo.avatarUrl,
         nickName: this.store.userInfo.nickName,
         inviteMember: store.inviteMember,
-        inviteCampMember: store.inviteCampMember
+        campMember: store.campMember
       })
     }
     let that:any = this

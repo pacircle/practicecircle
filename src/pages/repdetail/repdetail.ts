@@ -42,7 +42,8 @@ export default class extends MyPage {
       // }
     },
     commentValue: '',
-    deletePower: false
+    deletePower: false,
+    readPower: true
   }
 
   async onLoad(options: any) {
@@ -58,6 +59,17 @@ export default class extends MyPage {
     if (store.openid === JSON.parse(options.info).userId){
       this.setDataSmart({
         deletePower: true
+      })
+    }
+    console.log(JSON.parse(options.info).elite === 1)
+    console.log(store.inviteMemer)
+    if (JSON.parse(options.info).elite === 1 && store.inviteMember < 1){
+      this.setDataSmart({
+        readPower: false
+      })
+      wx.showModal({
+        title: '精华复盘阅读',
+        content: '暂无阅读权限，请将复盘内容分享给1人，获取精华复盘阅读权限'
       })
     }
     //增加阅读次数
@@ -82,9 +94,37 @@ export default class extends MyPage {
   }
 
   onShareAppMessage(res:any) {
-    console.log(res)
+    let appSetting = require('../../../src/project.config.json')
+    let store:any = this.store
+    wx.request({
+      url: 'https://wechatx.offerqueens.cn/user/sign?',
+      data: {
+        appId: appSetting.appid,
+        openid: store.openid,
+        type: 'arti'
+      },
+      method: 'POST',
+      success:function(res){
+        if(res.data.state == 200){
+          console.log(res.data.file)
+          store.artiFile = res.data.file
+          wx.showToast({
+            title: '分享复盘成功，获得阅读全部精华复盘权限',
+            icon: 'none',
+            duration: 2000
+          })
+        }
+      },
+      fail: function(res){
+        wx.showToast({
+          title: '用户登陆失败，无法获取个人分享码，请检查网络后重新启动小程序',
+          icon: 'none',
+          duration: 2000
+        })
+      }
+    })
     return {
-        title: '交大分享圈',
+        title: '交大分享圈-分享训练营',
         imageUrl: require("../../images/practice.png"),
         // wechat功能调整，无法返回是否分享成功
         // success: function(ress:any){
