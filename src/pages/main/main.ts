@@ -203,7 +203,7 @@ export default class extends MyPage {
     // let that:any = this
     if(e.target.dataset.info.id === 'offer'){
       wx.request({
-        url: 'http://127.0.0.1:7979/user/rotate/index',
+        url: 'https://wechatx.offerqueens.cn/user/rotate/index',
         data: {
           openid: store.openid
         },

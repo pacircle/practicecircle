@@ -55,7 +55,7 @@
         
       <i-divider content="训练营邀请"></i-divider>
       <view class="invite">当前邀请
-          <span class="inviteN">{{inviteCampMember}}</span>
+          <span class="inviteN">{{campMember}}</span>
           人
       </view>
       <view class="invite">
