@@ -13,7 +13,7 @@
   >
     <block wx:for="{{imageUrls}}" wx:key="{{item.id}}">
       <swiper-item class="item">
-        <image src="{{item}}" class="item-image"/>
+        <image src="{{item.img}}" class="item-image" data-info="{{item}}" bind:tap="rotateClick"/>
       </swiper-item>
     </block>
   </swiper>

@@ -7,12 +7,13 @@ export default class extends MyPage {
   data = {
     imageUrls: [
       {
-        img: "http://seopic.699pic.com/photo/50077/0332.jpg_wh1200.jpg",
-        address: ""
-      },{
-        img: "http://img02.tooopen.com/images/20150928/tooopen_sy_143912755726.jpg", 
-        address: ""
-      }         
+        img: require('../../images/WechatIMG24.jpeg'),
+        id: 'offer'
+      },
+      {
+        img: require('../../images/Wechat2.jpg'),
+        id: 'every'
+      }      
     ],
     reInfos: [
       {
@@ -69,7 +70,7 @@ export default class extends MyPage {
     let store:any = this.store
     if (store.openid && store.openid.length > 0){
       wx.request({
-      url:"http://127.0.0.1:7979/article/recom",
+      url:"https://wechatx.offerqueens.cn/article/recom",
       data: {
         openid: store.openid
       },
@@ -196,4 +197,53 @@ export default class extends MyPage {
   //     tabList: tabList
   //   })
   // }  
+
+  rotateClick(e:any){
+    let store:any = this.store
+    // let that:any = this
+    if(e.target.dataset.info.id === 'offer'){
+      wx.request({
+        url: 'https://wechatx.offerqueens.cn/user/rotate/index',
+        data: {
+          openid: store.openid
+        },
+        success: function(res){
+          if (res.data.state === 200){
+            console.log(res.data.rotate.address)
+            // store.address = res.data.rotate.address
+            wx.navigateTo({
+              url: '../web/web?info=' + res.data.rotate.address,
+              success: function(res){
+              },
+              fail: function(res){
+                wx.showModal({
+                  title: '显示详情',
+                  content: '页面跳转失败，请刷新页面后重试'
+                })
+              }
+            })
+          }
+        },
+        fail: function(res){
+          wx.showToast({
+            title: '获取首页地址失败，请检查网络',
+            icon: 'none',
+            duration: 2000
+          })
+        }
+      })
+    } else if (e.target.dataset.info.id === 'every'){
+      wx.navigateTo({
+        url: '../campSuccess/campSuccess',
+        success: function(res){
+        },
+        fail: function(res){
+          wx.showModal({
+            title: '显示详情',
+            content: '页面跳转失败，请刷新页面后重试'
+          })
+        }
+      })
+    }
+  }
 }

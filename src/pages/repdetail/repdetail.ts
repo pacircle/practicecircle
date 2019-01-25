@@ -41,7 +41,9 @@ export default class extends MyPage {
       //   value: []
       // }
     },
-    commentValue: ''
+    commentValue: '',
+    deletePower: false,
+    readPower: true
   }
 
   async onLoad(options: any) {
@@ -51,11 +53,29 @@ export default class extends MyPage {
     await this.setDataSmart({
       info: JSON.parse(options.info)
     })
-
+    let store:any = this.store
+    console.log(store.openid)
+    console.log(JSON.parse(options.info).userId)
+    if (store.openid === JSON.parse(options.info).userId){
+      this.setDataSmart({
+        deletePower: true
+      })
+    }
+    console.log(JSON.parse(options.info).elite === 1)
+    console.log(store.inviteMemer)
+    if (JSON.parse(options.info).elite === 1 && store.inviteMember < 1){
+      this.setDataSmart({
+        readPower: false
+      })
+      wx.showModal({
+        title: '精华复盘阅读',
+        content: '暂无阅读权限，请将复盘内容分享给1人，获取精华复盘阅读权限'
+      })
+    }
     //增加阅读次数
     console.log(JSON.parse(options.info)._id)
     wx.request({
-      url: 'http://127.0.0.1:7979/user/article/read',
+      url: 'https://wechatx.offerqueens.cn/user/article/read',
       data: {
         openid: this.store.openid,
         articleId: JSON.parse(options.info)._id.$oid
@@ -74,9 +94,37 @@ export default class extends MyPage {
   }
 
   onShareAppMessage(res:any) {
-    console.log(res)
+    let appSetting = require('../../../src/project.config.json')
+    let store:any = this.store
+    wx.request({
+      url: 'https://wechatx.offerqueens.cn/user/sign?',
+      data: {
+        appId: appSetting.appid,
+        openid: store.openid,
+        type: 'arti'
+      },
+      method: 'POST',
+      success:function(res){
+        if(res.data.state == 200){
+          console.log(res.data.file)
+          store.artiFile = res.data.file
+          wx.showToast({
+            title: '分享复盘成功，获得阅读全部精华复盘权限',
+            icon: 'none',
+            duration: 2000
+          })
+        }
+      },
+      fail: function(res){
+        wx.showToast({
+          title: '用户登陆失败，无法获取个人分享码，请检查网络后重新启动小程序',
+          icon: 'none',
+          duration: 2000
+        })
+      }
+    })
     return {
-        title: '交大分享圈',
+        title: '交大分享圈-分享训练营',
         imageUrl: require("../../images/practice.png"),
         // wechat功能调整，无法返回是否分享成功
         // success: function(ress:any){
@@ -93,7 +141,7 @@ export default class extends MyPage {
     let store:any = this.store
     let that:any = this
     wx.request({
-      url: "http://127.0.0.1:7979/user/article/collect",
+      url: "https://wechatx.offerqueens.cn/user/article/collect",
       method: 'POST',
       data: {
         openid: store.openid,
@@ -129,7 +177,7 @@ export default class extends MyPage {
     let that:any = this
     let store:any = this.store
     wx.request({
-      url: "http://127.0.0.1:7979/user/article/agree",
+      url: "https://wechatx.offerqueens.cn/user/article/agree",
       method: 'POST',
       data: {
         openid: store.openid,
@@ -194,7 +242,7 @@ export default class extends MyPage {
       console.log(info._id)
       // let commentTime = new Date()
       wx.request({
-        url: 'http://127.0.0.1:7979/user/article/comment/index',
+        url: 'https://wechatx.offerqueens.cn/user/article/comment/index',
         method: 'POST',
         data: {
           articleId: info._id.$oid,
@@ -268,7 +316,7 @@ export default class extends MyPage {
         if (res.confirm) {
           console.log('用户点击确定')
           wx.request({
-            url: "http://127.0.0.1:7979/user/article/delete",
+            url: "https://wechatx.offerqueens.cn/user/article/delete",
             method: "POST",
             data: {
               articleId: info._id.$oid,
@@ -276,6 +324,12 @@ export default class extends MyPage {
             },
             success:function(res){
               if (res.data.state === 200){
+                // let articleInfos = store.articleInfos
+                // articleInfos.filter((item:any) => item._id === info._id)
+                // store.articleInfos = articleInfos
+                // console.log(articleInfos)
+                // console.log('arti',articleInfos.length)
+                // console.log(store.articleInfos)
                 wxp.navigateBack({delta:1});
               } else {
                 wx.showToast({

@@ -23,6 +23,7 @@
     "pages/camp/camp",
     "pages/campDetail/campDetail",
     "pages/campSuccess/campSuccess",
+    "pages/web/web",
     /*# INJECT_END #*/
   ],
   "window": {

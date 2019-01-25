@@ -12,6 +12,7 @@
   <view class="allStyle">
   <view class="mainStyle">
     <view class="titleStyle">产品经理面试的基本思维逻辑</view>
+    <i-divider></i-divider>
     <view class="textStyle">
       <view>to c产品是你去挖掘用户需求，是创造，从无到有。</view>
       <view>to c产品对产品经理的最大要求是：</view>
@@ -29,6 +30,7 @@
     <view>to b产品是公司战略或相关方给你提出要求，产品经理将这类“线下已有的需求”系统化，达到提高现有流程的效率的目的。</view>
     <view>to b端的产品经理需要具备优秀的需求梳理能力和推动能力，构建完整生态，或者提升效率，就是to b产品经理的价值所在。</view>
   </view>
+  <i-divider ></i-divider>
   <view class="list2Style">
     <view>1 to b产品的用户可以是企业内部用户、客户公司、某个客户的个人业务</view>
     <view>2 to b产品经理可以分为用户型产品经理、平台型产品经理、数据型产品经理</view>

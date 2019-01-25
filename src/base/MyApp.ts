@@ -32,6 +32,7 @@ export class MyApp extends MobxApp<MyStore> {
     camp: Url
     campDetail: Url
     campSuccess: Url
+    web: Url
     /*# INJECT_END #*/
   }
 }

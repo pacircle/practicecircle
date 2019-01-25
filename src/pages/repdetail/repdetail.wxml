@@ -12,13 +12,14 @@
   <view class="avaTime">
     <view>
       <i-card title="{{info.nickName}}" extra="{{info.time}}" thumb="{{info.avatarUrl}}">
-        <view slot="content">{{info.content}}</view>
+        <view slot="content" wx:if="{{readPower === true}}">{{info.content}}</view>
+        <view slot="content" wx:else>暂无阅读权限，请分享复盘获取精华复盘阅读权限</view>
         <view slot="footer">
           <i-icon type="praise_fill" size="30" color="#2d8cf0" wx:if="{{info.user_agree === true}}"  bind:tap="agreeArticle"/>
           <i-icon type="praise" size="30"   bind:tap="agreeArticle"  wx:else/>
           <i-icon type="collection_fill" size="30" color="#2d8cf0" wx:if="{{info.user_collect === true}}" bind:tap="collectArticle"/>
           <i-icon type="collection" size="30"  bind:tap="collectArticle" wx:else/>
-          <i-icon type="trash" size="30" bind:tap="deleteArticle"/>
+          <i-icon type="trash" size="30" bind:tap="deleteArticle" wx:if="{{deletePower}}"/>
         </view>
       </i-card>
     </view>

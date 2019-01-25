@@ -28,9 +28,9 @@ export default class extends MyPage {
     let store:any = this.store
     let that:any = this
     store.articleType = this.data.articleType
-    if (store.articleInfos.length === 0 ){//如果没有文章
+    // if (store.articleInfos.length === 0 ){//如果没有文章
       wx.request({
-        url: "http://127.0.0.1:7979/article/all",
+        url: "https://wechatx.offerqueens.cn/article/all",
         data: {
           openid: store.openid,
           articleType: store.articleType
@@ -59,7 +59,7 @@ export default class extends MyPage {
           })
         }
       })
-    }
+    // }
     /*
     //提供一个模版而已，后面要删掉的
     if(this.store.repInfos.length==0){
@@ -118,7 +118,7 @@ export default class extends MyPage {
     let that = this;
     store.articleType = type
     wx.request({
-      url: "http://127.0.0.1:7979/article/all",
+      url: "https://wechatx.offerqueens.cn/article/all",
       data: {
         openid: store.openid,
         articleType: store.articleType
@@ -162,6 +162,74 @@ export default class extends MyPage {
   }
   async onShow(){
     let store:any = this.store
+    let that:any = this
+    if (store.articleType){
+      wx.request({
+        url: "https://wechatx.offerqueens.cn/article/all",
+        data: {
+          openid: store.openid,
+          articleType: store.articleType
+        },
+        method: 'POST',
+        success:function(ress:any){
+          console.log(ress.statusCode)
+          if (ress.statusCode === 200){
+              if (ress.data.articleInfos){
+                console.log(ress.data.articleInfos)
+                store.articleInfos = ress.data.articleInfos
+                that.setArticle(store.articleInfos)
+              }         
+          } else {
+            wx.showToast({
+              title: '更新列表失败，请检查网络',
+              icon: 'none',
+              duration: 2000
+            })
+          } 
+          // console.log('微信 userInfo %o', res.userInfo)
+        },
+        fail:function(res){
+          wx.showToast({
+            title: '更新列表失败，请检查网络后重新启动小程序',
+            icon: 'none',
+            duration: 2000
+          })
+        }
+      })
+    } else {
+      wx.request({
+        url: "https://wechatx.offerqueens.cn/article/all",
+        data: {
+          openid: store.openid,
+          articleType: 'time'
+        },
+        method: 'POST',
+        success:function(ress:any){
+          console.log(ress.statusCode)
+          if (ress.statusCode === 200){
+              if (ress.data.articleInfos){
+                console.log(ress.data.articleInfos)
+                store.articleInfos = ress.data.articleInfos
+                that.setArticle(store.articleInfos)
+              }         
+          } else {
+            wx.showToast({
+              title: '更新列表失败，请检查网络',
+              icon: 'none',
+              duration: 2000
+            })
+          } 
+          // console.log('微信 userInfo %o', res.userInfo)
+        },
+        fail:function(res){
+          wx.showToast({
+            title: '更新列表失败，请检查网络后重新启动小程序',
+            icon: 'none',
+            duration: 2000
+          })
+        }
+      })
+    }
     await this.setDataSmart({
       articleInfos: store.articleInfos
     })
@@ -235,6 +303,50 @@ export default class extends MyPage {
         })
       }
     })
+  }
+
+
+  onShareAppMessage(res:any) {
+    let appSetting = require('../../../src/project.config.json')
+    let store:any = this.store
+    wx.request({
+      url: 'https://wechatx.offerqueens.cn/user/sign?',
+      data: {
+        appId: appSetting.appid,
+        openid: store.openid,
+        type: 'arti'
+      },
+      method: 'POST',
+      success:function(res){
+        if(res.data.state == 200){
+          console.log(res.data.file)
+          store.artiFile = res.data.file
+          wx.showToast({
+            title: '分享复盘成功，获得阅读全部精华复盘权限',
+            icon: 'none',
+            duration: 2000
+          })
+        }
+      },
+      fail: function(res){
+        wx.showToast({
+          title: '用户登陆失败，无法获取个人分享码，请检查网络后重新启动小程序',
+          icon: 'none',
+          duration: 2000
+        })
+      }
+    })
+    return {
+        title: '交大分享圈-分享训练营',
+        imageUrl: require("../../images/practice.png"),
+        // wechat功能调整，无法返回是否分享成功
+        // success: function(ress:any){
+        //   console.log("转发成功", ress)
+        // },
+        // fail: function(resss:any){
+        //   console.log("转发失败", resss)
+        // }
+    };
   }
 
 }
