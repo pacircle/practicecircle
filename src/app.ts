@@ -12,14 +12,16 @@ export default class extends MyApp {
     let logs = wxp.getStorageSync('logs') || []
     logs.unshift(Date.now())
     wxp.setStorageSync('logs', logs)
-
+    
     //获取高度
     try {
       var res = wx.getSystemInfoSync()
       this.store.windowHeight=res.windowHeight
+      this.store.windowWidth=res.windowWidth
       console.log('屏幕高度:',this.store.windowHeight)
+      console.log('屏幕宽度:',this.store.windowWidth)
     } catch (e) {
-      console.log("获取屏幕高度失败")
+      console.log("获取屏幕宽度高度失败")
     // Do something when catch error
     }
   }
