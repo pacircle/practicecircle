@@ -1,6 +1,6 @@
 <view class="container">
   <view class="load-view">
-    <image class="practice-avatar" src="{{practice}}" background-size="cover" />
+    <image class="practice-avatar" src="https://wechatx.offerqueens.cn/weimage/practice.png" background-size="cover" />
   </view>
   <view>
     <button class="load-button" bind:tap="getUserInfos" open-type="getUserInfo">微信用户一键登陆</button>

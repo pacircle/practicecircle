@@ -10,7 +10,8 @@
             bindinput="onTitleChange"
             value="{{reinfo.title}}"
             class="title"
-            placeholder="请输入20字以内的标题" /> 
+            maxlength="100" 
+            placeholder="请输入100字以内的标题" /> 
         <!-- <i-input type="text" maxlength="20"
             bind:focus="onTitleFocus"
             bind:change="onTitleChange"
@@ -40,6 +41,7 @@
         bind:focus="onContentFocus"
         bindinput="onContentChange"
         bind:blur="onContentBlur"
+        maxlength="100000"
         />
     </i-panel>
     <!-- <i-panel title="请提供简要内容">

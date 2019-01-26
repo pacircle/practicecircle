@@ -7,11 +7,11 @@ export default class extends MyPage {
   data = {
     imageUrls: [
       {
-        img: require('../../images/WechatIMG24.jpeg'),
+        img: "https://wechatx.offerqueens.cn/weimage/WechatIMG24.jpeg",
         id: 'offer'
       },
       {
-        img: require('../../images/Wechat2.jpg'),
+        img: "https://wechatx.offerqueens.cn/weimage/Wechat2.jpg",
         id: 'every'
       }      
     ],
@@ -160,8 +160,16 @@ export default class extends MyPage {
   }
 
   clickDetail(e:any){
+    let info = {
+      ...e.currentTarget.dataset.info,
+      content: encodeURIComponent(e.currentTarget.dataset.info.content),
+      sub: encodeURIComponent(e.currentTarget.dataset.info.sub),
+      avatarUrl: encodeURIComponent(e.currentTarget.dataset.info.avatarUrl),
+      commentList: encodeURIComponent(e.currentTarget.dataset.info.commentList)
+    }
+    console.log(info)
     wx.navigateTo({
-      url: '../repdetail/repdetail?info=' + JSON.stringify(e.currentTarget.dataset.info),
+      url: '../repdetail/repdetail?info=' + JSON.stringify(info),
       success: function(res){
       },
       fail: function(res){

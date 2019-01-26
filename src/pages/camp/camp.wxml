@@ -5,7 +5,13 @@
   1. 如果没有语法高亮，且你使用的是 vscode 编辑器的话，建义在 vscode 插件库中安装 minapp-vscode 插件
 -->
 
-<view>
+<block wx:if="{{shown}}">
+    <canvas class="QRcode-canvas" canvas-id="QRcode" bind:tap="hideQRcode"></canvas>
+    <button style="position:fixed;left:{{dx}}px;top:{{dy}}px;width:230px;height:40px;font-size:15px;" 
+        type="primary" bind:tap="saveQRcode">保存二维码</button>
+    <text style="position:fixed;left:{{dx}}px;top:{{dy+40}}px;font-size:15px;">保存图片可分享到朋友圈</text>
+</block>
+<view hidden="{{shown}}">
   <i-notice-bar icon="systemprompt" loop closable>
     欢迎参与训练营，每期训练营同学们将和我一起重新分析1-3个最近、最新的互联网产品、运营岗面试真题，我们希望帮你提高产品思维，在讨论的过程中从其他同学、更多的思考角度获得启发。
   </i-notice-bar>
@@ -16,7 +22,7 @@
     <span>{{nowCamp.content}}</span>
   </view>
 
-  <view class="content">{{nowCamp.content}}</view>
+  <view class="content">{{nowCamp.description}}</view>
   <view>
     <block wx:for="{{nowCamp.answers}}" data-index="{{index}}" wx:key="{{item.content}}">
       <i-card title="优秀回答{{index + 1}}:">
@@ -34,6 +40,7 @@
     <view>
       <i-button type="ghost" wx:if="{{sign}}">报名成功</i-button> 
       <i-button bind:click="getSignWay" type="primary" wx:else>报名</i-button>
+      <i-button bind:tap="onShareQrCodeCamp" type="primary">分享训练营</i-button>
       <modal class="modal" title="扫码添加管理员，加入训练营" hidden="{{modalHidden}}" bindconfirm="modalConfirm" bindcancel="modalCandel">
           <image class="image" src="../../images/weuser.png" mode='aspectFill'></image>
       </modal>

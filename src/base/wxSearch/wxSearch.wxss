@@ -81,10 +81,13 @@
   flex: 8;
   /* font-size: 14px; */
   font-size: 28px;
+  vertical-align: middle;
+  display: table-cell;
+  /* color: red; */
 }
 .wxSearchHistoryItemDel{
   flex: 1;
-  font-size: 25px;
+  font-size: 28px;
   /* font-size: 12px; */
   text-align: center;
   padding: 3px 5px;
@@ -92,6 +95,9 @@
   /* height: 50px;
   line-height: 50px; */
   border-radius: 5px;
+  /* color: blue */
+  vertical-align: middle;
+  display: table-cell;
 }
 .wxSearchHistoryEmpty{
   text-align: center;

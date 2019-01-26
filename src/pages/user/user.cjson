@@ -14,5 +14,6 @@
     "tabList": "components/tablist/tablist",
     "recommendCard": "components/recommendCard/recommendCard",
     "i-divider": "../../base/iView/divider/index",
+    "i-button": "../../base/iView/button/index",
   }
 }

@@ -11,5 +11,6 @@
   "component": true,
   "usingComponents": {
     "i-card": "../../base/iView/card/index",
+    "i-icon": "../../base/iView/icon/index",
   }
 }

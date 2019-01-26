@@ -21,8 +21,11 @@ export default class extends MyPage {
     dx:"",
     dy:"",
     QRcodeFilePath:"",
-    shown:false
+    shown:false,
     //分享二维码------------
+
+    //关闭强制分享
+    showShare: false,
   }
 
   async onLoad(options: any) {
@@ -170,8 +173,15 @@ export default class extends MyPage {
 
 
   clickDetail(e:any){
+    let info = {
+      ...e.currentTarget.dataset.info,
+      content: encodeURIComponent(e.currentTarget.dataset.info.content),
+      sub: encodeURIComponent(e.currentTarget.dataset.info.sub),
+      avatarUrl: encodeURIComponent(e.currentTarget.dataset.info.avatarUrl),
+      commentList: encodeURIComponent(e.currentTarget.dataset.info.commentList)
+    }
     wx.navigateTo({
-      url: '../repdetail/repdetail?info=' + JSON.stringify(e.currentTarget.dataset.info),
+      url: '../repdetail/repdetail?info=' + JSON.stringify(info),
       success: function(res){
       },
       fail: function(res){
@@ -433,5 +443,9 @@ export default class extends MyPage {
       shown:false,
       QRcodeFilePath:"",
     })
+  }
+
+  open(){
+    
   }
 }

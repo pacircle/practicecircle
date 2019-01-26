@@ -145,8 +145,16 @@ export default class extends MyPage {
     // this.app.$url.repdetail.go({
     //   infos: JSON.parse(e.target.dataset.infos)
     // })
+    let info = {
+      ...e.currentTarget.dataset.info,
+      content: encodeURIComponent(e.currentTarget.dataset.info.content),
+      sub: encodeURIComponent(e.currentTarget.dataset.info.sub),
+      avatarUrl: encodeURIComponent(e.currentTarget.dataset.info.avatarUrl),
+      commentList: encodeURIComponent(e.currentTarget.dataset.info.commentList)
+    }
+    console.log(info)
     wx.navigateTo({
-      url: '../repdetail/repdetail?info=' + JSON.stringify(e.target.dataset.info),
+      url: '../repdetail/repdetail?info=' + JSON.stringify(info),
       success: function(res){
       },
       fail: function(res){
