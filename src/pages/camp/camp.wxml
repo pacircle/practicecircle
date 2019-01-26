@@ -42,7 +42,7 @@
       <i-button bind:click="getSignWay" type="primary" wx:else>报名</i-button>
       <i-button bind:tap="onShareQrCodeCamp" type="primary">分享训练营</i-button>
       <modal class="modal" title="扫码添加管理员，加入训练营" hidden="{{modalHidden}}" bindconfirm="modalConfirm" bindcancel="modalCandel">
-          <image class="image" src="../../images/weuser.png" mode='aspectFill'></image>
+          <image class="image" src="https://wechatx.offerqueens.cn/weimage/weuser.png" mode='aspectFill'></image>
       </modal>
     </view>
   </view>
