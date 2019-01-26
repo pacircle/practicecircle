@@ -161,6 +161,7 @@ export default class extends MyPage {
         //   console.log("转发失败", resss)
         // }
     };
+    
   }
   
 }
