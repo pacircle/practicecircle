@@ -25,7 +25,7 @@
     </view>
   </view>
 
-  <scroll-view class="main-scroll" style='height: {{windowHeight - 240}}px' scroll-y="{{true}}">
+  <scroll-view class="main-scroll" style='height: {{windowHeight - 100}}px' scroll-y="{{true}}">
       <block wx:for="{{recomInfos}}" wx:key="{{item.id}}"> 
         <recommendCard avatar="{{item.avatarUrl}}" nickname="{{item.nickName}}" recommended="{{true}}" time="{{item.time}}" 
             data-info="{{item}}" bind:tap="clickDetail" >

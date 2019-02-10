@@ -1,0 +1,96 @@
+<view>
+    <view class="title">什么是PMF？什么是MVP？</view>
+    <view class="content">
+        <image class="content-image" src="https://wechatx.offerqueens.cn/weimage/list4.png" mode="widthFix" />
+        <view class="content-title">
+            <view class="content-title-inner">一、什么是PMF？</view>
+        </view>
+        <view class="content-part">PMF指的是产品与市场匹配的产品</view>
+        <view class="content-part">如何判断PMF的临界点？</view>
+        <view class="content-part">1、留存：30%的新用户次日留存</view>
+        <view class="content-part">2、新增用户DAU：大于100</view>
+        <view class="content-part">3、用户数：10万用户数</view>
+        <view class="content-part">DAU：单日活跃用户量，反应产品短期用户活跃度</view>
+        <view class="content-title-second">
+            PMF三种类型
+        </view>
+        <view class="content-part">1、更好体验的产品，如美图秀秀</view>
+        <view class="content-part">2、抓住细分市场，如uber、P2P</view>
+        <view class="content-part">3、全新的市场，如微博的@</view>
+        <view class="content-part">4、综合体，如Airbnb</view>
+        <view class="content-title">
+            <view class="content-title-inner">二、什么是MVP</view>
+        </view>
+        <view class="content-part">MVP指的是对用户有价值的最小可用产品</view>
+        <view class="content-title-second">
+            MVP打造阶段：
+        </view>
+        <view class="content-part">对用户有价值的最小可用产品，从功能列表中定位出产品的核心功能， 然后迅速开发MVP，在投放市场收集用户反馈，然后再调整产品的规划。</view>
+        <view class="content-title-second">
+            MVP有什么用？
+        </view>
+        <view class="content-part">1、提前踩坑：更容易收集用户的喜好，聚集用户的核心需求</view>
+        <view class="content-part">2、减少成本：先做一个最小版本看看，投入最小</view>
+        <view class="content-part">3、缩短开发周期：减少开发周期和成本</view>
+        <view class="content-part">4、收集种子用户：和种子用户一起成长</view>
+        <view class="content-title-second">
+            什么样的产品符合MVP原则？
+        </view>
+        <view class="content-part">1、仿真DEMO：做一个仿真版的demo</view>
+        <view class="content-part">2、产品介绍视频：先做一个视频，发给种子用户看看</view>
+        <view class="content-part">3、文档：一个真实做出来的文档，吸引用户下</view>
+        <view class="content-part">4、预售：有了图文介绍，开始预售，吸引用户下单</view>
+        <view class="content-part">5、着陆页：先介绍，收集用户信息</view>
+        <view class="content-title-second">
+            MVP阶段需要注意的地方
+        </view>
+        <view class="content-part">需要具备完整的核心价值，并能让用户感知到。</view>
+        <view class="content-title-second">
+            测试阶段：
+        </view>
+        <view class="content-part">面向用户逐渐开放，收集用户的意见反馈和产品的客观数据，验证产品的需求和解决方案，通过第一轮目标用户进行测试， 看看之前的数据和构想是否正确。</view>
+        <view class="content-part">对于不确定的方案，采取A/B测试阶段，逐渐扩大用户的测试范围，不断重复以上的步骤，直到达到了用户的反馈都正确，达到了期望，最后才会发布。</view>
+        <view class="content-title">
+            <view class="content-title-inner">三、产品从0到1的过程</view>
+        </view>
+        <image class="content-image" src="https://wechatx.offerqueens.cn/weimage/list22.jpg" mode="widthFix" />
+        <view class="content-title-second">
+            1、判断idea是否有价值
+        </view>
+        <view class="content-part">通过市场分析和竞品分析判断idea是否有价值，选择市场方向，熟悉竞品的情况</view>
+        <image class="content-image" src="https://wechatx.offerqueens.cn/weimage/list23.jpg" mode="widthFix" />
+        <view class="content-title-second">
+            2、MVP阶段
+        </view>
+        <view class="content-part">用户分析、核心需求分析，找出关键功能，确定流程完成demo设计</view>
+        <image class="content-image" src="https://wechatx.offerqueens.cn/weimage/list24.jpg" mode="widthFix" />
+        <view class="content-title-second">
+            3、上线
+        </view>
+        <view class="content-part">小范围推广，收集种子用户，进行用户访谈</view>
+        <image class="content-image" src="https://wechatx.offerqueens.cn/weimage/list25.jpg" mode="widthFix" />
+        <view class="content-part">不断的调整，然后上线</view>
+        <image class="content-image" src="https://wechatx.offerqueens.cn/weimage/list26.jpg" mode="widthFix" />
+        <view class="content-title">
+            <view class="content-title-inner">四、idea到产品上线的工作</view>
+        </view>
+        <image class="content-image" src="https://wechatx.offerqueens.cn/weimage/list27.jpg" mode="widthFix" />
+        <view class="content-title-second">
+            市场分析：
+        </view>
+        <view class="content-part">了解市场的情况</view>
+        <view class="content-title-second">
+            产业地图：
+        </view>
+        <view class="content-part">行业的分析，了解行业背后的逻辑，了解产业的上下游</view>
+        <view class="content-title-second">
+            行业玩家：
+        </view>
+        <view class="content-part">竞争对手的情况</view>
+        <view class="content-title-second">
+            典型用户故事：
+        </view>
+        <view class="content-part">用户怎么用这些产品</view>
+        <image class="content-image" src="https://wechatx.offerqueens.cn/weimage/list28.png"/>
+    </view>
+</view>

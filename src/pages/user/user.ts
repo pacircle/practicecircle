@@ -401,16 +401,16 @@ export default class extends MyPage {
       context.fill()
       //文字
       context.setFillStyle("black")
-      context.setFontSize(18)
+      context.setFontSize(22)
       if(type=="arti"){
         context.fillText('分享复盘,', bx, by, 200)
-        context.fillText('获得阅读精华复盘权限', bx+30, by+21,170)
+        context.fillText('获得阅读精华复盘权限', bx, by+25,170)
       }else if(type=="camp"){
         context.fillText('分享训练营,', bx, by, 200)
-        context.fillText('获得训练营报名资格', bx+30, by+21,170)
+        context.fillText('获得训练营报名资格', bx, by+25,170)
       }
-      context.setFontSize(12)
-      context.fillText('(新用户扫码注册后才视为分享成功)', bx, by+42,200)
+      context.setFontSize(22)
+      context.fillText('(新用户扫码注册后才视为分享成功)', bx, by+48,200)
       context.drawImage(QRcodeFile,cx,cy,cw,ch)
       const that=this;
       context.draw(false,function(){

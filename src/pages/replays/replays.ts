@@ -15,7 +15,7 @@ export default class extends MyPage {
           name: '按时间顺序排序',
       },
       {
-          name: '按点赞数量排序',
+          name: '按阅读数量排序',
       },
       {
           name: '按评论数量排序'
@@ -25,8 +25,13 @@ export default class extends MyPage {
     dx:"",
     dy:"",
     QRcodeFilePath:"",
-    shown:false
+    shown:false,
     //分享二维码------------
+
+
+    windowHeight: 400,
+    windowWidth: 300
+    
   }
 
   async onLoad(options: any) {
@@ -259,7 +264,7 @@ export default class extends MyPage {
       let type:String = 'agree'
       this.setDataSmart({
         visible: false,
-        orderInfo: '按点赞数量排序',
+        orderInfo: '按阅读数量排序',
         articleType: type
       });
       this.getArticle('agree')
@@ -426,8 +431,13 @@ export default class extends MyPage {
     })
   }
   showQRcode(type:string,QRcodeFile:any){
+    console.log('showQRCode')
     // 使用 wx.createContext 获取绘图上下文 context
     if(this.store.windowHeight&&this.store.windowWidth){
+      this.setDataSmart({
+        windowHeight: this.store.windowHeight,
+        windowWidth: this.store.windowWidth
+      })
       const height=this.store.windowHeight;
       const width=this.store.windowWidth;
       //二维码
@@ -458,24 +468,30 @@ export default class extends MyPage {
       context.fill()
       //文字
       context.setFillStyle("black")
-      context.setFontSize(18)
+      context.setFontSize(22)
       if(type=="arti"){
         context.fillText('分享复盘,', bx, by, 200)
-        context.fillText('获得阅读精华复盘权限', bx+30, by+21,170)
+        context.fillText('获得阅读精华复盘权限', bx, by+25,170)
       }else if(type=="camp"){
         context.fillText('分享训练营,', bx, by, 200)
-        context.fillText('获得训练营报名资格', bx+30, by+21,170)
+        context.fillText('获得训练营报名资格', bx, by+25,170)
       }
-      context.setFontSize(12)
-      context.fillText('(新用户扫码注册后才视为分享成功)', bx, by+42,200)
+      context.setFontSize(22)
+      context.fillText('(新用户扫码注册后才视为分享成功)', bx, by+48,200)
       context.drawImage(QRcodeFile,cx,cy,cw,ch)
       const that=this;
       context.draw(false,function(){
         wx.canvasToTempFilePath({
           canvasId:"QRcode",
           success:res=>{
-            console.log(res.tempFilePath)
-            that.data.QRcodeFilePath=res.tempFilePath
+            console.log("canvas",res.tempFilePath)
+            // that.data.QRcodeFilePath=res.tempFilePath
+            that.setDataSmart({
+              QRcodeFilePath: res.tempFilePath
+            })
+          },
+          fail: res=> {
+            console.log(res)
           }
         })
         
@@ -486,7 +502,7 @@ export default class extends MyPage {
     }
   }
   saveQRcode(){
-    console.log(this.data.QRcodeFilePath)
+    console.log('saveQRCode',this.data.QRcodeFilePath)
     wx.previewImage({urls:[this.data.QRcodeFilePath]})
     this.setDataSmart({
       shown:false,

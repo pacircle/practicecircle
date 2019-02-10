@@ -15,17 +15,20 @@ export default class extends MyPage {
     dx:"",
     dy:"",
     QRcodeFilePath:"",
-    shown:false
+    shown:false,
+    modalHidden1:true,
     //分享二维码------------
+
+    modalHidden2: true
   }
 
   async onLoad(options: any) {
     // console.log(await wxp.getUserInfo())
     let store:any = this.store
     let that:any = this
-    if (store.campMemer < 1){
+    if (store.campMemer >= 2){
       this.setDataSmart({
-        signPower: false
+        signPower: true
       })
     }
     // let camps:any = this.data.camps
@@ -110,6 +113,36 @@ export default class extends MyPage {
     })
   }
 
+  modalConfirm1(){   
+    this.setDataSmart({
+      modalHidden1: true
+    })
+  }
+
+  modalCandel1(){
+    this.setDataSmart({
+      modalHidden1: true
+    })
+  }
+
+  modalConfirm2(){   
+    this.setDataSmart({
+      modalHidden2: true
+    })
+  }
+
+  modalCandel2(){
+    this.setDataSmart({
+      modalHidden2: true
+    })
+  }
+
+  getSignWay2(e:any){
+    this.setDataSmart({
+      modalHidden2: false
+    })
+  }
+
   getSignWay(){
     let store:any = this.store
     console.log(store.campMember)
@@ -119,7 +152,7 @@ export default class extends MyPage {
       })
       wx.showModal({
         title: '训练营报名权限',
-        content: '暂无训练营报名权限，请分享训练营获取报名权限'
+        content: '暂无训练营报名权限，请分享训练营或者提供优质复盘'
       })
     } else {
       this.setDataSmart({
@@ -173,6 +206,11 @@ export default class extends MyPage {
         // }
     };
     
+  }
+  onShareQrCodeCamp1(e:any) {
+    this.setDataSmart({
+      modalHidden1: false
+    })
   }
 
   onShareQrCodeCamp(res:any) {
@@ -250,16 +288,16 @@ export default class extends MyPage {
       context.fill()
       //文字
       context.setFillStyle("black")
-      context.setFontSize(18)
+      context.setFontSize(22)
       if(type=="arti"){
         context.fillText('分享复盘,', bx, by, 200)
-        context.fillText('获得阅读精华复盘权限', bx+30, by+21,170)
+        context.fillText('获得阅读精华复盘权限', bx, by+25,170)
       }else if(type=="camp"){
         context.fillText('分享训练营,', bx, by, 200)
-        context.fillText('获得训练营报名资格', bx+30, by+21,170)
+        context.fillText('获得训练营报名资格', bx, by+25,170)
       }
-      context.setFontSize(12)
-      context.fillText('(新用户扫码注册后才视为分享成功)', bx, by+42,200)
+      context.setFontSize(22)
+      context.fillText('(新用户扫码注册后才视为分享成功)', bx, by+48,200)
       context.drawImage(QRcodeFile,cx,cy,cw,ch)
       const that=this;
       context.draw(false,function(){

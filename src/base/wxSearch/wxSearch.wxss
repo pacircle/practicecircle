@@ -29,6 +29,7 @@
 }
 .wxSearch-input{
   flex: 10; 
+  font-size: 30px;
   background-color: #eee;
   padding: 5px 10px;
 }
@@ -42,7 +43,8 @@
   display: block;
   padding: 10px 5px 5px 10px;
   /* font-size: 12px; */
-  font-size: 25px;
+  /* font-size: 25px; */
+  font-size: 32px;
   text-align: center;
 }
 
@@ -65,7 +67,8 @@
 .wxSearchKeyItem{
   flex: 0 0 20%;
   /* font-size: 14px; */
-  font-size: 28px;
+  /* font-size: 28px; */
+  font-size: 30px;
   text-align: center;
   border: 1px solid #eee;
   margin: 5px;
@@ -80,20 +83,22 @@
 .wxSearchHistoryItemText{
   flex: 8;
   /* font-size: 14px; */
-  font-size: 28px;
+  /* font-size: 28px; */
+  font-size: 30px;
   vertical-align: middle;
   display: table-cell;
   /* color: red; */
 }
 .wxSearchHistoryItemDel{
   flex: 1;
-  font-size: 28px;
+  /* font-size: 28px; */
+  font-size: 30px;
   /* font-size: 12px; */
   text-align: center;
   padding: 3px 5px;
   border: 1px solid #eee;
-  /* height: 50px;
-  line-height: 50px; */
+  height: 70px;
+  line-height: 70px;
   border-radius: 5px;
   /* color: blue */
   vertical-align: middle;
@@ -104,12 +109,14 @@
   height: 50px;
   line-height: 50px;
   /* font-size: 12px; */
-  font-size: 25px;
+  /* font-size: 25px; */
+  font-size: 30px;
 }
 .wxSearchDeleteAllBtn{
   height: 50px;
   line-height: 50px;
   text-align: center;
   /* font-size: 12px; */
-  font-size: 25px;
+  /* font-size: 25px; */
+  font-size: 32px;
 }
