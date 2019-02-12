@@ -37,9 +37,9 @@
     <view>2. 最佳回答由分享圈进行评选，最佳回答评选标准可参考：</view>
     <view>1) 内容要扣题，提出符合产品经理思维逻辑的解决方案</view>
     <view>2) 有独到的看法和深入的理解和分析</view>
-    <i-divider size="16">报名方式</i-divider>
+    <!-- <i-divider size="16">报名方式</i-divider>
     <view>1. 向管理员提供优质复盘获取报名资格</view>
-    <view>2. 分享训练营获取报名资格</view>
+    <view>2. 分享训练营获取报名资格</view> -->
     <view>
       <i-button type="warning" wx:if="{{sign}}" bind:click="getSignWay2">报名成功</i-button> 
       <!-- <i-button type="warning" wx:if="{{sign}}" bind:click="getSignWay">报名成功</i-button>  -->

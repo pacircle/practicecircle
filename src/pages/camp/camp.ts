@@ -151,8 +151,8 @@ export default class extends MyPage {
         signPower: false
       })
       wx.showModal({
-        title: '训练营报名权限',
-        content: '暂无训练营报名权限，请分享训练营或者提供优质复盘'
+        title: '训练营报名方式',
+        content: '1. 向管理员提供优质复盘获取报名资格\r\n2. 分享训练营获取报名资格'
       })
     } else {
       this.setDataSmart({
@@ -291,10 +291,10 @@ export default class extends MyPage {
       context.setFontSize(22)
       if(type=="arti"){
         context.fillText('分享复盘,', bx, by, 200)
-        context.fillText('获得阅读精华复盘权限', bx, by+25,170)
+        context.fillText('获得阅读精华复盘权限', bx, by+25,200)
       }else if(type=="camp"){
         context.fillText('分享训练营,', bx, by, 200)
-        context.fillText('获得训练营报名资格', bx, by+25,170)
+        context.fillText('获得训练营报名资格', bx, by+25,200)
       }
       context.setFontSize(22)
       context.fillText('(新用户扫码注册后才视为分享成功)', bx, by+48,200)

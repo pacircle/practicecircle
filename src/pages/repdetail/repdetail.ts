@@ -77,11 +77,24 @@ export default class extends MyPage {
     // }
     let infos = JSON.parse(options.info)
     console.log(infos)
+    let commentListCode = infos.commentList
+    let decodeCommentList = []
+    for (let i=0;i<commentListCode.length;i++){
+      let item = commentListCode[i]
+      let newItem = {
+        ...commentListCode[i],
+        avatarUrl: decodeURIComponent(item.avatarUrl),
+        content: decodeURIComponent(item.content)
+      }
+      console.log(newItem)
+      decodeCommentList.push(newItem)
+    }
+    console.log(decodeCommentList)
     infos = {
       ...infos,
       sub: decodeURIComponent(infos.sub),
       avatarUrl: decodeURIComponent(infos.avatarUrl),
-      commentList: decodeURIComponent(infos.commentList)
+      commentList: decodeCommentList
     }
     await this.setDataSmart({
       info: infos,
@@ -262,10 +275,13 @@ export default class extends MyPage {
   async setComment(commentItem: any){
     console.log(commentItem)
     let newInfo:any = this.data.info
+    console.log(newInfo)
     let store:any = this.store
     commentItem.nickName = store.userInfo.nickName
     commentItem.avatarUrl = store.userInfo.avatarUrl
     commentItem.content = this.data.commentValue
+    console.log('setComment')
+    console.log(newInfo.commentList)
     newInfo.commentList.push(commentItem)
     await this.setDataSmart({
       info: newInfo
@@ -473,15 +489,15 @@ export default class extends MyPage {
       context.fill()
       //文字
       context.setFillStyle("black")
-      context.setFontSize(18)
+      context.setFontSize(22)
       if(type=="arti"){
         context.fillText('分享复盘,', bx, by, 200)
-        context.fillText('获得阅读精华复盘权限', bx+30, by+21,170)
+        context.fillText('获得阅读精华复盘权限', bx, by+21,200)
       }else if(type=="camp"){
         context.fillText('分享训练营,', bx, by, 200)
-        context.fillText('获得训练营报名资格', bx+30, by+21,170)
+        context.fillText('获得训练营报名资格', bx, by+21,200)
       }
-      context.setFontSize(12)
+      context.setFontSize(22)
       context.fillText('(新用户扫码注册后才视为分享成功)', bx, by+42,200)
       context.drawImage(QRcodeFile,cx,cy,cw,ch)
       const that=this;

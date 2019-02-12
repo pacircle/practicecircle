@@ -30,8 +30,8 @@ export default class extends MyPage {
 
 
     windowHeight: 400,
-    windowWidth: 300
-    
+    windowWidth: 300,
+    modalHidden:true,
   }
 
   async onLoad(options: any) {
@@ -247,7 +247,10 @@ export default class extends MyPage {
   }
 
   toRepnew(){
-    this.app.$url.repnew.go();
+    // this.app.$url.repnew.go();
+    this.setDataSmart({
+      modalHidden: false
+    })
   }
   handleOpen() {
     this.setDataSmart({
@@ -288,12 +291,27 @@ export default class extends MyPage {
     // this.app.$url.repdetail.go({
     //   infos: JSON.parse(e.target.dataset.infos)
     // })
+    let commentList = e.target.dataset.info.commentList
+    let commentListCode = []
+    for (let i =0;i<commentList.length;i++){
+      let item = commentList[i]
+      let codeItem = {
+        articleId: item.articleId,
+        avatarUrl: encodeURIComponent(item.avatarUrl),
+        content: encodeURIComponent(item.content),
+        time: item.time,
+        userId: item.userId,
+        _id: item._id
+      }
+      commentListCode.push(codeItem)
+    }
     let info = {
       ...e.target.dataset.info,
       content: encodeURIComponent(e.target.dataset.info.content),
       sub: encodeURIComponent(e.target.dataset.info.sub),
       avatarUrl: encodeURIComponent(e.target.dataset.info.avatarUrl),
-      commentList: encodeURIComponent(e.target.dataset.info.commentList)
+      // commentList: encodeURIComponent(e.target.dataset.info.commentList)
+      commentList: commentListCode
     }
     console.log(info)
     // let info = {
@@ -440,6 +458,44 @@ export default class extends MyPage {
       })
       const height=this.store.windowHeight;
       const width=this.store.windowWidth;
+      // //二维码
+      // const cx=(width-250)/2;//左上角C
+      // const cy=(height-250)/2;
+      // const cw=250;//宽高
+      // const ch=250;
+      // //整体的黄色
+      // const ax=0;//留出30的边-----左上角A
+      // const ay=0;//留出100的边
+      // const aw=width;
+      // const ah=height;
+      // //文字的左上角B
+      // const bx=cx;
+      // const by=cy-21-21-15-20;//两行18的字一行12的字刚好到二维码，留点余量好看一点
+      // //按钮的左上角
+      // const dx=cx;
+      // const dy=cy+200+50;
+      // this.setDataSmart({
+      //   dx:dx,
+      //   dy:dy,
+      //   shown:true
+      // })
+      // const context = wx.createCanvasContext('QRcode',this)
+      // //外边框和底色
+      // context.rect(ax, ay, aw, ah)
+      // context.setFillStyle("rgb(255, 230, 0)")
+      // context.fill()
+      // //文字
+      // context.setFillStyle("black")
+      // context.setFontSize(25)
+      // if(type=="arti"){
+      //   context.fillText('分享复盘,', bx, by, 200)
+      //   context.fillText('获得阅读精华复盘权限', bx, by+30,400)
+      // }else if(type=="camp"){
+      //   context.fillText('分享训练营,', bx, by, 200)
+      //   context.fillText('获得训练营报名资格', bx, by+25,170)
+      // }
+      // context.setFontSize(25)
+      // context.fillText('(新用户扫码注册后才视为分享成功)', bx, by+60,500)
       //二维码
       const cx=(width-200)/2;//左上角C
       const cy=(height-200)/2-50;
@@ -471,10 +527,10 @@ export default class extends MyPage {
       context.setFontSize(22)
       if(type=="arti"){
         context.fillText('分享复盘,', bx, by, 200)
-        context.fillText('获得阅读精华复盘权限', bx, by+25,170)
+        context.fillText('获得阅读精华复盘权限', bx, by+25,200)
       }else if(type=="camp"){
         context.fillText('分享训练营,', bx, by, 200)
-        context.fillText('获得训练营报名资格', bx, by+25,170)
+        context.fillText('获得训练营报名资格', bx, by+25,200)
       }
       context.setFontSize(22)
       context.fillText('(新用户扫码注册后才视为分享成功)', bx, by+48,200)
@@ -483,7 +539,7 @@ export default class extends MyPage {
       context.draw(false,function(){
         wx.canvasToTempFilePath({
           canvasId:"QRcode",
-          success:res=>{
+          success:res=> {
             console.log("canvas",res.tempFilePath)
             // that.data.QRcodeFilePath=res.tempFilePath
             that.setDataSmart({
@@ -514,6 +570,19 @@ export default class extends MyPage {
     this.setDataSmart({
       shown:false,
       QRcodeFilePath:"",
+    })
+  }
+
+
+  modalConfirm(){
+    this.setDataSmart({
+      modalHidden: true
+    })
+  }
+
+  modalCandel(){
+    this.setDataSmart({
+      modalHidden: true
     })
   }
 }

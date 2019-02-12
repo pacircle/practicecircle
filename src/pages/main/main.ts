@@ -143,12 +143,26 @@ export default class extends MyPage {
   }
 
   clickDetail(e:any){
+    let commentList = e.currentTarget.dataset.info.commentList
+    let commentListCode = []
+    for (let i =0;i<commentList.length;i++){
+      let item = commentList[i]
+      let codeItem = {
+        articleId: item.articleId,
+        avatarUrl: encodeURIComponent(item.avatarUrl),
+        content: encodeURIComponent(item.content),
+        time: item.time,
+        userId: item.userId,
+        _id: item._id
+      }
+      commentListCode.push(codeItem)
+    }
     let info = {
       ...e.currentTarget.dataset.info,
       content: encodeURIComponent(e.currentTarget.dataset.info.content),
       sub: encodeURIComponent(e.currentTarget.dataset.info.sub),
       avatarUrl: encodeURIComponent(e.currentTarget.dataset.info.avatarUrl),
-      commentList: encodeURIComponent(e.currentTarget.dataset.info.commentList)
+      commentList: commentListCode
     }
     console.log(info)
     wx.navigateTo({

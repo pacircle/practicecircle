@@ -10,6 +10,9 @@
     <button style="position:fixed;left:{{dx}}px;top:{{dy}}px;width:230px;height:50px;font-size:20px;" 
         type="primary" bind:tap="saveQRcode">保存二维码</button>
     <text style="position:fixed;left:{{dx}}px;top:{{dy+50}}px;font-size:20px;">保存图片可分享到朋友圈</text>
+    <!-- <button style="position:fixed;left:{{dx}}px;top:{{dy+20}}px;width:250px;height:50px;font-size:20px;" 
+        type="primary" bind:tap="saveQRcode">保存二维码</button>
+    <text style="position:fixed;left:{{dx}}px;top:{{dy+70}}px;font-size:20px;">保存图片可分享到朋友圈</text> -->
 </block>
 <view hidden="{{shown}}">
   <view class="i-class i-cell i-input i-input-wrapped">  
@@ -35,6 +38,9 @@
       </view>    
     </view>
   </view>
+  <modal class="modal" title="添加管理员,提供优质复盘" hidden="{{modalHidden}}" bindconfirm="modalConfirm" bindcancel="modalCandel">
+    <image class="image" src="https://wechatx.offerqueens.cn/weimage/super1.png" mode='aspectFill'></image>
+  </modal>
   <view class="join">悬赏分享，解锁所有复盘信息</view>
 
   <scroll-view class="replays-scroll" style="height: {{windowHeight - 100}}px" scroll-y="{{true}}">

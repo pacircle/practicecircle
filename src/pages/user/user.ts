@@ -173,12 +173,26 @@ export default class extends MyPage {
 
 
   clickDetail(e:any){
+    let commentList = e.currentTarget.dataset.info.commentList
+    let commentListCode = []
+    for (let i =0;i<commentList.length;i++){
+      let item = commentList[i]
+      let codeItem = {
+        articleId: item.articleId,
+        avatarUrl: encodeURIComponent(item.avatarUrl),
+        content: encodeURIComponent(item.content),
+        time: item.time,
+        userId: item.userId,
+        _id: item._id
+      }
+      commentListCode.push(codeItem)
+    }
     let info = {
       ...e.currentTarget.dataset.info,
       content: encodeURIComponent(e.currentTarget.dataset.info.content),
       sub: encodeURIComponent(e.currentTarget.dataset.info.sub),
       avatarUrl: encodeURIComponent(e.currentTarget.dataset.info.avatarUrl),
-      commentList: encodeURIComponent(e.currentTarget.dataset.info.commentList)
+      commentList: commentListCode
     }
     wx.navigateTo({
       url: '../repdetail/repdetail?info=' + JSON.stringify(info),
@@ -404,10 +418,10 @@ export default class extends MyPage {
       context.setFontSize(22)
       if(type=="arti"){
         context.fillText('分享复盘,', bx, by, 200)
-        context.fillText('获得阅读精华复盘权限', bx, by+25,170)
+        context.fillText('获得阅读精华复盘权限', bx, by+25,200)
       }else if(type=="camp"){
         context.fillText('分享训练营,', bx, by, 200)
-        context.fillText('获得训练营报名资格', bx, by+25,170)
+        context.fillText('获得训练营报名资格', bx, by+25,200)
       }
       context.setFontSize(22)
       context.fillText('(新用户扫码注册后才视为分享成功)', bx, by+48,200)

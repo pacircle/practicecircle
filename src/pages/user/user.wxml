@@ -52,24 +52,24 @@
         <!-- <view>User</view> -->
         <i-divider content="复盘邀请" size="16"></i-divider>
         
-        <view class="invite">当前邀请
+        <!-- <view class="invite">当前邀请
             <span class="inviteN">{{inviteMember}}</span>
             人
-        </view>
-        <view class="invite">
+        </view> -->
+        <!-- <view class="invite">
             分享复盘邀请1人，获取全部阅读权限
-        </view>
+        </view> -->
         <i-button bind:tap="onShareQrCodeArticle" type="primary">分享复盘</i-button>
             
         <i-divider content="训练营邀请" size="16"></i-divider>
         
-        <view class="invite">当前邀请
+        <!-- <view class="invite">当前邀请
             <span class="inviteN">{{campMember}}</span>
             人
-        </view>
-        <view class="invite">
+        </view> -->
+        <!-- <view class="invite">
             分享训练营邀请1人，获取训练营报名权限
-        </view>
+        </view> -->
         <i-button bind:tap="onShareQrCodeCamp" type="primary">分享训练营</i-button>
         <!-- <block wx:for="{{myComments}}" wx:key="{{item.id}}">
             <recommendCard avatar="{{item.avatarUrl}}" nickname="{{item.nickName}}" time="{{item.time}}" 
