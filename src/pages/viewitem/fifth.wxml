@@ -1,0 +1,13 @@
+<view>
+    <view class="title">to B 的产品经理和 to C 的产品经理有什么差别？</view>
+    <view class="top">
+        <view class="top-text">问：</view>
+        <view class="top-text">曾经听一位朋友提起，面向个人用户的产品的产品经理，会像一个产品经理。因为你需要去“挖掘”和“创造”需求。而面向企业客户的产品的产品经理，更多的时候，是在满足需求。从我自己的理解上，我觉得这种观点还有点道理。</view>
+        <view class="top-text">那么，作为一个主要面向企业客户的产品的产品经理，如何体现自己的价值?深度体现在什么地方?</view>
+    </view>
+    <view class="content">
+        <block wx:for="{{fifthContent}}" wx:key="{{item.id}}">
+            <view class="content-part">{{item}}</view>
+        </block>
+    </view>
+</view>

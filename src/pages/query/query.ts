@@ -9,6 +9,7 @@ export default class extends MyPage {
     searchList: [],
     focus: true,
     inputValue: "",
+    searchInfo: ""
   }
 
   async onLoad(options: any) {
@@ -38,7 +39,8 @@ export default class extends MyPage {
     WxSearch.wxSearchAddHisKey(that);
     console.log(WxSearch)
     that.setDataSmart({
-      focus: false
+      focus: false,
+      searchInfo: that.data.inputValue
     })
     that.sendSearch(that.data.inputValue)
   }
@@ -73,7 +75,8 @@ export default class extends MyPage {
     WxSearch.wxSearchKeyTap(e,that);
     console.log(e.currentTarget.dataset.key)
     that.setDataSmart({
-      focus: false
+      focus: false,
+      searchInfo: e.currentTarget.dataset.key
     })
     that.sendSearch(e.currentTarget.dataset.key)
   }
@@ -98,6 +101,7 @@ export default class extends MyPage {
     let that:any = this
     wx.request({
       url: "https://wechatx.offerqueens.cn/article/search",
+      // url: "http://127.0.0.1:7979/article/search",
       data: {
         searchInfo:searchInfo,
         openid: store.openid, 
@@ -107,7 +111,8 @@ export default class extends MyPage {
         console.log(res)
           if (res.data.state === 200){
               console.log(res.data)
-              store.searchList = res.data.searchList
+              let newArticleInfos = that.changeArticleSub(res.data.searchList)
+              store.searchList = newArticleInfos
               that.setSearchArticle(store.searchList)
           } else {
             wx.showToast({
@@ -145,8 +150,30 @@ export default class extends MyPage {
     // this.app.$url.repdetail.go({
     //   infos: JSON.parse(e.target.dataset.infos)
     // })
+    let commentList = e.target.dataset.info.commentList
+    let commentListCode = []
+    for (let i =0;i<commentList.length;i++){
+      let item = commentList[i]
+      let codeItem = {
+        articleId: item.articleId,
+        avatarUrl: encodeURIComponent(item.avatarUrl),
+        content: encodeURIComponent(item.content),
+        time: item.time,
+        userId: item.userId,
+        _id: item._id
+      }
+      commentListCode.push(codeItem)
+    }
+    let info = {
+      ...e.currentTarget.dataset.info,
+      content: encodeURIComponent(e.currentTarget.dataset.info.content),
+      sub: encodeURIComponent(e.currentTarget.dataset.info.sub),
+      avatarUrl: encodeURIComponent(e.currentTarget.dataset.info.avatarUrl),
+      commentList: commentListCode
+    }
+    console.log(info)
     wx.navigateTo({
-      url: '../repdetail/repdetail?info=' + JSON.stringify(e.target.dataset.info),
+      url: '../repdetail/repdetail?info=' + JSON.stringify(info),
       success: function(res){
       },
       fail: function(res){
@@ -157,4 +184,26 @@ export default class extends MyPage {
       }
     })
   }
+
+
+  changeArticleSub(articles:any){
+    let newArticles = []
+    for (let i=0;i<articles.length;i++){
+      let article = articles[i]
+      article = {
+        ...article,
+        sub: article.sub.replace(/↵/g,'  ')
+      }
+      newArticles.push(article)
+    }
+    return newArticles
+  }
+
+  onShow(){
+    let searchInfo = this.data.searchInfo
+    if (searchInfo.length > 0){
+      this.sendSearch(searchInfo)
+    }
+  }
+  
 }

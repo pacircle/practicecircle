@@ -5,10 +5,28 @@ import {pagify, MyPage, wxp} from 'base/'
 @pagify()
 export default class extends MyPage {
   data = {
-
+    modalHidden: true,
   }
 
   async onLoad(options: any) {
     console.log(await wxp.getUserInfo())
+  }
+
+  getSignWay(e:any){
+    this.setDataSmart({
+      modalHidden: false
+    })
+  }
+
+  modalConfirm(){
+    this.setDataSmart({
+      modalHidden: true
+    })
+  }
+
+  modalCandel(){
+    this.setDataSmart({
+      modalHidden: true
+    })
   }
 }

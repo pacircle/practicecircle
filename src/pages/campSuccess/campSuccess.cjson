@@ -12,5 +12,6 @@
   "usingComponents": {
     "i-notice-bar": "../../base/iView/notice-bar/index",
     "i-divider": "../../base/iView/divider/index",
+    "i-button": "../../base/iView/button/index",
   }
 }

@@ -23,7 +23,8 @@
     background:#2d8cf0
 }
 .i-tabs-tab-title{
-    font-size:28px;
+    /* font-size:28px; */
+    font-size:35px;
     text-align:center;
     box-sizing:border-box;
     color:#80848f
