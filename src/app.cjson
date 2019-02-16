@@ -12,7 +12,7 @@
     /*# INJECT_START {"key": "page"} #*/
     // "pages/query/query",
     // "pages/campSuccess/campSuccess",
-    // "pages/index/index",
+    "pages/index/index",
     // "pages/logs/logs",
     // "pages/firstview/firstview",
     // "pages/viewitem/viewitem",

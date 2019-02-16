@@ -42,6 +42,7 @@ export default class extends MyPage {
     // if (store.articleInfos.length === 0 ){//如果没有文章
       wx.request({
         url: "https://wechatx.offerqueens.cn/article/all",
+        // url: "http://127.0.0.1:7979/article/all",
         data: {
           openid: store.openid,
           articleType: store.articleType
@@ -51,7 +52,8 @@ export default class extends MyPage {
           console.log(ress.statusCode)
           if (ress.statusCode === 200){
               console.log(ress.data.articleInfos)
-              store.articleInfos = ress.data.articleInfos
+              let newArticleInfos = that.changeArticleSub(ress.data.articleInfos)
+              store.articleInfos = newArticleInfos
               that.setArticle(store.articleInfos)
           } else {
             wx.showToast({
@@ -130,6 +132,7 @@ export default class extends MyPage {
     store.articleType = type
     wx.request({
       url: "https://wechatx.offerqueens.cn/article/all",
+      // url: "http://127.0.0.1:7979/article/all",
       data: {
         openid: store.openid,
         articleType: store.articleType
@@ -140,7 +143,10 @@ export default class extends MyPage {
         if (ress.statusCode === 200){
             if (ress.data.articleInfos){
               console.log(ress.data.articleInfos)
-              store.articleInfos = ress.data.articleInfos
+              // store.articleInfos = ress.data.articleInfos
+              // that.setArticle(store.articleInfos)
+              let newArticleInfos = that.changeArticleSub(ress.data.articleInfos)
+              store.articleInfos = newArticleInfos
               that.setArticle(store.articleInfos)
               wx.showToast({
                 title: '更新列表成功',
@@ -177,6 +183,7 @@ export default class extends MyPage {
     if (store.articleType){
       wx.request({
         url: "https://wechatx.offerqueens.cn/article/all",
+        // url: "http://127.0.0.1:7979/article/all",
         data: {
           openid: store.openid,
           articleType: store.articleType
@@ -187,7 +194,8 @@ export default class extends MyPage {
           if (ress.statusCode === 200){
               if (ress.data.articleInfos){
                 console.log(ress.data.articleInfos)
-                store.articleInfos = ress.data.articleInfos
+                let newArticleInfos = that.changeArticleSub(ress.data.articleInfos)
+                store.articleInfos = newArticleInfos
                 that.setArticle(store.articleInfos)
               }         
           } else {
@@ -210,6 +218,7 @@ export default class extends MyPage {
     } else {
       wx.request({
         url: "https://wechatx.offerqueens.cn/article/all",
+        // url: "http://127.0.0.1:7979/article/all",
         data: {
           openid: store.openid,
           articleType: 'time'
@@ -220,7 +229,8 @@ export default class extends MyPage {
           if (ress.statusCode === 200){
               if (ress.data.articleInfos){
                 console.log(ress.data.articleInfos)
-                store.articleInfos = ress.data.articleInfos
+                let newArticleInfos = that.changeArticleSub(ress.data.articleInfos)
+                store.articleInfos = newArticleInfos
                 that.setArticle(store.articleInfos)
               }         
           } else {
@@ -394,8 +404,8 @@ export default class extends MyPage {
     //   }
     // })
     return {
-        title: '交大分享圈-分享训练营',
-        imageUrl: require("../../images/practice.png"),
+        title: '交大分享圈-分享复盘',
+        imageUrl: 'https://wechatx.offerqueens.cn/weimage/practice1.png',
         // wechat功能调整，无法返回是否分享成功
         // success: function(ress:any){
         //   console.log("转发成功", ress)
@@ -429,6 +439,9 @@ export default class extends MyPage {
             success: (res) => {
               // 下载成功 即可获取到本地路径
               console.log("下载成功",res.path)
+              wx.hideTabBar({
+                animation: true
+              })
               that.showQRcode('arti',res.path)
             }
           })
@@ -458,22 +471,25 @@ export default class extends MyPage {
       })
       const height=this.store.windowHeight;
       const width=this.store.windowWidth;
+
+
+
       // //二维码
-      // const cx=(width-250)/2;//左上角C
-      // const cy=(height-250)/2;
-      // const cw=250;//宽高
-      // const ch=250;
+      // const cx=(width-280)/2;//左上角C
+      // const cy=(height-280)/2;
+      // const cw=280;//宽高
+      // const ch=280;
       // //整体的黄色
       // const ax=0;//留出30的边-----左上角A
       // const ay=0;//留出100的边
-      // const aw=width;
-      // const ah=height;
+      // const aw=width-30;
+      // const ah=height-100;
       // //文字的左上角B
       // const bx=cx;
-      // const by=cy-21-21-15-20;//两行18的字一行12的字刚好到二维码，留点余量好看一点
+      // const by=cy-21-21-15-20-30;//两行18的字一行12的字刚好到二维码，留点余量好看一点
       // //按钮的左上角
       // const dx=cx;
-      // const dy=cy+200+50;
+      // const dy=cy+200+50+50;
       // this.setDataSmart({
       //   dx:dx,
       //   dy:dy,
@@ -496,22 +512,27 @@ export default class extends MyPage {
       // }
       // context.setFontSize(25)
       // context.fillText('(新用户扫码注册后才视为分享成功)', bx, by+60,500)
+
+
+
+
+
       //二维码
-      const cx=(width-200)/2;//左上角C
-      const cy=(height-200)/2-50;
-      const cw=200;//宽高
-      const ch=200;
+      const cx=(width-250)/2;//左上角C
+      const cy=(height-250)/2-50+40;
+      const cw=250;//宽高
+      const ch=250;
       //整体的黄色
-      const ax=cx-30;//留出30的边-----左上角A
-      const ay=cy-100;//留出100的边
-      const aw=200+60;
-      const ah=100+200+30;
+      const ax=15;//留出30的边-----左上角A
+      const ay=50;//留出100的边
+      const aw=width-30;
+      const ah=height-100;
       //文字的左上角B
       const bx=cx;
-      const by=cy-21-21-15;//两行18的字一行12的字刚好到二维码，留点余量好看一点
+      const by=cy-21-21-15-30;//两行18的字一行12的字刚好到二维码，留点余量好看一点
       //按钮的左上角
-      const dx=cx-15;
-      const dy=cy+200+50;
+      const dx=cx;
+      const dy=cy+250+50;
       this.setDataSmart({
         dx:dx,
         dy:dy,
@@ -524,16 +545,19 @@ export default class extends MyPage {
       context.fill()
       //文字
       context.setFillStyle("black")
-      context.setFontSize(22)
+      context.setFontSize(25)
       if(type=="arti"){
-        context.fillText('分享复盘,', bx, by, 200)
-        context.fillText('获得阅读精华复盘权限', bx, by+25,200)
+        context.fillText('分享复盘,', bx, by, 250)
+        context.fillText('获得阅读精华复盘权限', bx, by+30,250)
       }else if(type=="camp"){
-        context.fillText('分享训练营,', bx, by, 200)
-        context.fillText('获得训练营报名资格', bx, by+25,200)
+        context.fillText('分享训练营,', bx, by, 250)
+        context.fillText('获得训练营报名资格', bx, by+30,250)
       }
-      context.setFontSize(22)
-      context.fillText('(新用户扫码注册后才视为分享成功)', bx, by+48,200)
+      context.setFontSize(25)
+      context.fillText('(新用户扫码注册后才视为分享成功)', bx, by+60,250)
+
+
+
       context.drawImage(QRcodeFile,cx,cy,cw,ch)
       const that=this;
       context.draw(false,function(){
@@ -564,12 +588,18 @@ export default class extends MyPage {
       shown:false,
       QRcodeFilePath:"",
     })
+    wx.showTabBar({
+      animation: true
+    })
   }
 
   hideQRcode(){
     this.setDataSmart({
       shown:false,
       QRcodeFilePath:"",
+    })
+    wx.showTabBar({
+      animation: true
     })
   }
 
@@ -584,5 +614,19 @@ export default class extends MyPage {
     this.setDataSmart({
       modalHidden: true
     })
+  }
+
+
+  changeArticleSub(articles:any){
+    let newArticles = []
+    for (let i=0;i<articles.length;i++){
+      let article = articles[i]
+      article = {
+        ...article,
+        sub: article.sub.replace(/↵/g,'  ')
+      }
+      newArticles.push(article)
+    }
+    return newArticles
   }
 }

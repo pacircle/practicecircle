@@ -116,6 +116,7 @@ export default class extends MyPage {
     console.log(JSON.parse(options.info).elite === 1)
     console.log(store.inviteMember)
     console.log(store.campMember)
+    // if (JSON.parse(options.info).elite === 1 && store.inviteMember > 1){
     if (JSON.parse(options.info).elite === 1 && store.inviteMember < 1){
       this.setDataSmart({
         readPower: false
@@ -129,6 +130,7 @@ export default class extends MyPage {
     console.log(JSON.parse(options.info)._id)
     wx.request({
       url: 'https://wechatx.offerqueens.cn/user/article/read',
+      // url: 'http://127.0.0.1:7979/user/article/read',
       data: {
         openid: this.store.openid,
         articleId: JSON.parse(options.info)._id.$oid
@@ -181,8 +183,8 @@ export default class extends MyPage {
       content: '请点击右下角转发按键，获取个人分享码'
     })
     return {
-        title: '交大分享圈-分享训练营',
-        imageUrl: require("../../images/practice.png"),
+        title: '交大分享圈-分享复盘',
+        imageUrl: 'https://wechatx.offerqueens.cn/weimage/practice1.png',
         // wechat功能调整，无法返回是否分享成功
         // success: function(ress:any){
         //   console.log("转发成功", ress)
@@ -199,6 +201,7 @@ export default class extends MyPage {
     let that:any = this
     wx.request({
       url: "https://wechatx.offerqueens.cn/user/article/collect",
+      // url: "http://127.0.0.1:7979/user/article/collect",
       method: 'POST',
       data: {
         openid: store.openid,
@@ -235,6 +238,7 @@ export default class extends MyPage {
     let store:any = this.store
     wx.request({
       url: "https://wechatx.offerqueens.cn/user/article/agree",
+      // url: "http://127.0.0.1:7979/user/article/agree",
       method: 'POST',
       data: {
         openid: store.openid,
@@ -461,22 +465,24 @@ export default class extends MyPage {
     if(this.store.windowHeight&&this.store.windowWidth){
       const height=this.store.windowHeight;
       const width=this.store.windowWidth;
+
+
       //二维码
-      const cx=(width-200)/2;//左上角C
-      const cy=(height-200)/2-50;
-      const cw=200;//宽高
-      const ch=200;
+      const cx=(width-250)/2;//左上角C
+      const cy=(height-250)/2-50+40;
+      const cw=250;//宽高
+      const ch=250;
       //整体的黄色
-      const ax=cx-30;//留出30的边-----左上角A
-      const ay=cy-100;//留出100的边
-      const aw=200+60;
-      const ah=100+200+30;
+      const ax=15;//留出30的边-----左上角A
+      const ay=50;//留出100的边
+      const aw=width-30;
+      const ah=height-100;
       //文字的左上角B
       const bx=cx;
-      const by=cy-21-21-15;//两行18的字一行12的字刚好到二维码，留点余量好看一点
+      const by=cy-21-21-15-30;//两行18的字一行12的字刚好到二维码，留点余量好看一点
       //按钮的左上角
-      const dx=cx-15;
-      const dy=cy+200+50;
+      const dx=cx;
+      const dy=cy+250+50;
       this.setDataSmart({
         dx:dx,
         dy:dy,
@@ -489,16 +495,57 @@ export default class extends MyPage {
       context.fill()
       //文字
       context.setFillStyle("black")
-      context.setFontSize(22)
+      context.setFontSize(25)
       if(type=="arti"){
-        context.fillText('分享复盘,', bx, by, 200)
-        context.fillText('获得阅读精华复盘权限', bx, by+21,200)
+        context.fillText('分享复盘,', bx, by, 250)
+        context.fillText('获得阅读精华复盘权限', bx, by+30,250)
       }else if(type=="camp"){
-        context.fillText('分享训练营,', bx, by, 200)
-        context.fillText('获得训练营报名资格', bx, by+21,200)
+        context.fillText('分享训练营,', bx, by, 250)
+        context.fillText('获得训练营报名资格', bx, by+30,250)
       }
-      context.setFontSize(22)
-      context.fillText('(新用户扫码注册后才视为分享成功)', bx, by+42,200)
+      context.setFontSize(25)
+      context.fillText('(新用户扫码注册后才视为分享成功)', bx, by+60,250)
+      // //二维码
+      // const cx=(width-200)/2;//左上角C
+      // const cy=(height-200)/2-50;
+      // const cw=200;//宽高
+      // const ch=200;
+      // //整体的黄色
+      // const ax=cx-30;//留出30的边-----左上角A
+      // const ay=cy-100;//留出100的边
+      // const aw=200+60;
+      // const ah=100+200+30;
+      // //文字的左上角B
+      // const bx=cx;
+      // const by=cy-21-21-15;//两行18的字一行12的字刚好到二维码，留点余量好看一点
+      // //按钮的左上角
+      // const dx=cx-15;
+      // const dy=cy+200+50;
+      // this.setDataSmart({
+      //   dx:dx,
+      //   dy:dy,
+      //   shown:true
+      // })
+      // const context = wx.createCanvasContext('QRcode',this)
+      // //外边框和底色
+      // context.rect(ax, ay, aw, ah)
+      // context.setFillStyle("rgb(255, 230, 0)")
+      // context.fill()
+      // //文字
+      // context.setFillStyle("black")
+      // context.setFontSize(22)
+      // if(type=="arti"){
+      //   context.fillText('分享复盘,', bx, by, 200)
+      //   context.fillText('获得阅读精华复盘权限', bx, by+21,200)
+      // }else if(type=="camp"){
+      //   context.fillText('分享训练营,', bx, by, 200)
+      //   context.fillText('获得训练营报名资格', bx, by+21,200)
+      // }
+      // context.setFontSize(22)
+      // context.fillText('(新用户扫码注册后才视为分享成功)', bx, by+42,200)
+
+
+
       context.drawImage(QRcodeFile,cx,cy,cw,ch)
       const that=this;
       context.draw(false,function(){

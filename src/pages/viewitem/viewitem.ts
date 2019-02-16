@@ -752,4 +752,11 @@ export default class extends MyPage {
       nowKey: options.key
     })
   }
+
+  onShareAppMessage(res:any) {
+    return {
+      title: '交大分享圈',
+      imageUrl: 'https://wechatx.offerqueens.cn/weimage/practice1.png',   
+    }
+  }
 }

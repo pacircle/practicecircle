@@ -15,6 +15,7 @@ export default class extends MyPage {
     motto: '',
     canIUseOpenButton: wxp.canIUse('button.open-type.getUserInfo'),
     practice: require("../../images/practice.png"),
+    scene: ''
   }
 
   onShow() {
@@ -28,8 +29,25 @@ export default class extends MyPage {
   }
 
   onClickOpenButton(e: any) {
-    // 轻松修改全局数据
-    this.store.userInfo = e.detail.userInfo
+    console.log(e,'onClick')
+    if (e.detail.userInfo){
+      //用户按了允许授权按钮
+      this.store.userInfo = e.detail.userInfo
+      if (this.data.scene.length > 0){
+        this.invite(this.data.scene)
+      } else {
+        this.getUserInfos()
+      }
+      this.app.$url.main.go()
+    } else {
+      //用户按了拒绝按钮
+      wxp.showToast({
+        title: '请授权获取用户信息',
+        icon: 'none',
+        duration: 2000
+      })
+    }
+    
 
     // 组件内数据还是用 setData
     this.setDataSmart({motto: '点击了『获取头像昵称』按钮'})
@@ -62,18 +80,27 @@ export default class extends MyPage {
       console.log("has scene");
       var scene = decodeURIComponent(options.scene);
       console.log("scene is ", scene);
-      this.invite(scene)
+      this.setDataSmart({
+        scene: scene
+      })
+      // this.invite(scene)
     } else {
       console.log("no scene");
     }
-    // if (!this.store.userInfo && !this.data.canIUseOpenButton) {
-    //   // 在没有 open-type=getUserInfo 版本的兼容处理
-    //   let {userInfo} = await wxp.getUserInfo()
-    //   this.store.userInfo = userInfo
-    // }
+    let setting = await wxp.getSetting()
+     console.log(setting)
+     if (setting.authSetting['scope.userInfo']) {
+      this.app.$url.main.go()
+     }
+    if (!this.store.userInfo && !this.data.canIUseOpenButton) {
+      // 在没有 open-type=getUserInfo 版本的兼容处理
+      let {userInfo} = await wxp.getUserInfo()
+      this.store.userInfo = userInfo
+      this.app.$url.main.go()
+    }
     // wxp.hideTabBar({})
   }
-  async getUserInfos(e:any){
+  async getUserInfos(){
      // 登录
      let store:any = this.store
      let that:any = this
@@ -82,7 +109,7 @@ export default class extends MyPage {
 
      let appSetting = require('../../../src/project.config.json')
      console.log(appSetting.appid)
-
+     
      // 获取用户信息
      let setting = await wxp.getSetting()
      if (setting.authSetting['scope.userInfo']) { // 已经授权，可以直接调用 getUserInfo 获取头像昵称，不会弹框
@@ -142,6 +169,8 @@ export default class extends MyPage {
          icon: 'none',
               duration: 2000
        })
+       let res = await wxp.getUserInfo()
+       console.log(res,'res')
      }
      if (!this.store.userInfo && !this.data.canIUseOpenButton) {
        console.log('微信兼容版本')
@@ -216,5 +245,10 @@ export default class extends MyPage {
          duration: 2000
        })
      }
+  }
+
+
+  onGotUserInfo(e:any){
+    console.log(e)
   }
 }

@@ -8,7 +8,7 @@
     <canvas class="QRcode-canvas" canvas-id="QRcode" bind:tap="hideQRcode"></canvas>
     <button style="position:fixed;left:{{dx}}px;top:{{dy}}px;width:230px;height:40px;font-size:15px;" 
         type="primary" bind:tap="saveQRcode">保存二维码</button>
-    <text style="position:fixed;left:{{dx}}px;top:{{dy+40}}px;font-size:15px;">保存图片可分享到朋友圈</text>
+    <!-- <text style="position:fixed;left:{{dx}}px;top:{{dy+40}}px;font-size:15px;">保存图片可分享到朋友圈</text> -->
 </block>
 <view hidden="{{shown}}">
   <view class="title">
