@@ -20,7 +20,7 @@
             bindblur="wxSearchBlur" 
             class="wxSearch-input"
             auto-focus/>
-      <button class="wxSearch-button" size="mini" plain="true" bindtap="wxSearchFn">搜索</button>
+      <button class="wxSearch-button" size="14" plain="true" bindtap="wxSearchFn">搜索</button>
     </view>
   <!-- <view class="wxSearch-section">
       <view class="wxSearch-pancel">

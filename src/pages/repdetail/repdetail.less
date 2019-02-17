@@ -19,6 +19,7 @@
 .avaTime {
   width: 94%;
   margin: auto;
+  margin-left: 3%;
   margin-top: 5px;  
   display: inline-block;   
 }
@@ -163,12 +164,24 @@
     -webkit-box-align:center;
     background:#fff;
     font-size: 20px;
+    box-sizing:border-box;
+    border:0 solid #e9eaec;
+    // border:0 solid black;
+    border-top-width:2px
 }
 
 .bottom-fixed{
   position:fixed;
   bottom:0;
+  font-size: 30px;
+  color: #ababab;
   // z-index:2;
+}
+
+.bottom-divider {
+  width: 3px;
+  height: 80%;
+  
 }
 
 .bottom-input{
@@ -192,4 +205,59 @@
 .scrollStyle {
   overflow-y: scroll;
   padding-bottom: 80px;
+}
+.i-card-body{
+  display: flex;
+  flex-direction: row;
+  position:relative;
+  padding:6px 16px;
+  color:#000000;
+  font-size:30px;
+}
+.i-card-body::before{
+  content:'';
+  position:absolute;
+  top:0;
+  left:0;
+  width:200%;
+  height:200%;
+  transform:scale(.5);
+  transform-origin:0 0;
+  pointer-events:none;
+  box-sizing:border-box;
+  border:0 solid #e9eaec;
+  border-top-width:1px
+}
+.i-card-recommended{
+  margin-left: 3%;
+  margin-right: 5px;
+  width: 100px;
+  margin-top: 5px;
+  // font-size:28px;
+  // height: 40px;
+  // line-height: 40px;
+  text-align: center;
+  // color:#80848f;
+  // background-color: yellow;
+  // border-radius: 10px;
+  // border: 1px solid rgb(51, 68, 16);
+  color:#fa3e3a;
+  background-color: #fff4f3;
+  border-radius: 10px;
+  border: 1px solid #ffb4ae;
+  font-size: 35px;
+  font-weight: bold;
+}
+
+.QRcode-canvas{
+  position: fixed;
+  align-self: auto;
+  top: 0px;
+  left: 0px;
+  height: 100%;
+  width: 100%;
+
+}
+button::hover{
+  background-color: #80848f;
 }

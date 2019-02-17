@@ -14,6 +14,8 @@
     // "pages/campSuccess/campSuccess",
     "pages/index/index",
     // "pages/logs/logs",
+    // "pages/firstview/firstview",
+    // "pages/viewitem/viewitem",
     "pages/main/main",
     "pages/replays/replays",
     "pages/query/query",
@@ -24,6 +26,8 @@
     "pages/campDetail/campDetail",
     "pages/campSuccess/campSuccess",
     "pages/web/web",
+    "pages/firstview/firstview",
+    "pages/viewitem/viewitem",
     /*# INJECT_END #*/
   ],
   "window": {

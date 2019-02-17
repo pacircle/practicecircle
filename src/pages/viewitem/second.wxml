@@ -1,0 +1,63 @@
+<view>
+    <view class="title">UGC、PGC、OGC到底有什么区别</view>
+    <view class="content">
+        <view class="content-part">
+            在国内可见的网站平台上，UGC、OGC和PGC是常见的内容生产模式。这里主要阐述一下这几种模式的不同。
+        </view>
+        <!-- <view class="content-title-second">
+            UGC模式
+        </view> -->
+        <view class="content-title">
+            <view class="content-title-inner">UGC模式</view>
+        </view>
+        <view class="content-divide"></view>
+        <view class="content-part">
+            UGC（全称为：User Generated Content，即用户输出内容）主要是通过激励用户生产内容，形成社区氛围。 UGC模式以Web 2.0的博客，论坛为主要代表，任何一个用户都可以在平台上创造内容，供别人分享。现在，仍然后很多的论坛、微博的用户仍然保持活跃。
+        </view>
+        <view class="content-title">
+            <view class="content-title-inner">PGC模式</view>
+        </view>
+        <!-- <view class="content-title-second">
+            PGC模式
+        </view> -->
+        <view class="content-divide"></view>
+        <view class="content-part">
+           PGC（全称为 Professionally Generated Content，即专业人士输出内容），主要通过专业人士生产内容，共用户浏览。 
+        </view>
+        <!-- <view class="content-title-second">
+            OGC模式
+        </view> -->
+        <view class="content-title">
+            <view class="content-title-inner">OGC模式</view>
+        </view>
+        <view class="content-divide"></view>
+        <view class="content-part">
+            OGC（全称为 Occupationally Generated Content, 即职业生产内容），主要通过具有一定知识和专业背景的行业人士生产内容，并且这些人士会领取相应的报酬。
+        </view>
+        <view class="content-part">
+            PGC和OGC相对容易区分，生产内容的用户领取报酬的模式属于OGC，比如一个企业的官方网站，内容主要靠这个公司的职工进行采写，生产出来供用户浏览，这是典型的OGC。 如果是具有专业背景的用户出于爱好在网站上分享自己的见解，这种分享完全是自发的，也不求回报，那么就是典型的PGC模式，在国内，PGC模式的代表有知乎，果壳网等。
+        </view>
+        <!-- <view class="content-title-second">
+            如何判断一个产品的内容生产模式属于哪一种？
+        </view> -->
+        <view class="content-title">
+            <view class="content-title-inner">如何判断一个产品的内容生产模式属于哪一种？</view>
+        </view>
+        <view class="content-divide"></view>
+        <view class="content-part">
+             其实互联网发展到现在，在任何一家平台上，都有这三种模式的重叠，比如微博这个产品，既有专业的用户出于爱好在免费为平台创造内容，又有一些专栏作家定期发微博是可以获得收益的，当然了，更多的是普通用户在不停的生产各种内容。 因此，我们判断一个产品的内容生产模式的时候，往往是根据每种生产模式所生产的内容占据总体内容的比例来判断这个产品的主要模式是什么。比如知乎是一个典型的PGC模式，也就是说，专业人士处于爱好分享的内容占据了平台内容的绝大部分。
+        </view>
+    </view>
+    <!-- <block wx:for="{{firstContent}}" wx:key="{{item.title}}">
+        <view class="content-title">
+            <view class="content-title-inner">{{item.title}}</view>
+        </view>
+        <block wx:for="{{item.secondContent}}" wx:key="{{item.title}}">
+            <view class="content-title-second">{{item.title}}</view>
+            <view class="content-divide"></view>
+            <block wx:for="{{item.thirdContent}}" wx:key="{{item}}">
+                <view class="content-part">{{item}}</view>
+            </block>
+        </block>
+    </block> -->
+</view>

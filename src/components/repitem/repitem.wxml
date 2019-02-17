@@ -20,13 +20,19 @@
     <view class="split"></view> --> 
     <view class="i-class i-card i-card-full">
       <view class="i-class i-card-header">
+        <view class="i-card-recommended" wx:if="{{ reInfos.elite == 1 }}">精华</view>
         <view class="i-card-header-content">
             <image class="i-card-header-thumb" src="{{ reInfos.avatarUrl }}" wx:if="{{ reInfos.avatarUrl}}" />
             {{ reInfos.nickName }}
         </view>
         <view class="i-card-header-extra">{{ reInfos.time }}</view>
       </view>
-      <view class="i-class i-card-title">{{reInfos.title}}</view>
+      <view class="i-class i-card-body">
+        <!-- <view class="i-card-recommended" wx:if="{{ reInfos.elite == 1 }}">精华</view> -->
+        <!-- <slot name="title">{{reInfos.title}}</slot> -->
+        <view class="i-class i-card-title">{{reInfos.title}}</view>
+      </view>
+      <!-- <view class="i-class i-card-title">{{reInfos.title}}</view> -->
       <view class="i-class i-card-content">{{reInfos.sub}}</view>
       <view class="i-class i-card-footer">{{reInfos.readTime}}阅读  ●  {{reInfos.agree}}赞同</view>
       <view class="split"></view>
