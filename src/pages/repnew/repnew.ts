@@ -4,7 +4,7 @@ import {pagify, MyPage, wxp} from 'base/'
 @pagify()
 export default class extends MyPage {
   data = {
-
+    author: "",
     title: "",
     sub: "",
     content: "",
@@ -24,6 +24,13 @@ export default class extends MyPage {
   /*
   获取实时输入值
   */
+  onAuthorChange(e:any){
+    // console.log(e.detail.value);
+    // this.data.title=e.detail.detail.value;
+    this.setDataSmart({
+      author: e.detail.value
+    })
+  }
   onTitleChange(e:any){
     // console.log(e.detail.value);
     // this.data.title=e.detail.detail.value;
@@ -63,7 +70,8 @@ export default class extends MyPage {
       wx.request({
         url: "https://wechatx.offerqueens.cn/user/article/add",
         data:{
-          openid: store.openid,
+          openid: data.author,
+          //openid: store.openid,
           content: data.content,
           title: data.title,
           sub: data.content.substr(0,20)

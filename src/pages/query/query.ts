@@ -192,7 +192,8 @@ export default class extends MyPage {
       let article = articles[i]
       article = {
         ...article,
-        sub: article.sub.replace(/↵/g,'  ')
+        sub: article.sub.replace(/↵/g,'  ').replace(/％/g, '%').replace(/＆/g, '&').replace(/＋/g, '+').replace(/＃/g, '#').replace(/＝/g, '=').replace(/？/g, '?').replace(/﹨/g, '\\').replace(/∕/g, '/'),
+
       }
       newArticles.push(article)
     }

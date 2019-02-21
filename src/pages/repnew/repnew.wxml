@@ -5,6 +5,13 @@
   1. 如果没有语法高亮，且你使用的是 vscode 编辑器的话，建义在 vscode 插件库中安装 minapp-vscode 插件
 -->
 <view >
+    <i-panel title="复盘作者">
+        <input type="text"
+            bindinput="onAuthorChange"
+            class="title"
+            maxlength="100" 
+            placeholder="请输入作者" /> 
+    </i-panel>
     <i-panel title="复盘标题">
         <input type="text"
             bindinput="onTitleChange"

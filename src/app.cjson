@@ -28,6 +28,8 @@
     "pages/web/web",
     "pages/firstview/firstview",
     "pages/viewitem/viewitem",
+    "pages/QRcodeArticle/QRcodeArticle",
+    "pages/QRcodeCamp/QRcodeCamp",
     /*# INJECT_END #*/
   ],
   "window": {

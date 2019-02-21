@@ -35,6 +35,8 @@ export class MyApp extends MobxApp<MyStore> {
     web: Url
     firstview: Url
     viewitem: Url
+    QRcodeArticle: Url
+    QRcodeCamp: Url
     /*# INJECT_END #*/
   }
 }
