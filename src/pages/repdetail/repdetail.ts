@@ -49,6 +49,9 @@ export default class extends MyPage {
   }
 
   async onLoad(options: any) {
+    
+    this.store.dontRelogin=true//看文章的时候不许重新登录
+    
     console.log(this.store.userInfo)
     console.log(options.info)
     // // console.log(await wxp.getUserInfo())
@@ -144,6 +147,9 @@ export default class extends MyPage {
       fail:function(res){
       }
     })
+  }
+  onUnload(){
+    this.store.dontRelogin=false
   }
 
   backToMain(e:any){

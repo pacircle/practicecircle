@@ -29,8 +29,9 @@ export default class extends MyApp {
     this.store.needReLogin=true
   }
   onShow(){
-    this.store.needReLogin=false
-    if(this.store.reLogin!=null){
+    
+    if(this.store.needReLogin&&this.store.reLogin!=null&&!this.store.dontRelogin){
+      this.store.needReLogin=false
       this.store.reLogin()
     }
     
