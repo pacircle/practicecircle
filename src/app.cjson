@@ -21,7 +21,6 @@
     "pages/query/query",
     "pages/user/user",
     "pages/repdetail/repdetail",
-    "pages/repnew/repnew",
     "pages/camp/camp",
     "pages/campDetail/campDetail",
     "pages/campSuccess/campSuccess",

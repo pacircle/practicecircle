@@ -35,15 +35,21 @@
   <view>2. 分享训练营获取报名资格</view> -->
 </view>
 <i-divider content="训练营报名方式" size="20"></i-divider>
-<view class="sign" style="font-size:20px;"> 
-  <view>1. 分享训练营到微信群或朋友圈，一位好友扫码完成注册后，您将获得报名资格(后台关闭小程序重新登录可见)</view>
-  <view>2. 点击报名，进入报名页面，添加管理员微信</view>
-  <view>3. 点击屏幕最下方“我的”→“用户信息”，截图发送给管理员确认，完成报名</view>
+<view class="sign" > 
+  <view wx:if="{{!signPower}}">
+    <view style="font-size:18px;">1. 分享训练营到微信群或朋友圈，一位好友扫码完成注册后，您将获得报名资格(后台关闭小程序重新登录可见)</view>
+    <view style="font-size:18px;">2. 点击报名，进入报名页面，添加管理员微信</view>
+    <view style="font-size:18px;">3. 点击屏幕最下方“我的”→“用户信息”，截图发送给管理员确认，完成报名</view>
+  </view>
+  <view wx:if="{{signPower}}">
+    <view style="font-size:18px;">1. 点击报名，进入报名页面，添加管理员微信</view>
+    <view style="font-size:18px;">2. 点击屏幕最下方“我的”→“用户信息”，截图发送给管理员确认，完成报名</view>
+  </view>
   <view>
     <i-button type="warning" wx:if="{{signPower}}" bind:click="toCampSuccess">报名</i-button> 
     <!-- <i-button type="warning" wx:if="{{sign}}" bind:click="getSignWay">报名成功</i-button>  -->
     <!--i-button bind:click="getSignWay" type="primary" wx:else>报名</i-button-->
-
+  
 
 
 
