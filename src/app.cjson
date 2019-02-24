@@ -21,13 +21,14 @@
     "pages/query/query",
     "pages/user/user",
     "pages/repdetail/repdetail",
-    "pages/repnew/repnew",
     "pages/camp/camp",
     "pages/campDetail/campDetail",
     "pages/campSuccess/campSuccess",
     "pages/web/web",
     "pages/firstview/firstview",
     "pages/viewitem/viewitem",
+    "pages/QRcodeArticle/QRcodeArticle",
+    "pages/QRcodeCamp/QRcodeCamp",
     /*# INJECT_END #*/
   ],
   "window": {

@@ -5,62 +5,71 @@
   1. 如果没有语法高亮，且你使用的是 vscode 编辑器的话，建义在 vscode 插件库中安装 minapp-vscode 插件
 -->
 
-<block wx:if="{{shown}}">
-    <canvas class="QRcode-canvas" canvas-id="QRcode" bind:tap="hideQRcode"></canvas>
-    <button style="position:fixed;left:{{dx}}px;top:{{dy}}px;width:230px;height:50px;font-size:20px;" 
-        type="primary" bind:tap="saveQRcode">保存二维码</button>
-    <!-- <text style="position:fixed;left:{{dx}}px;top:{{dy+50}}px;font-size:15px;">保存图片可分享到朋友圈</text> -->
-</block>
-<view hidden="{{shown}}">
-  <i-notice-bar icon="systemprompt" loop closable>
-    欢迎参与训练营，每期训练营同学们将和我一起重新分析1-3个最近、最新的互联网产品、运营岗面试真题，我们希望帮你提高产品思维，在讨论的过程中从其他同学、更多的思考角度获得启发。
-  </i-notice-bar>
-  <view class="title">
-    <span>第</span>
-    <span>{{nowCamp.order}}</span>
-    <span>期训练营：</span>
-    <span>{{nowCamp.content}}</span>
-  </view>
+<i-notice-bar icon="systemprompt" loop closable>
+  欢迎参与训练营，每期训练营同学们将和我一起重新分析1-3个最近、最新的互联网产品、运营岗面试真题，我们希望帮你提高产品思维，在讨论的过程中从其他同学、更多的思考角度获得启发。
+</i-notice-bar>
+<view class="title">
+  <!--span>第</span>
+  <span>{{nowCamp.order}}</span>
+  <span>期训练营：</span-->
+  <span>{{nowCamp.content}}</span>
+</view>
 
-  <view class="content">{{nowCamp.description}}</view>
+<view class="content">{{nowCamp.description}}</view>
+<view>
+  <block wx:for="{{nowCamp.answers}}" data-index="{{index}}" wx:key="{{item.content}}">
+    <i-card title="优秀回答{{index + 1}}:">
+      <view slot="content">{{item.content}}</view>
+    </i-card>
+  </block>
+</view>
+
+<i-divider content="训练营规则" size="16"></i-divider>
+<view class="sign">
+  <view>1. 每期训练营将评选最佳答案，最佳回答者将获得直接参与下一期训练营机会，或推荐一位好友直接参加训练营。</view>
+  <view>2. 最佳回答由分享圈进行评选，最佳回答评选标准可参考：</view>
+  <view>1) 内容要扣题，提出符合产品经理思维逻辑的解决方案</view>
+  <view>2) 有独到的看法和深入的理解和分析</view>
+  <!-- <i-divider size="16">报名方式</i-divider>
+  <view>1. 向管理员提供优质复盘获取报名资格</view>
+  <view>2. 分享训练营获取报名资格</view> -->
+</view>
+<i-divider content="训练营报名方式" size="20"></i-divider>
+<view class="sign" > 
+  <view wx:if="{{!signPower}}">
+    <view style="font-size:18px;">1. 分享训练营到微信群或朋友圈，一位好友扫码完成注册后，您将获得报名资格(后台关闭小程序重新登录可见)</view>
+    <view style="font-size:18px;">2. 点击报名，进入报名页面，添加管理员微信</view>
+    <view style="font-size:18px;">3. 点击屏幕最下方“我的”→“用户信息”，截图发送给管理员确认，完成报名</view>
+  </view>
+  <view wx:if="{{signPower}}">
+    <view style="font-size:18px;">1. 点击报名，进入报名页面，添加管理员微信</view>
+    <view style="font-size:18px;">2. 点击屏幕最下方“我的”→“用户信息”，截图发送给管理员确认，完成报名</view>
+  </view>
   <view>
-    <block wx:for="{{nowCamp.answers}}" data-index="{{index}}" wx:key="{{item.content}}">
-      <i-card title="优秀回答{{index + 1}}:">
-        <view slot="content">{{item.content}}</view>
-      </i-card>
-    </block>
+    <i-button type="warning" wx:if="{{signPower}}" bind:click="toCampSuccess">报名</i-button> 
+    <!-- <i-button type="warning" wx:if="{{sign}}" bind:click="getSignWay">报名成功</i-button>  -->
+    <!--i-button bind:click="getSignWay" type="primary" wx:else>报名</i-button-->
+  
+
+
+
+
+    <!--i-button bind:tap="onShareQrCodeCamp1" type="primary">提供优质复盘</i-button-->
+    <i-button bind:tap="toQRcodeCamp" type="primary">分享训练营</i-button>
+    
+    <modal class="modal" title="扫码添加管理员，加入训练营" hidden="{{modalHidden}}" bindconfirm="modalConfirm" bindcancel="modalCandel">
+        <image class="image" src="https://wechatx.offerqueens.cn/weimage/super3.png" mode='aspectFill'></image>
+    </modal>
+
+    <modal class="modal" title="扫码添加管理员，提供优质复盘,获取训练营报名资格" hidden="{{modalHidden1}}" bindconfirm="modalConfirm1" bindcancel="modalCandel1">
+        <image class="image" src="https://wechatx.offerqueens.cn/weimage/super2.png" mode='aspectFill'></image>
+    </modal>
+
+    <modal class="modal" title="扫码加入训练营" hidden="{{modalHidden2}}" bindconfirm="modalConfirm2" bindcancel="modalCandel2">
+        <image class="image" src="https://wechatx.offerqueens.cn/weimage/super1.png" mode='aspectFill'></image>
+    </modal>
   </view>
-
-  <i-divider content="训练营规则" size="16"></i-divider>
-  <view class="sign">
-    <view>1. 每期训练营将评选最佳答案，最佳回答者将获得直接参与下一期训练营机会，或推荐一位好友直接参加训练营。</view>
-    <view>2. 最佳回答由分享圈进行评选，最佳回答评选标准可参考：</view>
-    <view>1) 内容要扣题，提出符合产品经理思维逻辑的解决方案</view>
-    <view>2) 有独到的看法和深入的理解和分析</view>
-    <!-- <i-divider size="16">报名方式</i-divider>
-    <view>1. 向管理员提供优质复盘获取报名资格</view>
-    <view>2. 分享训练营获取报名资格</view> -->
-    <view>
-      <i-button type="warning" wx:if="{{sign}}" bind:click="getSignWay2">报名成功</i-button> 
-      <!-- <i-button type="warning" wx:if="{{sign}}" bind:click="getSignWay">报名成功</i-button>  -->
-      <i-button bind:click="getSignWay" type="primary" wx:else>报名</i-button>
-
-      <i-button bind:tap="onShareQrCodeCamp1" type="primary">提供优质复盘</i-button>
-      <i-button bind:tap="onShareQrCodeCamp" type="primary">分享训练营</i-button>
-      
-      <modal class="modal" title="扫码添加管理员，加入训练营" hidden="{{modalHidden}}" bindconfirm="modalConfirm" bindcancel="modalCandel">
-          <image class="image" src="https://wechatx.offerqueens.cn/weimage/super3.png" mode='aspectFill'></image>
-      </modal>
-
-      <modal class="modal" title="扫码添加管理员，提供优质复盘,获取训练营报名资格" hidden="{{modalHidden1}}" bindconfirm="modalConfirm1" bindcancel="modalCandel1">
-          <image class="image" src="https://wechatx.offerqueens.cn/weimage/super2.png" mode='aspectFill'></image>
-      </modal>
-
-      <modal class="modal" title="扫码加入训练营" hidden="{{modalHidden2}}" bindconfirm="modalConfirm2" bindcancel="modalCandel2">
-          <image class="image" src="https://wechatx.offerqueens.cn/weimage/super1.png" mode='aspectFill'></image>
-      </modal>
-    </view>
-  </view>
+</view>
 
 
   <!-- <i-divider content="往期训练营"></i-divider>
@@ -70,5 +79,4 @@
     </block>
   </view> -->
 
-</view>
 

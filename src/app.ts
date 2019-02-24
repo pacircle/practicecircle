@@ -25,5 +25,16 @@ export default class extends MyApp {
     // Do something when catch error
     }
   }
+  onHide(){
+    this.store.needReLogin=true
+  }
+  onShow(){
+    
+    if(this.store.needReLogin&&this.store.reLogin!=null&&!this.store.dontRelogin){
+      this.store.needReLogin=false
+      this.store.reLogin()
+    }
+    
+  }
 }
 

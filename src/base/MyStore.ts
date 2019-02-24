@@ -32,4 +32,8 @@ export class MyStore extends MobxStore {
 
   @observable windowHeight: any=null
   @observable windowWidth: any=null
+
+  @observable reLogin:any=null
+  @observable needReLogin:boolean=false
+  @observable dontRelogin:boolean=false
 }
